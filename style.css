@@ -49,10 +49,9 @@ h1 {
     color: white;
 }
 
-/* 네비게이션 바 스타일 */
+/* 네비게이션 바 */
 nav {
     background-color: #333;
-    padding: 10px 0;
 }
 
 nav ul {
@@ -60,44 +59,65 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 50px; /* 메뉴 항목 간 간격을 넓힘 */
 }
 
 nav ul li {
     position: relative;
+    margin: 0 70px;
 }
 
-/* 서브메뉴 스타일 */
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+/* 드롭다운 서브메뉴 */
 .submenu {
     display: none;
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     background: white;
     border: 1px solid #ccc;
     list-style: none;
-    padding: 10px 0;
-    min-width: 150px;
-    text-align: center;
-}
-
-.submenu li {
-    padding: 5px 15px;
+    padding: 0;
+    width: 150px;
 }
 
 .submenu li a {
+    padding: 10px;
     display: block;
     color: black;
-    padding: 8px 0;
-    text-decoration: none;
 }
 
 .submenu li a:hover {
     background: #f0f0f0;
 }
 
-/* 메뉴 클릭 시 전체 서브메뉴 표시 */
-nav.active .submenu {
+/* 메뉴 활성화 시 서브메뉴 표시 */
+.menu-item.active .submenu {
     display: block;
+}
+
+/* 메인 콘텐츠 스타일 */
+.content {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.box {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
 }
