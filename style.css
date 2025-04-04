@@ -49,9 +49,10 @@ h1 {
     color: white;
 }
 
-/* 네비게이션 바 */
+/* 네비게이션 바 스타일 */
 nav {
     background-color: #333;
+    padding: 10px 0; /* 위아래 여백 추가 */
 }
 
 nav ul {
@@ -59,47 +60,47 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
+    gap: 30px; /* 메뉴 항목 간격 조정 */
 }
 
 nav ul li {
     position: relative;
-    margin: 0 40px;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background-color: #111;
-}
-
-/* 드롭다운 서브메뉴 */
+/* 서브메뉴 스타일 */
 .submenu {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
     border: 1px solid #ccc;
     list-style: none;
-    padding: 0;
-    width: 150px;
+    padding: 10px 0;
+    min-width: 150px;
+    text-align: center;
+}
+
+.submenu li {
+    padding: 5px 15px;
 }
 
 .submenu li a {
-    padding: 10px;
     display: block;
     color: black;
+    padding: 8px 0;
 }
 
 .submenu li a:hover {
     background: #f0f0f0;
 }
+
+/* 전체 메뉴가 열리는 상태 */
+nav.active .submenu {
+    display: block;
+}
+
 
 /* 메뉴 활성화 시 서브메뉴 표시 */
 .menu-item.active .submenu {
