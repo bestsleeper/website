@@ -23,19 +23,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-// 메뉴 클릭 시 전체 서브메뉴 표시
-    menuToggles.forEach(toggle => {
+    // 메뉴 클릭 시 서브메뉴 표시
+    menuItems.forEach(item => {
+        const toggle = item.querySelector('.menu-toggle');
+
         toggle.addEventListener('click', function(event) {
             event.preventDefault();
-            nav.classList.toggle('active');
+            // 다른 메뉴 닫기
+            menuItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            // 현재 메뉴 토글
+            item.classList.toggle('active');
         });
     });
 
     // 문서 클릭 시 메뉴 닫기
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('nav')) {
-            nav.classList.remove('active');
+        if (!event.target.closest('.menu-item')) {
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+            });
         }
     });
 });
-
