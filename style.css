@@ -24,9 +24,7 @@ header {
 }
 
 h1 {
-    text-align: left;
     margin: 0;
-    padding: 0 1em;
 }
 
 /* 검색창 스타일 */
@@ -103,7 +101,8 @@ nav ul li a:hover {
     background: #f0f0f0;
 }
 
-.menu-item:hover .submenu {
+/* 메뉴 활성화 시 서브메뉴 표시 */
+.menu-item.active .submenu {
     display: block;
 }
 
