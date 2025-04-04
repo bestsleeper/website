@@ -52,7 +52,7 @@ h1 {
 /* 네비게이션 바 스타일 */
 nav {
     background-color: #333;
-    padding: 10px 0; /* 위아래 여백 추가 */
+    padding: 10px 0;
 }
 
 nav ul {
@@ -60,7 +60,7 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 30px; /* 메뉴 항목 간격 조정 */
+    gap: 50px; /* 메뉴 항목 간 간격을 넓힘 */
 }
 
 nav ul li {
@@ -90,35 +90,14 @@ nav ul li {
     display: block;
     color: black;
     padding: 8px 0;
+    text-decoration: none;
 }
 
 .submenu li a:hover {
     background: #f0f0f0;
 }
 
-/* 전체 메뉴가 열리는 상태 */
+/* 메뉴 클릭 시 전체 서브메뉴 표시 */
 nav.active .submenu {
     display: block;
-}
-
-
-/* 메뉴 활성화 시 서브메뉴 표시 */
-.menu-item.active .submenu {
-    display: block;
-}
-
-/* 메인 콘텐츠 스타일 */
-.content {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px;
-}
-
-.box {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    text-align: center;
 }
