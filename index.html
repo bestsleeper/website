@@ -5,19 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carbon neutral</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <h1>탄소중립</h1>
-        <input type="text" id="search" placeholder="검색어 입력...">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="검색어 입력...">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </header>
+
     <nav>
         <ul>
-            <li><a href="policy.html">정책</a></li>
-            <li><a href="about.html">소개</a></li>
-            <li><a href="records.html">기록지</a></li>
+            <li class="menu-item">
+                <a href="#">정책</a>
+                <ul class="submenu">
+                    <li><a href="domestic_policy.html">국내 정책</a></li>
+                    <li><a href="international_policy.html">국외 정책</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">소개</a>
+                <ul class="submenu">
+                    <li><a href="purpose.html">설립 목적</a></li>
+                    <li><a href="how_to_use.html">이용 방법</a></li>
+                    <li><a href="usage_status.html">이용 현황</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">기록지</a>
+                <ul class="submenu">
+                    <li><a href="carbon_record.html">탄소 기록지</a></li>
+                    <li><a href="report_analysis.html">보고서 분석</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
+
     <main>
         <section class="content">
             <a href="https://example.com">
@@ -31,6 +56,7 @@
             </a>
         </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
