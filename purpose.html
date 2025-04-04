@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>설립 목적</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .section {
+      padding: 40px;
+      text-align: center;
+    }
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      padding: 10px;
+    }
+    .slider img {
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .btn-container {
+      margin-top: 30px;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <h2>탄소중립, 왜 필요할까요?</h2>
+    <p>매년 전 세계의 탄소배출량은 약 360억 톤에 달합니다. 기후변화의 주범이 되는 탄소배출을 줄이는 것이 인류의 과제가 되었습니다.</p>
+    <canvas id="globalChart" width="400" height="200"></canvas>
+
+    <p>대한민국 역시 산업화 이후 급격한 배출량 증가가 있었습니다.</p>
+    <canvas id="koreaChart" width="400" height="200"></canvas>
+
+    <h3>탄소배출로 인한 환경 문제</h3>
+    <div class="slider">
+      <img src="img/global-warming.jpg" alt="지구온난화">
+      <img src="img/polar-bear.jpg" alt="북극곰">
+      <img src="img/forest-fire.jpg" alt="산불">
+    </div>
+
+    <p>이제는 우리가 바뀌어야 할 시간입니다. <br><strong>작은 실천이 큰 변화를 만들어냅니다.</strong></p>
+
+    <div class="btn-container">
+      <button class="btn" onclick="location.href='records.html'">탄소배출 기록지 확인하기</button>
+      <button class="btn" onclick="location.href='policy.html'">정책 알아보기</button>
+    </div>
+  </section>
+
+  <script>
+    // 전세계 탄소배출량 그래프
+    const globalCtx = document.getElementById('globalChart').getContext('2d');
+    new Chart(globalCtx, {
+      type: 'line',
+      data: {
+        labels: ['2018', '2019', '2020', '2021', '2022'],
+        datasets: [{
+          label: '전 세계 탄소배출량 (억 톤)',
+          data: [330, 335, 310, 345, 360],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          fill: false
+        }]
+      }
+    });
+
+    // 한국 탄소배출량 그래프
+    const koreaCtx = document.getElementById('koreaChart').getContext('2d');
+    new Chart(koreaCtx, {
+      type: 'bar',
+      data: {
+        labels: ['2018', '2019', '2020', '2021', '2022'],
+        datasets: [{
+          label: '한국 탄소배출량 (억 톤)',
+          data: [7.2, 7.5, 6.8, 7.9, 8.1],
+          backgroundColor: 'rgba(255, 99, 132, 0.7)'
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
