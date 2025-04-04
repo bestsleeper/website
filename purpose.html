@@ -6,17 +6,79 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'GmarketSans', sans-serif;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px 0;
+      position: sticky;
+      top: 72px; /* 헤더 높이 이후 */
+      z-index: 999;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 10px 0;
+      min-width: 150px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav ul li:hover .submenu {
+      display: block;
+    }
+
     .section {
       padding: 40px;
       text-align: center;
+      background-color: #f9f9f9;
     }
+
     .slider {
       display: flex;
       overflow-x: auto;
       gap: 10px;
       scroll-snap-type: x mandatory;
       padding: 10px;
+      margin-top: 20px;
     }
+
     .slider img {
       scroll-snap-align: center;
       width: 300px;
@@ -24,9 +86,11 @@
       object-fit: cover;
       border-radius: 10px;
     }
+
     .btn-container {
       margin-top: 30px;
     }
+
     .btn {
       background-color: #4CAF50;
       color: white;
@@ -36,12 +100,37 @@
       border-radius: 8px;
       cursor: pointer;
     }
+
     .btn:hover {
       background-color: #388E3C;
     }
   </style>
 </head>
 <body>
+  <!-- 헤더 -->
+  <header>
+    <h1>탄소배출</h1>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="검색어 입력">
+      <button id="search-btn">🔍</button>
+    </div>
+  </header>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="#">소개</a>
+        <ul class="submenu">
+          <li><a href="purpose.html">설립 목적</a></li>
+          <li><a href="howtouse.html">이용 방법</a></li>
+        </ul>
+      </li>
+      <li><a href="records.html">기록지</a></li>
+      <li><a href="policy.html">정책</a></li>
+    </ul>
+  </nav>
+
+  <!-- 본문 콘텐츠 -->
   <section class="section">
     <h2>탄소중립, 왜 필요할까요?</h2>
     <p>매년 전 세계의 탄소배출량은 약 360억 톤에 달합니다. 기후변화의 주범이 되는 탄소배출을 줄이는 것이 인류의 과제가 되었습니다.</p>
@@ -57,7 +146,7 @@
       <img src="img/forest-fire.jpg" alt="산불">
     </div>
 
-    <p>이제는 우리가 바뀌어야 할 시간입니다. <br><strong>작은 실천이 큰 변화를 만들어냅니다.</strong></p>
+    <p style="margin-top: 30px;">이제는 우리가 바뀌어야 할 시간입니다. <br><strong>작은 실천이 큰 변화를 만들어냅니다.</strong></p>
 
     <div class="btn-container">
       <button class="btn" onclick="location.href='records.html'">탄소배출 기록지 확인하기</button>
@@ -65,8 +154,8 @@
     </div>
   </section>
 
+  <!-- 차트 스크립트 -->
   <script>
-    // 전세계 탄소배출량 그래프
     const globalCtx = document.getElementById('globalChart').getContext('2d');
     new Chart(globalCtx, {
       type: 'line',
@@ -81,7 +170,6 @@
       }
     });
 
-    // 한국 탄소배출량 그래프
     const koreaCtx = document.getElementById('koreaChart').getContext('2d');
     new Chart(koreaCtx, {
       type: 'bar',
