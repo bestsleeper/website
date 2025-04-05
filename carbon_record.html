@@ -71,6 +71,42 @@
       background-color: #f9f9f9;
     }
 
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .slider img {
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .btn-container {
+      margin-top: 30px;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #388E3C;
+    }
+
+    /* 추가된 계산기 스타일 */
     .calculator-container {
       background-color: white;
       padding: 20px;
@@ -94,7 +130,7 @@
       color: #555;
     }
 
-    input, select {
+    input {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -153,19 +189,8 @@
 
   <!-- 본문 콘텐츠 -->
   <section class="section">
-    <div>
-      <h2>설립 목적</h2>
-      <p>
-        탄소 배출량 계산기 웹사이트는 사람들이 다양한 활동에서 발생하는 탄소 배출량을 쉽게 계산하고, 
-        이를 통해 환경 보호와 지속 가능한 발전에 기여할 수 있도록 돕기 위해 만들어졌습니다. 
-        이 웹사이트는 연료, 전기, 수도, 폐기물 등 다양한 분야에서 발생하는 탄소 배출량을 측정하고, 
-        사용자들이 이를 기반으로 더 나은 환경 친화적인 결정을 내릴 수 있도록 도와줍니다.
-      </p>
-    </div>
-
-    <!-- 연료 사용 탄소 배출량 계산기 -->
     <div class="calculator-container">
-      <h1>연료 탄소 배출량 계산기</h1>
+      <h1>탄소 배출량 계산기</h1>
       
       <label for="fuel">연료 사용량 (㎏)</label>
       <input type="number" id="fuel" placeholder="연료 사용량" required>
@@ -179,47 +204,32 @@
       <label for="gwp">지구온난화지수 (GWP)</label>
       <input type="number" id="gwp" placeholder="지구온난화지수" required>
 
-      <button class="btn" onclick="calculateFuelEmission()">탄소 배출량 계산하기</button>
+      <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
 
-      <div class="result" id="fuel-result"></div>
+      <div class="result" id="result"></div>
     </div>
+  </section>
 
-    <!-- 수도 사용 탄소 배출량 계산기 -->
-    <div class="calculator-container">
-      <h1>수도 탄소 배출량 계산기</h1>
-      <label for="water-usage">물 사용량 (㎥)</label>
-      <input type="number" id="water-usage" placeholder="물 사용량" required>
+  <script>
+    function calculateCarbon() {
+      // Get input values
+      const fuel = parseFloat(document.getElementById('fuel').value);
+      const heatingValue = parseFloat(document.getElementById('heating-value').value);
+      const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
+      const gwp = parseFloat(document.getElementById('gwp').value);
 
-      <label for="water-type">상수도 또는 하수 처리</label>
-      <select id="water-type">
-        <option value="water-supply">상수도 공급 (0.344 kgCO₂e/㎥)</option>
-        <option value="sewage">하수 처리 (0.708 kgCO₂e/㎥)</option>
-      </select>
+      // Validate inputs
+      if (isNaN(fuel) || isNaN(heatingValue) || isNaN(carbonCoefficient) || isNaN(gwp)) {
+        alert("모든 값을 정확하게 입력해주세요.");
+        return;
+      }
 
-      <button class="btn" onclick="calculateWaterEmission()">탄소 배출량 계산하기</button>
-      <div class="result" id="water-result"></div>
-    </div>
+      // Calculate carbon emission
+      const carbonEmission = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
 
-    <!-- 전기 사용 탄소 배출량 계산기 -->
-    <div class="calculator-container">
-      <h1>전기 탄소 배출량 계산기</h1>
-      <label for="electricity-usage">전기 사용량 (kWh)</label>
-      <input type="number" id="electricity-usage" placeholder="전기 사용량" required>
-
-      <button class="btn" onclick="calculateElectricityEmission()">탄소 배출량 계산하기</button>
-      <div class="result" id="electricity-result"></div>
-    </div>
-
-    <!-- 폐기물 배출 탄소 계산기 -->
-    <div class="calculator-container">
-      <h1>폐기물 탄소 배출량 계산기</h1>
-      <label for="waste-type">폐기물 종류</label>
-      <select id="waste-type">
-        <option value="food-waste">음식물 쓰레기 (0.87 kgCO₂e/kg)</option>
-        <option value="paper">종이류 (0.94 kgCO₂e/kg)</option>
-        <option value="plastic">플라스틱 (2.62 kgCO₂e/kg)</option>
-        <option value="vinyl">비닐류 (2.46 kgCO₂e/kg)</option>
-      </select>
-
-      <label for="waste-amount">폐기물 배출량 (kg)</label>
-      <input type="number"
+      // Display the result
+      document.getElementById('result').textContent = 배출된 탄소량: ${carbonEmission} kg CO2;
+    }
+  </script>
+</body>
+</html>
