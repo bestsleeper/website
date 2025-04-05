@@ -21,84 +21,83 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1em 20px;
-    position: sticky; /* 수정: 헤더를 스크롤 시 고정 */
-    top: 0; /* 수정: 헤더를 스크롤 시 고정 */
-    z-index: 1000; /* 수정: 헤더를 스크롤 시 고정 */
 }
 
+h1 {
+    margin: 0;
+}
+
+/* 검색창 스타일 */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+#search {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+#search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+    color: white;
+}
+
+/* 네비게이션 바 스타일 */
 nav {
     background-color: #333;
     padding: 10px 0;
-    position: sticky; /* 수정: 네비게이션 바를 스크롤 시 고정 */
-    top: 72px; /* 수정: 네비게이션 바를 스크롤 시 고정 */
-    z-index: 999; /* 수정: 네비게이션 바를 스크롤 시 고정 */
 }
 
-nav ul.menu { /* 수정: 클래스 추가 */
+nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 30px; /* 수정: 메뉴 항목 간격 추가 */
-    margin: 0;
+    gap: 100px; /* 메뉴 항목 간 간격 */
 }
 
-nav ul.menu li.menu-item { /* 수정: 클래스 추가 */
+nav ul li {
     position: relative;
 }
 
-nav ul.menu li.menu-item:hover ul.submenu, /* 수정: 서브메뉴 표시 조건 추가 */
-nav ul.menu:hover ul.submenu { /* 수정: 서브메뉴 표시 조건 추가 */
-    display: block;
-}
-
-nav ul.menu li ul.submenu { /* 수정: 클래스 추가 및 스타일 수정 */
+/* 서브메뉴 스타일 */
+.submenu {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0; /* 수정: 서브메뉴 가로 길이를 최대화 */
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
     border: 1px solid #ccc;
     list-style: none;
-    padding: 10px 0; /* 수정: 서브메뉴 패딩 */
+    padding: 10px 0;
+    min-width: 150px;
     text-align: center;
-    z-index: 1000;
 }
 
-nav ul.menu li ul.submenu li { /* 수정: 클래스 추가 및 스타일 수정 */
-    display: inline-block;
-    margin: 0 10px;
+.submenu li {
+    padding: 5px 15px;
 }
 
-nav ul.menu li a { /* 수정: 클래스 추가 */
+.submenu li a {
     display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+    color: black;
+    padding: 8px 0;
     text-decoration: none;
 }
 
-nav ul.menu li ul.submenu li a { /* 수정: 클래스 추가 */
-    color: black;
+.submenu li a:hover {
+    background: #f0f0f0;
 }
 
-nav ul.menu li a:hover, nav ul.menu li ul.submenu li a:hover { /* 수정: 클래스 추가 및 스타일 수정 */
-    background-color: #111;
-    color: white;
-}
-
-.content {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px;
-}
-
-.box {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    text-align: center;
+/* 메뉴 클릭 시 전체 서브메뉴 표시 */
+nav.active .submenu {
+    display: block;
 }
