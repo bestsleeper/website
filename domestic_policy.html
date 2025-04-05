@@ -1,76 +1,146 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>국내 탄소중립 정책</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background-color: #ffffff;
-      margin: 0;
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding-top: 120px; /* 고정된 헤더 때문에 위에 여백 확보 */
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .policy {
-      background-color: #f3f3f3;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .policy h3 {
-      margin-top: 0;
-      font-size: 20px;
-      color: #222;
-    }
-
-    .policy p {
-      font-size: 16px;
-      color: #555;
-    }
-
-    .policy a {
-      display: inline-block;
-      margin-top: 10px;
-      font-weight: bold;
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    .policy a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- 고정 헤더 (style.css와 동일한 구조 유지) -->
-  <header class="header">
-    <h1 class="logo">탄소중립 생활</h1>
-    <nav class="nav">
-      <a href="index.html">홈</a>
-      <a href="purpose.html">목표</a>
-      <a href="record.html">기록</a>
-      <a href="domestic_policy.html" class="active">국내정책</a>
-    </nav>
-  </header>
-
+ <html lang="ko">
+ <head>
+   <meta charset="UTF-8">
+   <title>국내정책</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <style>
+     body {
+       margin: 0;
+       padding: 0;
+       font-family: 'GmarketSans', sans-serif;
+     }
+ 
+     header {
+       background-color: #4CAF50;
+       color: white;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 1em 20px;
+       position: sticky;
+       top: 0;
+       z-index: 1000;
+     }
+ 
+     nav {
+       background-color: #333;
+       padding: 10px 0;
+       position: sticky;
+       top: 72px; /* 헤더 높이 이후 */
+       z-index: 999;
+     }
+ 
+     nav ul {
+       list-style-type: none;
+       padding: 0;
+       display: flex;
+       justify-content: center;
+       gap: 30px;
+       margin: 0;
+     }
+ 
+     nav ul li {
+       position: relative;
+     }
+ 
+     .submenu {
+       display: none;
+       position: absolute;
+       top: 100%;
+       left: 50%;
+       transform: translateX(-50%);
+       background: white;
+       border: 1px solid #ccc;
+       list-style: none;
+       padding: 10px 0;
+       min-width: 150px;
+       text-align: center;
+       z-index: 1000;
+     }
+ 
+     nav ul li:hover .submenu {
+       display: block;
+     }
+ 
+     .section {
+       padding: 40px;
+       text-align: center;
+       background-color: #f9f9f9;
+     }
+ 
+     .slider {
+       display: flex;
+       overflow-x: auto;
+       gap: 10px;
+       scroll-snap-type: x mandatory;
+       padding: 10px;
+       margin-top: 20px;
+     }
+ 
+     .slider img {
+       scroll-snap-align: center;
+       width: 300px;
+       height: 200px;
+       object-fit: cover;
+       border-radius: 10px;
+     }
+ 
+     .btn-container {
+       margin-top: 30px;
+     }
+ 
+     .btn {
+       background-color: #4CAF50;
+       color: white;
+       padding: 10px 20px;
+       margin: 10px;
+       border: none;
+       border-radius: 8px;
+       cursor: pointer;
+     }
+ 
+     .btn:hover {
+       background-color: #388E3C;
+     }
+   </style>
+ </head>
+ <body>
+   <!-- 헤더 -->
+   <header>
+     <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
+     <div class="search-container">
+       <input type="text" id="search" placeholder="검색어 입력">
+       <button id="search-btn">🔍</button>
+     </div>
+   </header>
+ 
+   <!-- 네비게이션 -->
+   <nav>
+     <ul>
+       <li><a href="#">소개</a>
+         <ul class="submenu">
+             <li><a href="purpose.html">설립 목적</a></li>
+             <li><a href="howtouse.html">이용 방법</a></li>
+             <li><a href="usage_status.html">이용 현황</a></li>
+           </ul>
+       </li>
+       <li><a href="#">정책</a>
+         <ul class="submenu">
+             <li><a href="domestic_policy.html">국내 정책</a></li>
+             <li><a href="international_policy.html">국외 정책</a></li>
+           </ul>
+       </li>
+       <li><a href="#">기록지</a>
+         <ul class="submenu">
+             <li><a href="carbon_record.html">탄소기록지</a></li>
+             <li><a href="report_analysis.html">보고서 분석</a></li>
+           </ul>
+       </li>
+     </ul>
+   </nav>
+ 
   <!-- 본문 콘텐츠 -->
   <div class="container">
     <h2>국내 탄소중립 관련 정책 및 보고서</h2>
