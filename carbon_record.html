@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>설립 목적</title>
+  <title>탄소배출량 계산기</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -70,27 +70,6 @@
       background-color: #f9f9f9;
     }
 
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      scroll-snap-type: x mandatory;
-      padding: 10px;
-      margin-top: 20px;
-    }
-
-    .slider img {
-      scroll-snap-align: center;
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .btn-container {
-      margin-top: 30px;
-    }
-
     .btn {
       background-color: #4CAF50;
       color: white;
@@ -105,50 +84,6 @@
       background-color: #388E3C;
     }
 
-    /* 계산기 스타일 */
-    .calculator-container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 1.5em;
-      color: #333;
-    }
-
-    label {
-      font-size: 1em;
-      margin: 10px 0;
-      display: block;
-      color: #555;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .btn {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1.2em;
-    }
-
-    .btn:hover {
-      background-color: #45a049;
-    }
-
     .result {
       margin-top: 20px;
       font-size: 1.2em;
@@ -156,70 +91,46 @@
       font-weight: bold;
       text-align: center;
     }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .calculator-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      color: #333;
+    }
   </style>
 </head>
 <body>
   <!-- 헤더 -->
   <header>
-    <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
+    <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출 계산기</a></h1>
     <div class="search-container">
       <input type="text" id="search" placeholder="검색어 입력">
       <button id="search-btn">🔍</button>
     </div>
   </header>
 
-  <!-- 네비게이션 -->
-  <nav>
-    <ul>
-      <li><a href="#">소개</a>
-        <ul class="submenu">
-          <li><a href="purpose.html">설립 목적</a></li>
-          <li><a href="howtouse.html">이용 방법</a></li>
-        </ul>
-      </li>
-      <li><a href="how_to_use.html">이용 방법</a></li>
-      <li><a href="usage_status.html">이용 현황</a></li>
-      <li><a href="records.html">기록지</a></li>
-      <li><a href="policy.html">정책</a></li>
-      <li><a href="#">정책</a>
-        <ul class="submenu">
-          <li><a href="domestic_policy.html">국내 정책</a></li>
-          <li><a href="international_policy.html">국외 정책</a></li>
-        </ul>
-      </li>
-      <li><a href="#">기록지</a>
-        <ul class="submenu">
-          <li><a href="carbon_record.html">탄소기록지</a></li>
-          <li><a href="report_analysis.html">보고서 분석</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-
   <!-- 본문 콘텐츠 -->
   <section class="section">
     <h2>설립 목적</h2>
-    <p>탄소 배출량 계산기 및 다양한 환경 관련 정보를 제공하여 사용자들이 자원 절약과 온실가스 배출 저감을 위한 실질적인 방법을 찾을 수 있도록 돕습니다.</p>
-  </section>
-
-  <!-- 탄소 배출량 계산기 -->
-  <section class="section" id="carbon-section">
-    <h2>탄소 배출량 계산기</h2>
-    <label for="fuel">연료 사용량 (㎏)</label>
-    <input type="number" id="fuel" placeholder="연료 사용량" required>
-
-    <label for="heating-value">순발열량 (MJ/㎏)</label>
-    <input type="number" id="heating-value" placeholder="순발열량" required>
-
-    <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
-    <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
-
-    <label for="gwp">지구온난화지수 (GWP)</label>
-    <input type="number" id="gwp" placeholder="지구온난화지수" required>
-
-    <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
-
-    <div class="result" id="carbon-result"></div>
+    <p>이 사이트는 수도, 전기, 폐기물 사용에 따른 탄소 배출량을 계산하여 사용자가 자원 절약과 환경 보호에 기여할 수 있도록 돕습니다.</p>
   </section>
 
   <!-- 수도 배출량 계산기 -->
@@ -227,6 +138,13 @@
     <h2>수도(물) 배출량 계산기</h2>
     <label for="water-usage">물 사용량 (㎥)</label>
     <input type="number" id="water-usage" placeholder="물 사용량 (㎥)" required>
+    
+    <label for="water-type">상수도 또는 하수 처리</label>
+    <select id="water-type">
+      <option value="water-supply">상수도 공급 (0.344 kgCO₂e/㎥)</option>
+      <option value="sewage">하수 처리 (0.708 kgCO₂e/㎥)</option>
+    </select>
+    
     <button class="btn" onclick="calculateWaterEmission()">탄소 배출량 계산하기</button>
     <div class="result" id="water-result"></div>
   </section>
@@ -236,6 +154,7 @@
     <h2>전기 배출량 계산기</h2>
     <label for="electricity-usage">전기 사용량 (kWh)</label>
     <input type="number" id="electricity-usage" placeholder="전기 사용량 (kWh)" required>
+    
     <button class="btn" onclick="calculateElectricityEmission()">탄소 배출량 계산하기</button>
     <div class="result" id="electricity-result"></div>
   </section>
@@ -245,5 +164,62 @@
     <h2>폐기물 배출량 계산기</h2>
     <label for="waste-type">폐기물 종류</label>
     <select id="waste-type">
-      <option value="food">음식물 쓰레기</option>
-      <option value="paper">종이류</option>
+      <option value="food">음식물 쓰레기 (0.87 kgCO₂e/kg)</option>
+      <option value="paper">종이류 (0.94 kgCO₂e/kg)</option>
+      <option value="plastic">플라스틱 (2.62 kgCO₂e/kg)</option>
+      <option value="plastic-bag">비닐류 (2.46 kgCO₂e/kg)</option>
+    </select>
+    
+    <label for="waste-amount">폐기물 배출량 (kg)</label>
+    <input type="number" id="waste-amount" placeholder="폐기물 배출량 (kg)" required>
+    
+    <button class="btn" onclick="calculateWasteEmission()">탄소 배출량 계산하기</button>
+    <div class="result" id="waste-result"></div>
+  </section>
+
+  <script>
+    // 수도 배출량 계산 함수
+    function calculateWaterEmission() {
+      const waterUsage = parseFloat(document.getElementById('water-usage').value);
+      const waterType = document.getElementById('water-type').value;
+      
+      const waterEmissionFactor = waterType === 'water-supply' ? 0.344 : 0.708;
+      if (isNaN(waterUsage) || waterUsage <= 0) {
+        alert('올바른 물 사용량을 입력하세요.');
+        return;
+      }
+
+      const totalWaterEmission = (waterUsage * waterEmissionFactor).toFixed(3);
+      document.getElementById('water-result').innerHTML = `물 사용에 의한 탄소 배출량: ${totalWaterEmission} kgCO₂e`;
+    }
+
+    // 전기 배출량 계산 함수
+    function calculateElectricityEmission() {
+      const electricityUsage = parseFloat(document.getElementById('electricity-usage').value);
+      const electricityEmissionFactor = 0.424; // 2022년 한국 전력 배출계수
+
+      if (isNaN(electricityUsage) || electricityUsage <= 0) {
+        alert('올바른 전기 사용량을 입력하세요.');
+        return;
+      }
+
+      const totalElectricityEmission = (electricityUsage * electricityEmissionFactor).toFixed(3);
+      document.getElementById('electricity-result').innerHTML = `전기 사용에 의한 탄소 배출량: ${totalElectricityEmission} kgCO₂e`;
+    }
+
+    // 폐기물 배출량 계산 함수
+    function calculateWasteEmission() {
+      const wasteAmount = parseFloat(document.getElementById('waste-amount').value);
+      const wasteType = document.getElementById('waste-type').value;
+
+      let wasteEmissionFactor;
+      switch (wasteType) {
+        case 'food':
+          wasteEmissionFactor = 0.87;
+          break;
+        case 'paper':
+          wasteEmissionFactor = 0.94;
+          break;
+        case 'plastic':
+          wasteEmissionFactor = 2.62;
+         
