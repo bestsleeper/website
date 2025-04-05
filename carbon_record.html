@@ -268,6 +268,19 @@
    </section>
 
    <script>
+     // Load saved values on page load
+     window.onload = function() {
+       document.getElementById('fuel').value = localStorage.getItem('fuel') || '';
+       document.getElementById('heating-value').value = localStorage.getItem('heatingValue') || '';
+       document.getElementById('carbon-coefficient').value = localStorage.getItem('carbonCoefficient') || '';
+       document.getElementById('gwp').value = localStorage.getItem('gwp') || '';
+       document.getElementById('water-usage').value = localStorage.getItem('waterUsage') || '';
+       document.getElementById('water-type').value = localStorage.getItem('waterType') || '0.344';
+       document.getElementById('electricity-usage').value = localStorage.getItem('electricityUsage') || '';
+       document.getElementById('waste-amount').value = localStorage.getItem('wasteAmount') || '';
+       document.getElementById('waste-type').value = localStorage.getItem('wasteType') || '0.87';
+     };
+
      function calculateCarbon() {
        const fuel = parseFloat(document.getElementById('fuel').value);
        const heatingValue = parseFloat(document.getElementById('heating-value').value);
@@ -281,6 +294,12 @@
 
        const carbonEmission = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
        document.getElementById('result').textContent = `배출된 탄소량: ${carbonEmission} kg CO2`;
+
+       // Save values
+       localStorage.setItem('fuel', fuel);
+       localStorage.setItem('heatingValue', heatingValue);
+       localStorage.setItem('carbonCoefficient', carbonCoefficient);
+       localStorage.setItem('gwp', gwp);
      }
 
      function calculateWaterCarbon() {
@@ -294,6 +313,10 @@
 
        const waterCarbonEmission = (waterUsage * waterType).toFixed(3);
        document.getElementById('water-result').textContent = `배출된 탄소량: ${waterCarbonEmission} kg CO2`;
+
+       // Save values
+       localStorage.setItem('waterUsage', waterUsage);
+       localStorage.setItem('waterType', waterType);
      }
 
      function calculateElectricityCarbon() {
@@ -307,6 +330,9 @@
 
        const electricityCarbonEmission = (electricityUsage * electricityCoefficient).toFixed(3);
        document.getElementById('electricity-result').textContent = `배출된 탄소량: ${electricityCarbonEmission} kg CO2`;
+
+       // Save values
+       localStorage.setItem('electricityUsage', electricityUsage);
      }
 
      function calculateWasteCarbon() {
@@ -320,6 +346,10 @@
 
        const wasteCarbonEmission = (wasteAmount * wasteType).toFixed(3);
        document.getElementById('waste-result').textContent = `배출된 탄소량: ${wasteCarbonEmission} kg CO2`;
+
+       // Save values
+       localStorage.setItem('wasteAmount', wasteAmount);
+       localStorage.setItem('wasteType', wasteType);
      }
    </script>
  </body>
