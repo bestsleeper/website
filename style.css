@@ -1,62 +1,126 @@
-/* 기본 스타일 */
-body {
-    font-family: 'GmarketSans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-}
-
-/* 헤더 고정 */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;  /* 원하는 높이로 조정 */
-    background-color: #6FAF60;
-    z-index: 1000;
-}
-
-/* 네비게이션 스타일 조정 */
-nav {
-    position: fixed;
-    top: 50px; /* 헤더 바로 아래에 배치 */
-    left: 0;
-    width: 100%;
-    height: 40px; /* 원하는 높이로 조정 */
-    background-color: #333;
-    z-index: 1000;
-}
-
-/* 네비게이션 내부 요소 스타일 */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-}
-
-nav ul li {
-    position: relative;
-    margin: 0 20px;
-}
-
-nav ul li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background-color: #111;
-    color: white;
-}
-
-/* 본문을 네비게이션 아래로 밀기 */
-.section {
-    margin-top: 90px; /* 헤더(50px) + 네비게이션(40px) 만큼 밀어줌 */
-    padding: 20px;
-}
+/* G마켓 산스 글꼴을 로드 */
+  @font-face {
+      font-family: 'GmarketSans';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+ 
+  body {
+      font-family: 'GmarketSans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      background-color: #ffffff;
+  }
+ 
+  /* 헤더 스타일 */
+  header {
+      background-color: #ffffff;
+      color: #31624E ;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+  }
+ 
+  h1 {
+      text-align: left;
+      margin: 0;
+      padding: 1em;
+  }
+ 
+  /* 검색창 스타일 */
+  .search-container {
+      display: flex;
+      align-items: center;
+  }
+ 
+  #search {
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      width: 200px;
+  }
+ 
+  #search-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 5px;
+      color: #E0EFE8;
+  }
+ 
+  /* 네비게이션 바 */
+  nav {
+      background-color: #E0EFE8;
+  }
+ 
+  nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+  }
+ 
+  nav ul li {
+      position: relative;
+      margin: 0 10px;
+      margin: 0 20px;
+  }
+ 
+  nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
+ 
+  nav ul li a:hover {
+      background-color: #111;
+  }
+ 
+  /* 드롭다운 서브메뉴 */
+  .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+  }
+ 
+  .submenu li a {
+      padding: 10px;
+      display: block;
+      color: black;
+  }
+ 
+  .submenu li a:hover {
+      background: #f0f0f0;
+  }
+ 
+  .menu-item:hover .submenu {
+      display: block;
+  }
+ 
+  /* 메인 콘텐츠 스타일 */
+  .content {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+  }
+ 
+  .box {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      text-align: center;
+  }
