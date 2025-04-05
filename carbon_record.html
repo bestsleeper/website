@@ -2,182 +2,104 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>설립 목적</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탄소 배출량 계산기</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      font-family: 'GmarketSans', sans-serif;
-    }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1em 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      background-color: #333;
-      padding: 10px 0;
-      position: sticky;
-      top: 72px; /* 헤더 높이 이후 */
-      z-index: 999;
-    }
-
-    nav ul {
-      list-style-type: none;
       padding: 0;
       display: flex;
       justify-content: center;
-      gap: 30px;
-      margin: 0;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
     }
-
-    nav ul li {
-      position: relative;
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      border: 1px solid #ccc;
-      list-style: none;
-      padding: 10px 0;
-      min-width: 150px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    nav ul li:hover .submenu {
-      display: block;
-    }
-
-    .section {
-      padding: 40px;
-      text-align: center;
-      background-color: #f9f9f9;
-    }
-
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      scroll-snap-type: x mandatory;
-      padding: 10px;
-      margin-top: 20px;
-    }
-
-    .slider img {
-      scroll-snap-align: center;
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
+    
+    .calculator-container {
+      background-color: white;
+      padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 1.5em;
+      color: #333;
     }
 
-    .btn-container {
-      margin-top: 30px;
+    label {
+      font-size: 1em;
+      margin: 10px 0;
+      display: block;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
     .btn {
+      width: 100%;
+      padding: 10px;
       background-color: #4CAF50;
       color: white;
-      padding: 10px 20px;
-      margin: 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 1.2em;
     }
 
     .btn:hover {
-      background-color: #388E3C;
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <!-- 헤더 -->
-  <header>
-    <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
-    <div class="search-container">
-      <input type="text" id="search" placeholder="검색어 입력">
-      <button id="search-btn">🔍</button>
-    </div>
-  </header>
 
-  <!-- 네비게이션 -->
-  <nav>
-    <ul>
-      <li><a href="#">소개</a>
-        <ul class="submenu">
-            <li><a href="purpose.html">설립 목적</a></li>
-            <li><a href="howtouse.html">이용 방법</a></li>
-            <li><a href="usage_status.html">이용 현황</a></li>
-          </ul>
-      </li>
-      <li><a href="#">정책</a>
-        <ul class="submenu">
-            <li><a href="domestic_policy.html">국내 정책</a></li>
-            <li><a href="international_policy.html">국외 정책</a></li>
-          </ul>
-      </li>
-      <li><a href="#">기록지</a>
-        <ul class="submenu">
-            <li><a href="carbon_record.html">탄소기록지</a></li>
-            <li><a href="report_analysis.html">보고서 분석</a></li>
-          </ul>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- 본문 콘텐츠 -->
-  <section class="section">
-    <h2>탄소중립, 왜 필요할까요?</h2> // 글씨 살짝 키우기
-    <p>매년 전 세계의 탄소배출량은 약 360억 톤에 달하며,
-      매년 이 추세가 늘고 있습니다. </p>
-    <canvas id="globalChart" width="400" height="200"></canvas>
-
-    <p>대한민국 역시 산업화 이후 탄소배출량이 급격히 증가하는 추세를 보이고 있습니다. </p>
-    <canvas id="koreaChart" width="400" height="200"></canvas>
-
-    <h3>그래서 왜, <strong>탄소배출량 증가</strong>가 문제가 될까요?</h3>
-    <p> 단순히 배출량이 증가했다에서 끝나는 것이 아닙니다.
-    </p>
-    <p>석탄, 석유, 천연가스 등과 같은 화석 연료의 연소와 산업 교통활동 등으로 인해 <storng>대기중으로 배출된 CO<sub>2</sub></storng>는 대기의 <strong>온실가스</strong>로 작용하여, 온실효과를 일으키게되죠.
-      <br>이런 온실효과는 기온 상승, 이상기후현상, 해수면 상승 등 <strong>다양한 기후 변화의 원인</strong>이 됩니다. 
-      <br>구체적으로 말해, 산악지역의 빙하 25%이상이 감소되며, 전염성 질병체의 분포 변화로 전염병이 쉽게 이동할 수도, 
-      <br>우리나라의 경우 온대성 식생을 벗어나 아열대성 식생이 증가하며, 수질악화 같은 상황이 발생할 수도 있습니다. 
-      <br>또한, 탄소배출 증가로 기온이 상승하게 되면, 대기 중 수증기가 증가하고, 증가한 수증기는 <strong>또다른 온실효과</strong>를 초래합니다. </p>
-      <p>결국 탄소배출량 증가로 우리는 점점 더 뜨거워지고, 점점 더 이상현상의 빈도와 생태계 손상이 늘어나는 악순환의 굴레에서 살게 됩니다. </p>
+  <div class="calculator-container">
+    <h1>탄소 배출량 계산기</h1>
     
-    <div class="slider">
-      <img src="https://images.pexels.com/photos/929385/pexels-photo-929385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-      <img src="https://images.pexels.com/photos/3174349/pexels-photo-3174349.jpegg">
-      <img src="https://images.pexels.com/photos/1268076/pexels-photo-1268076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" >
-    </div>
+    <label for="fuel">연료 사용량 (㎏)</label>
+    <input type="number" id="fuel" placeholder="연료 사용량" required>
 
-    <h4> 그래서, 탄소중립이 필요합니다 </h4>
-    <p> <strong>>탄소중립</strong>이란, 온실가스 배출량을 줄이고, 남은 배출량을 흡수, 또는 제거해 <strong>실질적인 배출량을 0</strong>으로 만드는 개념입니다.</p>
-    <p>배출량을 흡수하기 위한 방법으론 탄소포집과 저장이, 배출량을 줄이기 위한 방법으로는 청정에너지 전환 등이 있습니다. 
-    <br>탄소중립의 실천은 온실가스 감축뿐만 아니라 재생에너지 개발, 에너지 전환, 산업 구조 변화 등을 통해 
-    <br>지속가능한 성장을 가능하게 하여 <strong>지속 가능한 사회</strong>를 구축하는 것을 목표로 합니다. </p>
-// 그림 넣기(개냠 이해하기 쉽게)
+    <label for="heating-value">순발열량 (MJ/㎏)</label>
+    <input type="number" id="heating-value" placeholder="순발열량" required>
 
-    <p style="margin-top: 30px;">이제는 우리가 바뀌어야 할 시간입니다. <br><strong>작은 실천이 큰 변화를 만들어냅니다.</strong></p>
+    <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
+    <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
 
-    <div class="btn-container">
-      <button class="btn" onclick="location.href='records.html'">탄소배출 기록지 확인하기</button>
-      <button class="btn" onclick="location.href='policy.html'">정책 알아보기</button>
-    </div>
-  </section>
+    <label for="gwp">지구온난화지수 (GWP)</label>
+    <input type="number" id="gwp" placeholder="지구온난화지수" required>
+
+    <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateCarbon() {
+      // Get input values
+      const fuel = parseFloat(document.getElementById('fuel').value);
+      const heatingValue = parseFloat(document.getElementById('heating-value').value);
+      const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
+      const gwp = parseFloat(document.getElementById('gwp').value);
+
+      // Validate inputs
+      if (isNaN(fuel) || isNaN(heatingValue) || isNaN(carbonCoefficient) || isNaN(gwp)) {
+        alert("모든 값을 정확하게
