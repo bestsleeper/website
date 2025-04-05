@@ -16,19 +16,21 @@ body {
 /* 헤더 스타일 */
 header {
     background-color: #ffffff;
-    color: #31624E ;
+    color: #31624E;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 20px;
+    padding: 0.5em 20px; /* 기존 1em에서 0.5em으로 줄임 */
+    height: 60px; /* 명시적으로 높이를 설정하여 일관성을 유지 */
 }
- 
+
 h1 {
     text-align: left;
     margin: 0;
-    padding: 1em;
+    font-size: 1.8em; /* 글자 크기를 유지하면서 높이를 줄임 */
+    padding: 0; /* 패딩 제거 */
 }
- 
+
 /* 검색창 스타일 */
 .search-container {
     display: flex;
@@ -50,10 +52,12 @@ h1 {
     margin-left: 5px;
     color: #E0EFE8;
 }
- 
+
+
 /* 네비게이션 바 */
 nav {
     background-color: #E0EFE8;
+    margin-top: -10px; /* 헤더 높이 감소로 인해 자연스럽게 위로 올라가게 조정 */
 }
  
 nav ul {
