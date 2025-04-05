@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>탄소량 기록</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #ffffff;
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .content-wrapper {
+      padding-top: 100px; /* 헤더 영역만큼 여백 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .carbon-button {
+      width: 80%;
+      max-width: 400px;
+      padding: 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .carbon-button:hover {
+      background-color: #388E3C;
+    }
+
+    @media (max-width: 480px) {
+      .carbon-button {
+        font-size: 16px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 고정 헤더 (index.html과 동일) -->
+  <header class="header">
+    <h1 class="logo">탄소중립 생활</h1>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="purpose.html">목표</a>
+      <a href="record.html" class="active">기록</a>
+      <a href="policy.html">정책</a>
+    </nav>
+  </header>
+
+  <!-- 메인 콘텐츠 -->
+  <main class="content-wrapper">
+    <button class="carbon-button" onclick="location.href='carbon_record.html'">
+      배출한 탄소량 알아보기 →
+    </button>
+    <button class="carbon-button" onclick="location.href='carbon_record2.html'">
+      절약한 탄소량 알아보기 →
+    </button>
+  </main>
+</body>
+</html>
 
