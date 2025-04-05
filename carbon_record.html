@@ -167,7 +167,6 @@
     <!-- 탄소 배출량 계산기 -->
     <div class="calculator-container">
       <h1>탄소 배출량 계산기</h1>
-      
       <label for="fuel">연료 사용량 (㎏)</label>
       <input type="number" id="fuel" placeholder="연료 사용량" required>
 
@@ -213,26 +212,23 @@
   </section>
 
   <script>
-    // 탄소 배출량 계산기
+    // 탄소 배출량 계산 함수
     function calculateCarbon() {
-      const fuel = parseFloat(document.getElementById('fuel').value);
-      const heatingValue = parseFloat(document.getElementById('heating-value').value);
-      const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
-      const gwp = parseFloat(document.getElementById('gwp').value);
+      const fuel = parseFloat(document.getElementById("fuel").value);
+      const heatingValue = parseFloat(document.getElementById("heating-value").value);
+      const carbonCoefficient = parseFloat(document.getElementById("carbon-coefficient").value);
+      const gwp = parseFloat(document.getElementById("gwp").value);
 
       if (isNaN(fuel) || isNaN(heatingValue) || isNaN(carbonCoefficient) || isNaN(gwp)) {
-        alert("모든 값을 정확하게 입력해주세요.");
+        document.getElementById("result").innerText = "모든 값을 입력해주세요!";
         return;
       }
 
-      const carbonEmission = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
-      document.getElementById('result').textContent = `배출된 탄소량: ${carbonEmission} kg CO2`;
+      const carbonEmission = (fuel * heatingValue * carbonCoefficient * 10 ** -9) * gwp;
+      document.getElementById("result").innerText = `탄소 배출량: ${carbonEmission.toFixed(2)} kg CO₂`;
     }
 
-    // 수도 배출량 계산기
+    // 수도 배출량 계산 함수
     function calculateWaterEmission() {
-      const waterUsage = parseFloat(document.getElementById('water-usage').value);
-      const waterType = document.getElementById('water-type').value;
-      
-      const emissionFactor = waterType === "water-supply" ? 0.344 :
-
+      const waterUsage = parseFloat(document.getElementById("water-usage").value);
+      const waterType
