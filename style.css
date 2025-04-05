@@ -1,77 +1,50 @@
-/* G마켓 산스 글꼴을 로드 */
-@font-face {
-    font-family: 'GmarketSans';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
- 
+/* 기본 스타일 */
 body {
     font-family: 'GmarketSans', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
 }
- 
-/* 헤더 스타일 */
+
+/* 헤더 고정 */
 header {
     background-color: #ffffff;
     color: #31624E;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5em 20px; /* 기존 1em에서 0.5em으로 줄임 */
-    height: 60px; /* 명시적으로 높이를 설정하여 일관성을 유지 */
+    padding: 0.5em 20px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* 다른 요소 위에 위치하도록 설정 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-h1 {
-    text-align: left;
-    margin: 0;
-    font-size: 1.8em; /* 글자 크기를 유지하면서 높이를 줄임 */
-    padding: 0; /* 패딩 제거 */
-}
-
-/* 검색창 스타일 */
-.search-container {
-    display: flex;
-    align-items: center;
-}
- 
-#search {
-    padding: 8px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    width: 200px;
-}
- 
-#search-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 5px;
-    color: #E0EFE8;
-}
-
-
-/* 네비게이션 바 */
+/* 네비게이션 바 고정 */
 nav {
     background-color: #E0EFE8;
-    margin-top: -10px; /* 헤더 높이 감소로 인해 자연스럽게 위로 올라가게 조정 */
+    position: fixed;
+    top: 60px; /* header 아래에 위치 */
+    width: 100%;
+    z-index: 999;
 }
- 
+
+/* 네비게이션 내부 요소 스타일 */
 nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: center;
+    margin: 0;
 }
- 
+
 nav ul li {
     position: relative;
     margin: 0 20px;
 }
- 
+
 nav ul li a {
     display: block;
     color: black;
@@ -79,60 +52,18 @@ nav ul li a {
     padding: 14px 16px;
     text-decoration: none;
 }
- 
+
 nav ul li a:hover {
     background-color: #111;
-}
- 
-/* 드롭다운 서브메뉴 */
-.submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    border: 1px solid #ccc;
-    list-style: none;
-    padding: 0;
-    width: 150px;
-}
- 
-.submenu li a {
-    padding: 10px;
-    display: block;
-    color: black;
-}
- 
-.submenu li a:hover {
-    background: #f0f0f0;
-}
- 
-.menu-item:hover .submenu {
-    display: block;
-}
- 
-/* 메인 콘텐츠 스타일 */
-.content {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px;
-}
- 
-.box {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    text-align: center;
+    color: white;
 }
 
-/* Consistent style for h1 and nav */
-.consistent-style {
-    background-color: #E0EFE8;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 본문 콘텐츠 스타일 (스크롤 가능하도록 설정) */
+.section {
+    margin-top: 120px; /* header(60px) + nav(60px) 높이만큼 여백 추가 */
+    padding: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
 }
