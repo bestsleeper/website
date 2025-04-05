@@ -2,6 +2,124 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <title>설립 목적</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'GmarketSans', sans-serif;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px 0;
+      position: sticky;
+      top: 72px; /* 헤더 높이 이후 */
+      z-index: 999;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 10px 0;
+      min-width: 150px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav ul li:hover .submenu {
+      display: block;
+    }
+
+    .section {
+      padding: 40px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .slider img {
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .btn-container {
+      margin-top: 30px;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="검색어 입력">
+      <button id="search-btn">🔍</button>
+    </div>
+  </header>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>탄소 배출량 계산기</title>
   <style>
