@@ -178,9 +178,9 @@
       <p>탄소 배출량 계산기 웹사이트는 사람들이 다양한 활동에서 발생하는 탄소 배출량을 쉽게 계산하고, 이를 통해 환경 보호와 지속 가능한 발전에 기여할 수 있도록 돕기 위해 만들어졌습니다. 이 웹사이트는 연료, 전기, 수도, 폐기물 등 다양한 분야에서 발생하는 탄소 배출량을 측정하고, 사용자들이 이를 기반으로 더 나은 환경 친화적인 결정을 내릴 수 있도록 도와줍니다.</p>
     </div>
 
-    <!-- 연료 배출량 계산기 -->
+    <!-- 탄소 배출량 계산기 -->
     <div class="calculator-container">
-      <h1>연료 배출량 계산기</h1>
+      <h1>탄소 배출량 계산기</h1>
       
       <label for="fuel">연료 사용량 (㎏)</label>
       <input type="number" id="fuel" placeholder="연료 사용량" required>
@@ -188,7 +188,7 @@
       <label for="heating-value">순발열량 (MJ/㎏)</label>
       <input type="number" id="heating-value" placeholder="순발열량" required>
 
-      <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
+      <label for="carbon-coefficient">탄소배출계수 (kgGHG(TJ))</label>
       <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
 
       <label for="gwp">지구온난화지수 (GWP)</label>
@@ -237,4 +237,7 @@
       </select>
 
       <label for="waste-amount">폐기물 배출량 (kg)</label>
-      <input type="number" id="w
+      <input type="number" id="waste-amount" placeholder="폐기물 배출량" required>
+
+      <button class="btn" onclick="calculateWasteEmission()">탄소 배출량 계산하기</button>
+      <div class="result" id="w
