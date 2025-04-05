@@ -9,16 +9,16 @@
 <body>
   <!-- 헤더 -->
   <header>
-    <h1><a href="index.html">탄소중립지킴이</a></h1>
+    <h1 class="consistent-style"><a href="index.html">탄소중립지킴이</a></h1>
     <div class="search-container">
       <input type="text" id="search" placeholder="검색어 입력">
       <button id="search-btn">🔍</button>
     </div>
   </header>
-
+  
   <!-- 네비게이션 -->
   <nav>
-    <ul>
+    <ul class="consistent-style">
       <li><a href="#">소개</a>
         <ul class="submenu">
           <li><a href="purpose.html">설립 목적</a></li>
@@ -40,45 +40,42 @@
       </li>
     </ul>
   </nav>
-
+  
   <!-- 본문 콘텐츠 -->
   <section class="section">
     <h2 style="font-size: 1.8em;">탄소중립, 왜 필요할까요?</h2>
     <p>매년 전 세계의 탄소배출량은 약 360억 톤에 달하며, 매년 이 추세가 늘고 있습니다.</p>
     <canvas id="globalChart" width="400" height="200"></canvas>
-
     <p>대한민국 역시 산업화 이후 탄소배출량이 급격히 증가하는 추세를 보이고 있습니다.</p>
     <canvas id="koreaChart" width="400" height="200"></canvas>
-
     <h3>그래서 왜, <strong>탄소배출량 증가</strong>가 문제가 될까요?</h3>
     <p>단순히 배출량이 증가했다에서 끝나는 것이 아닙니다.</p>
-    <p>석탄, 석유, 천연가스 등과 같은 화석 연료의 연소와 산업 교통활동 등으로 인해 <strong>대기중으로 배출된 CO<sub>2</sub></strong>는 대기의 <strong>온실가스</strong>로 작용하여, 온실효과를 일으키게 됩니다.
-      <br>이런 온실효과는 기온 상승, 이상기후현상, 해수면 상승 등 <strong>다양한 기후 변화의 원인</strong>이 됩니다. 
-      <br>예를 들어 산악지역의 빙하가 25% 이상 감소하고, 전염성 질병체가 쉽게 이동하며, 
+    <p>석탄, 석유, 천연가스 등과 같은 화석 연료의 연소와 산업 교통활동 등으로 인해 <strong>대기중으로 배출된 CO<sub>2</sub></strong>는 대기의 온실효과를 증가시키고, 이는 기온 상승, 이상기후현상, 해수면 상승 등 <strong>다양한 기후 변화의 원인</strong>이 됩니다. 
+      <br>이런 온실효과는 기온 상승으로 인해 산악지대의 빙하가 25% 이상 감소하고, 전염성 질병체가 쉽게 이동하며, 
       <br>우리나라의 경우 온대성 식생이 줄고 아열대성 식생이 증가하며 수질 악화 등의 문제가 발생할 수 있습니다.
       <br>게다가 대기 중 수증기가 증가하고, 이것은 <strong>또 다른 온실효과</strong>로 이어집니다.
     </p>
     <p>결국 우리는 점점 더 뜨거워지고, 이상현상과 생태계 손상이 늘어나는 악순환의 굴레에 놓이게 됩니다.</p>
-
+    
     <!-- 슬라이더 -->
     <div class="slider">
       <img src="https://images.pexels.com/photos/929385/pexels-photo-929385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="환경오염 사진 1">
       <img src="https://images.pexels.com/photos/3174349/pexels-photo-3174349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="환경오염 사진 2">
       <img src="https://images.pexels.com/photos/1268076/pexels-photo-1268076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="환경오염 사진 3">
     </div>
-
+    
     <h4>그래서, 탄소중립이 필요합니다</h4>
     <p><strong>탄소중립</strong>이란, 온실가스 배출량을 줄이고 남은 배출량을 흡수 또는 제거하여 <strong>실질적인 배출량을 0</strong>으로 만드는 개념입니다.</p>
-    <p>흡수 방법: 탄소포집과 저장<br>감축 방법: 청정에너지 전환, 효율적 자원 사용 등<br>탄소중립 실천은 재생에너지 개발, 산업 구조 전환, 지속 가능한 성장의 토대를 마련합니다.</p>
-
-    <p style="margin-top: 30px;">이제는 우리가 바뀌어야 할 시간입니다.<br><strong>작은 실천이 큰 변화를 만들어냅니다.</strong></p>
-
+    <p>흡수 방법: 탄소포집과 저장<br>감축 방법: 청정에너지 전환, 효율적 자원 사용 등<br>탄소중립 실천은 재생에너지 개발, 산업 구조 전환, 지속 가능한 사회로 나아가는 길입니다.</p>
+    
+    <p style="margin-top: 30px;">이제는 우리가 바뀌어야 할 시간입니다.<br><strong>작은 실천이 큰 변화를 만듭니다.</strong></p>
+    
     <div class="btn-container">
       <button class="btn" onclick="location.href='records.html'">탄소배출 기록지 확인하기</button>
       <button class="btn" onclick="location.href='policy.html'">정책 알아보기</button>
     </div>
   </section>
-
+  
   <!-- 차트 스크립트 -->
   <script>
     const globalCtx = document.getElementById('globalChart').getContext('2d');
