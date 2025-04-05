@@ -12,60 +12,55 @@
       font-family: 'Noto Sans KR', sans-serif;
     }
 
-    .content {
-      padding-top: 100px; /* 고정 헤더 아래 공간 확보 */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-top: 120px; /* 고정된 헤더 때문에 위에 여백 확보 */
       padding-left: 20px;
       padding-right: 20px;
-      max-width: 900px;
-      margin: auto;
     }
 
     h2 {
-      text-align: center;
-      margin-bottom: 40px;
       font-size: 28px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
-    .policy-list {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .policy-item {
-      background-color: #f7f7f7;
+    .policy {
+      background-color: #f3f3f3;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .policy-item h3 {
+    .policy h3 {
       margin-top: 0;
       font-size: 20px;
+      color: #222;
     }
 
-    .policy-item p {
-      margin: 10px 0;
+    .policy p {
       font-size: 16px;
       color: #555;
     }
 
-    .policy-item a {
+    .policy a {
       display: inline-block;
       margin-top: 10px;
-      color: #007BFF;
-      text-decoration: none;
       font-weight: bold;
+      color: #0066cc;
+      text-decoration: none;
     }
 
-    .policy-item a:hover {
+    .policy a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
-  <!-- 고정 헤더 -->
+  <!-- 고정 헤더 (style.css와 동일한 구조 유지) -->
   <header class="header">
     <h1 class="logo">탄소중립 생활</h1>
     <nav class="nav">
@@ -76,35 +71,33 @@
     </nav>
   </header>
 
-  <!-- 콘텐츠 영역 -->
-  <main class="content">
+  <!-- 본문 콘텐츠 -->
+  <div class="container">
     <h2>국내 탄소중립 관련 정책 및 보고서</h2>
 
-    <div class="policy-list">
-      <div class="policy-item">
-        <h3>2050 탄소중립 전략 (대한민국 정부)</h3>
-        <p>대한민국의 탄소중립 달성을 위한 장기 전략과 부문별 대응 방안을 담은 보고서입니다.</p>
-        <a href="https://www.me.go.kr/home/web/policy_data/read.do?menuId=10262&seq=7546" target="_blank">보고서 보기 →</a>
-      </div>
-
-      <div class="policy-item">
-        <h3>탄소중립 기본법</h3>
-        <p>국가의 탄소중립 목표 및 이행 계획 수립과 관련된 법적 근거를 제공하는 법령입니다.</p>
-        <a href="https://www.law.go.kr/법령/탄소중립ㆍ녹색성장기본법" target="_blank">법령 보기 →</a>
-      </div>
-
-      <div class="policy-item">
-        <h3>제3차 기후변화 대응 기본계획</h3>
-        <p>기후위기에 대응하기 위한 중장기 국가계획으로, 다양한 적응 및 완화 전략이 포함되어 있습니다.</p>
-        <a href="https://www.me.go.kr/home/web/policy_data/read.do?menuId=10262&seq=7383" target="_blank">계획서 보기 →</a>
-      </div>
-
-      <div class="policy-item">
-        <h3>탄소중립 실천 포인트 제도 안내</h3>
-        <p>국민이 생활 속에서 탄소중립 실천을 할 경우 포인트로 보상받을 수 있는 제도입니다.</p>
-        <a href="https://carbonpoint.or.kr" target="_blank">사이트 바로가기 →</a>
-      </div>
+    <div class="policy">
+      <h3>2050 탄소중립 전략 (대한민국 정부)</h3>
+      <p>대한민국의 장기적인 탄소중립 비전을 담은 전략 문서로, 부문별 감축 방안이 포함되어 있습니다.</p>
+      <a href="https://www.me.go.kr/home/web/policy_data/read.do?menuId=10262&seq=7546" target="_blank">→ 보고서 보기</a>
     </div>
-  </main>
+
+    <div class="policy">
+      <h3>탄소중립ㆍ녹색성장 기본법</h3>
+      <p>국가 차원의 탄소중립 실현을 위한 법적 기반과 추진 체계를 명확히 규정한 기본법입니다.</p>
+      <a href="https://www.law.go.kr/법령/탄소중립ㆍ녹색성장기본법" target="_blank">→ 법령 보기</a>
+    </div>
+
+    <div class="policy">
+      <h3>제3차 기후변화 대응 기본계획</h3>
+      <p>기후위기 대응을 위한 국가 전략 및 정책 방향을 제시하는 중장기 계획입니다.</p>
+      <a href="https://www.me.go.kr/home/web/policy_data/read.do?menuId=10262&seq=7383" target="_blank">→ 계획서 보기</a>
+    </div>
+
+    <div class="policy">
+      <h3>탄소중립 실천 포인트 제도</h3>
+      <p>개인이 일상생활에서 실천한 탄소중립 행동을 포인트로 보상하는 참여형 제도입니다.</p>
+      <a href="https://carbonpoint.or.kr" target="_blank">→ 사이트 바로가기</a>
+    </div>
+  </div>
 </body>
 </html>
