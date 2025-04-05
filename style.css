@@ -18,6 +18,8 @@
       background-color: #ffffff;
       color: #31624E ;
       display: flex;
+      position: fixed;
+      z-index: 1000;
       justify-content: space-between;
       align-items: center;
       padding: 1em 20px;
@@ -55,6 +57,7 @@
   /* 네비게이션 바 */
   nav {
       background-color: #E0EFE8;
+      position: fixed;
   }
   
   nav ul {
