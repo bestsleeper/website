@@ -76,20 +76,23 @@
         background-color: #9DB0A9;
      }
     
-     .submenu {
-       display: none;
-       position: absolute;
-       top: 100%;
-       background: white;
-       border: 1px solid #ccc;
-       list-style: none;
-       padding: 10px 0;
-       width: 150px;
+    .submenu {
+     display: none;
+     position: absolute;
+     top: 100%;
+     background: white;
+     border: 1px solid #ccc;
+     list-style: none;
+     padding: 10px 0;
+     width: 150px;
+     z-index: 999; /* 이거도 있으면 겹침 방지에 좋아 */
      }
-    
-    nav ul li:hover .submenu {
-       display: block;
-    }
+
+     nav ul li:hover .submenu {
+         display: block;
+     }
+   
+ 
    </style>
  </head>
   
