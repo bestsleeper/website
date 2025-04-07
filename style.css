@@ -69,7 +69,7 @@
   
  nav ul li a {
      display: block;
-     color: #9DB0A9;
+     color: black;
      text-align: center;
      padding: 14px 16px;
      text-decoration: none;
@@ -95,7 +95,7 @@
  .submenu li a {
      padding: 10px;
      display: block;
-     color: #9DB0A;
+     color: black;
  }
   
  .submenu li a:hover {
