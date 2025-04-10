@@ -99,37 +99,33 @@
      list-style: none;
      padding: 0;
      width: 150px;
-     z-index: 999; /* 이거도 있으면 겹침 방지에 좋아 */
      }
 
      nav ul li:hover .submenu {
          display: block;
      }
 
-       .button-container {
-         display: flex;
-         justify-content: center;
-         gap: 30px;
-         margin-top: 50px;
-         flex-wrap: wrap; /* 반응형 대비 */
-       }
-     
-       .carbon-button {
-         font-family: 'GmarketSans', sans-serif;
-         font-size: 18px;
-         padding: 20px 30px;
-         border: none;
-         border-radius: 10px;
-         background-color: #e6f2ec;
-         color: #1e4638;
-         cursor: pointer;
-         box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
-         transition: transform 0.2s ease;
-       }
-     
-       .carbon-button:hover {
-         transform: scale(1.05);
-         backgroung-color:
+     .button-container {
+        display: flex;
+        justify-content: center; /* 가운데 정렬 */
+        gap: 20px;               /* 버튼 사이 간격 */
+        margin-top: 40px;        /* 위 여백 */
+      }
+      
+      .btn {
+        font-family: 'GmarketSans', sans-serif;
+        padding: 16px 32px;               /* 버튼 내부 여백 (크기 커짐) */
+        font-size: 18px;                  /* 글씨 크기 */
+        background-color: #31624E;        /* 배경 색 */
+        color: white;                     /* 글씨 색 */
+        border: none;                     /* 테두리 제거 */
+        border-radius: 10px;              /* 모서리 둥글게 */
+        cursor: pointer;                  /* 커서 포인터로 */
+        transition: background-color 0.3s ease;
+      }
+      
+      .btn:hover {
+        background-color: #1d3e33;        /* 호버 시 색상 변경 */
        }
    </style>
  </head>
@@ -161,10 +157,10 @@
              <li><a href="international_policy.html">국외 정책</a></li>
            </ul>
        </li>
-       <li><a href="#">기록지</a>
+       <li><a href="#">탄소기록</a>
          <ul class="submenu">
-             <li><a href="carbon_record.html">탄소기록지</a></li>
-             <li><a href="report_analysis.html">보고서 분석</a></li>
+             <li><a href="carbon_record.html">탄소 계산기</a></li>
+             <li><a href="report_analysis.html">분석</a></li>
            </ul>
        </li>
      </ul>
