@@ -1,142 +1,193 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>설립 목적</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'GmarketSans', sans-serif;
-    }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1em 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      background-color: #333;
-      padding: 10px 0;
-      position: sticky;
-      top: 72px; /* 헤더 높이 이후 */
-      z-index: 999;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 0;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      border: 1px solid #ccc;
-      list-style: none;
-      padding: 10px 0;
-      min-width: 150px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    nav ul li:hover .submenu {
-      display: block;
-    }
-
+ <html lang="ko">
+ <head>
+   <meta charset="UTF-8">
+   <title>이용방법</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <style>
     .section {
-      padding: 40px;
       text-align: center;
-      background-color: #f9f9f9;
+      padding: 2em;
+    }
+    html {
+      overflow-y: scroll;
+      scrollbar-width: auto;
+      scrollbar-color: #ccc #fff;
+    }
+  
+    body {
+      overflow-x: hidden;
+    }
+    
+    canvas {
+     max-width: 700px;
+     height : auto !important;
+     width: auto !imaportant;
+     margin: 40px auto ;
+     dispaly: block;
     }
 
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      scroll-snap-type: x mandatory;
-      padding: 10px;
-      margin-top: 20px;
+    slider {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+     margin: 40px auto;
+     max-width: 1000px;
+     overflow: hidden;
     }
-
+    
     .slider img {
-      scroll-snap-align: center;
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
+      width: 30%;
+      height: 200pxdl;
       border-radius: 10px;
+      object-fit: cover;
     }
+    body {
+       margin: 0;
+       padding: 0;
+       font-family: 'GmarketSans', sans-serif;
+       background-color: #ffffff;
+     }
+ 
+     header {
+       background-color: #ffffff;
+       color:  #31624E;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 1em 20px;
+     }
 
-    .btn-container {
-      margin-top: 30px;
-    }
+     h1 {
+       text-align: left;
+       margin: 0;
+       padding: 1em;
+     }
+  
+    .search-container {
+       display: flex;
+       align-items: center;
+     }
+  
+    #search {
+       padding: 8px;
+       border-radius: 20px;
+       border: 1px solid #ccc;
+       width: 200px;
+     }
+  
+    #search-btn {
+       background: none;
+       border: none;
+       cursor: pointer;
+       font-size: 16px;
+       margin-left: 5px;
+       color: #E0EFE8;
+     }
+     nav {
+       background-color: #E0efe8;
+     }
+ 
+     nav ul {
+       list-style-type: none;
+       padding: 0;
+       display: flex;
+       justify-content: center;
+     }
+ 
+     nav ul li {
+       position: relative;
+       margin: 0 20px;
+     }
+    
+     nav ul li a {
+       display: block;
+       color: black;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;
+     }
+  
+     nav ul li a:hover {
+        background-color: #9DB0A9;
+     }
+    
+    .submenu {
+     display: none;
+     position: absolute;
+     top: 100%;
+     background: white;
+     border: 1px solid #ccc;
+     list-style: none;
+     padding: 0;
+     width: 150px;
+     z-index: 999; /* 이거도 있으면 겹침 방지에 좋아 */
+     }
 
-    .btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: #388E3C;
-    }
-  </style>
-</head>
-<body>
-  <!-- 헤더 -->
-  <header>
-    <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
-    <div class="search-container">
-      <input type="text" id="search" placeholder="검색어 입력">
-      <button id="search-btn">🔍</button>
-    </div>
-  </header>
-
-  <!-- 네비게이션 -->
-  <nav>
-    <ul>
-      <li><a href="#">소개</a>
-        <ul class="submenu">
-          <li><a href="purpose.html">설립 목적</a></li>
-          <li><a href="how_to_use.html">이용 방법</a></li>
-          <li><a href="usage_status.html">이용 현황</a></li>
-      </li>
-      <li><a href="#">정책</a>
-        <ul class="submenu">
-          <li><a href="domestic_policy.html">국내 정책</a></li>
-          <li><a href="international_policy.html">국외 정책</a></li>
-      </li>
-      <li><a href="#">기록지</a>
-        <ul class="submenu">
-          <li><a href="carbon_record.html">탄소기록지</a></li>
-          <li><a href="report_analysis.html">보고서 분석</a></li>
-      </li>
-      </ul>
-  </nav>
+     nav ul li:hover .submenu {
+         display: block;
+     }
+      .btn-container {
+        display: flex;
+        justify-content: center; /* 가운데 정렬 */
+        gap: 20px;               /* 버튼 사이 간격 */
+        margin-top: 40px;        /* 위 여백 */
+      }
+      
+      .btn {
+        font-family: 'GmarketSans', sans-serif;
+        padding: 16px 32px;               /* 버튼 내부 여백 (크기 커짐) */
+        font-size: 18px;                  /* 글씨 크기 */
+        background-color: #31624E;        /* 배경 색 */
+        color: white;                     /* 글씨 색 */
+        border: none;                     /* 테두리 제거 */
+        border-radius: 10px;              /* 모서리 둥글게 */
+        cursor: pointer;                  /* 커서 포인터로 */
+        transition: background-color 0.3s ease;
+      }
+      
+      .btn:hover {
+        background-color: #1d3e33;        /* 호버 시 색상 변경 */
+      }
+   </style>
+ </head>
+  
+ <body>
+   <!-- 헤더 -->
+   <header>
+       <h1><a href="index.html" style="color:  #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
+     <div class="search-container">
+       <input type="text" id="search" placeholder="검색어 입력">
+       <button id="search-btn"></button>
+     </div>
+   </header>
+   </header>
+ 
+   <!-- 네비게이션 -->
+   <nav>
+     <ul>
+       <li><a href="#">소개</a>
+         <ul class="submenu">
+             <li><a href="purpose.html">설립 목적</a></li>
+             <li><a href="howtouse.html">이용 방법</a></li>
+             <li><a href="usage_status.html">이용 현황</a></li>
+           </ul>
+       </li>
+       <li><a href="#">정책</a>
+         <ul class="submenu">
+             <li><a href="domestic_policy.html">국내 정책</a></li>
+             <li><a href="international_policy.html">국외 정책</a></li>
+           </ul>
+       </li>
+       <li><a href="#">기록지</a>
+         <ul class="submenu">
+             <li><a href="carbon_record.html">탄소기록지</a></li>
+             <li><a href="report_analysis.html">보고서 분석</a></li>
+           </ul>
+       </li>
+     </ul>
+   </nav>
 
   <!-- 본문 콘텐츠 -->
   <section class="section">
