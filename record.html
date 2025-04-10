@@ -19,30 +19,7 @@
     body {
       overflow-x: hidden;
     }
-    
-    canvas {
-     max-width: 700px;
-     height : auto !important;
-     width: auto !imaportant;
-     margin: 40px auto ;
-     dispaly: block;
-    }
 
-    slider {
-     display: flex;
-     justify-content: center;
-     gap: 10px;
-     margin: 40px auto;
-     max-width: 1000px;
-     overflow: hidden;
-    }
-    
-    .slider img {
-      width: 30%;
-      height: 200pxdl;
-      border-radius: 10px;
-      object-fit: cover;
-    }
     body {
        margin: 0;
        padding: 0;
@@ -128,28 +105,34 @@
      nav ul li:hover .submenu {
          display: block;
      }
-      .btn-container {
-        display: flex;
-        justify-content: center; /* 가운데 정렬 */
-        gap: 20px;               /* 버튼 사이 간격 */
-        margin-top: 40px;        /* 위 여백 */
-      }
-      
-      .btn {
-        font-family: 'GmarketSans', sans-serif;
-        padding: 16px 32px;               /* 버튼 내부 여백 (크기 커짐) */
-        font-size: 18px;                  /* 글씨 크기 */
-        background-color: #31624E;        /* 배경 색 */
-        color: white;                     /* 글씨 색 */
-        border: none;                     /* 테두리 제거 */
-        border-radius: 10px;              /* 모서리 둥글게 */
-        cursor: pointer;                  /* 커서 포인터로 */
-        transition: background-color 0.3s ease;
-      }
-      
-      .btn:hover {
-        background-color: #1d3e33;        /* 호버 시 색상 변경 */
-      }
+
+       /* 버튼 감싸는 div 가운데 정렬 */
+       .button-container {
+         display: flex;
+         justify-content: center;
+         gap: 30px;
+         margin-top: 50px;
+         flex-wrap: wrap; /* 반응형 대비 */
+       }
+     
+       /* 버튼 스타일 */
+       .carbon-button {
+         font-family: 'GmarketSans', sans-serif;
+         font-size: 18px;
+         padding: 20px 30px;
+         border: none;
+         border-radius: 10px;
+         background-color: #e6f2ec;
+         color: #1e4638;
+         cursor: pointer;
+         box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+         transition: transform 0.2s ease;
+       }
+     
+       .carbon-button:hover {
+         transform: scale(1.05);
+         backgroung-color:
+       }
    </style>
  </head>
   
@@ -190,13 +173,16 @@
    </nav>
   <!-- 메인 콘텐츠 -->
   <main class="content-wrapper">
+  <div class="button-container">
     <button class="carbon-button" onclick="location.href='carbon_record.html'">
       배출한 탄소량 알아보기 →
     </button>
     <button class="carbon-button" onclick="location.href='carbon_record2.html'">
       절약한 탄소량 알아보기 →
     </button>
-  </main>
+  </div>
+</main>
+
 </body>
 </html>
 
