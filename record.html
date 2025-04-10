@@ -1,64 +1,193 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>탄소량 기록</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
+ <html lang="ko">
+ <head>
+   <meta charset="UTF-8">
+   <title>기록지</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <style>
+    .section {
+      text-align: center;
+      padding: 2em;
+    }
+    html {
+      overflow-y: scroll;
+      scrollbar-width: auto;
+      scrollbar-color: #ccc #fff;
+    }
+  
     body {
-      background-color: #ffffff;
-      margin: 0;
-      font-family: 'Noto Sans KR', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    canvas {
+     max-width: 700px;
+     height : auto !important;
+     width: auto !imaportant;
+     margin: 40px auto ;
+     dispaly: block;
     }
 
-    .content-wrapper {
-      padding-top: 100px; /* 헤더 영역만큼 여백 */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
+    slider {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+     margin: 40px auto;
+     max-width: 1000px;
+     overflow: hidden;
     }
-
-    .carbon-button {
-      width: 80%;
-      max-width: 400px;
-      padding: 20px;
-      font-size: 18px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
+    
+    .slider img {
+      width: 30%;
+      height: 200pxdl;
       border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      object-fit: cover;
     }
+    body {
+       margin: 0;
+       padding: 0;
+       font-family: 'GmarketSans', sans-serif;
+       background-color: #ffffff;
+     }
+ 
+     header {
+       background-color: #ffffff;
+       color:  #31624E;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 1em 20px;
+     }
 
-    .carbon-button:hover {
-      background-color: #388E3C;
-    }
+     h1 {
+       text-align: left;
+       margin: 0;
+       padding: 1em;
+     }
+  
+    .search-container {
+       display: flex;
+       align-items: center;
+     }
+  
+    #search {
+       padding: 8px;
+       border-radius: 20px;
+       border: 1px solid #ccc;
+       width: 200px;
+     }
+  
+    #search-btn {
+       background: none;
+       border: none;
+       cursor: pointer;
+       font-size: 16px;
+       margin-left: 5px;
+       color: #E0EFE8;
+     }
+     nav {
+       background-color: #E0efe8;
+     }
+ 
+     nav ul {
+       list-style-type: none;
+       padding: 0;
+       display: flex;
+       justify-content: center;
+     }
+ 
+     nav ul li {
+       position: relative;
+       margin: 0 20px;
+     }
+    
+     nav ul li a {
+       display: block;
+       color: black;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;
+     }
+  
+     nav ul li a:hover {
+        background-color: #9DB0A9;
+     }
+    
+    .submenu {
+     display: none;
+     position: absolute;
+     top: 100%;
+     background: white;
+     border: 1px solid #ccc;
+     list-style: none;
+     padding: 0;
+     width: 150px;
+     z-index: 999; /* 이거도 있으면 겹침 방지에 좋아 */
+     }
 
-    @media (max-width: 480px) {
-      .carbon-button {
-        font-size: 16px;
-        padding: 16px;
+     nav ul li:hover .submenu {
+         display: block;
+     }
+      .btn-container {
+        display: flex;
+        justify-content: center; /* 가운데 정렬 */
+        gap: 20px;               /* 버튼 사이 간격 */
+        margin-top: 40px;        /* 위 여백 */
       }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- 고정 헤더 (index.html과 동일) -->
-  <header class="header">
-    <h1 class="logo">탄소중립 생활</h1>
-    <nav class="nav">
-      <a href="index.html">홈</a>
-      <a href="purpose.html">목표</a>
-      <a href="record.html" class="active">기록</a>
-      <a href="policy.html">정책</a>
-    </nav>
-  </header>
-
+      
+      .btn {
+        font-family: 'GmarketSans', sans-serif;
+        padding: 16px 32px;               /* 버튼 내부 여백 (크기 커짐) */
+        font-size: 18px;                  /* 글씨 크기 */
+        background-color: #31624E;        /* 배경 색 */
+        color: white;                     /* 글씨 색 */
+        border: none;                     /* 테두리 제거 */
+        border-radius: 10px;              /* 모서리 둥글게 */
+        cursor: pointer;                  /* 커서 포인터로 */
+        transition: background-color 0.3s ease;
+      }
+      
+      .btn:hover {
+        background-color: #1d3e33;        /* 호버 시 색상 변경 */
+      }
+   </style>
+ </head>
+  
+ <body>
+   <!-- 헤더 -->
+   <header>
+       <h1><a href="index.html" style="color:  #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
+     <div class="search-container">
+       <input type="text" id="search" placeholder="검색어 입력">
+       <button id="search-btn"></button>
+     </div>
+   </header>
+   </header>
+ 
+   <!-- 네비게이션 -->
+   <nav>
+     <ul>
+       <li><a href="#">소개</a>
+         <ul class="submenu">
+             <li><a href="purpose.html">설립 목적</a></li>
+             <li><a href="howtouse.html">이용 방법</a></li>
+             <li><a href="usage_status.html">이용 현황</a></li>
+           </ul>
+       </li>
+       <li><a href="#">정책</a>
+         <ul class="submenu">
+             <li><a href="domestic_policy.html">국내 정책</a></li>
+             <li><a href="international_policy.html">국외 정책</a></li>
+           </ul>
+       </li>
+       <li><a href="#">기록지</a>
+         <ul class="submenu">
+             <li><a href="carbon_record.html">탄소기록지</a></li>
+             <li><a href="report_analysis.html">보고서 분석</a></li>
+           </ul>
+       </li>
+     </ul>
+   </nav>
   <!-- 메인 콘텐츠 -->
   <main class="content-wrapper">
     <button class="carbon-button" onclick="location.href='carbon_record.html'">
