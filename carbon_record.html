@@ -196,76 +196,73 @@
     </nav>
  
     <!-- 본문 콘텐츠 -->
-    <section class="section">
-      <div class="calculators">
-        <div class="calculator-container">
-          <h1>탄소 배출량 계산기</h1>
- 
-          <label for="fuel">연료 사용량 (㎏)</label>
-          <input type="number" id="fuel" placeholder="연료 사용량" required>
- 
-          <label for="heating-value">순발열량 (MJ/㎏)</label>
-          <input type="number" id="heating-value" placeholder="순발열량" required>
- 
-          <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
-          <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
- 
-          <label for="gwp">지구온난화지수 (GWP)</label>
-          <input type="number" id="gwp" placeholder="지구온난화지수" required>
- 
-          <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
- 
-          <div class="result" id="result"></div>
-        </div>
- 
-        <div class="calculator-container">
-          <h1>수도 탄소 배출량 계산기</h1>
- 
-          <label for="water-usage">물 사용량 (㎥)</label>
-          <input type="number" id="water-usage" placeholder="물 사용량" required>
- 
-          <label for="water-type">수도 배출계수 종류</label>
-          <select id="water-type" required>
-            <option value="0.344">상수도 공급 (0.344 kgCO₂e/㎥)</option>
-            <option value="0.708">하수처리 (0.708 kgCO₂e/㎥)</option>
-          </select>
- 
-          <button class="btn" onclick="calculateWaterCarbon()">수도 탄소 배출량 계산하기</button>
- 
-          <div class="result" id="water-result"></div>
-        </div>
- 
-        <div class="calculator-container">
-          <h1>전기 사용 탄소 배출량 계산기</h1>
- 
-          <label for="electricity-usage">전력 사용량 (kWh)</label>
-          <input type="number" id="electricity-usage" placeholder="전력 사용량" required>
- 
-          <button class="btn" onclick="calculateElectricityCarbon()">전기 탄소 배출량 계산하기</button>
- 
-          <div class="result" id="electricity-result"></div>
-        </div>
- 
-        <div class="calculator-container">
-          <h1>폐기물 탄소 배출량 계산기</h1>
- 
-          <label for="waste-amount">폐기물 배출량 (kg)</label>
-          <input type="number" id="waste-amount" placeholder="폐기물 배출량" required>
- 
-          <label for="waste-type">폐기물 종류</label>
-          <select id="waste-type" required>
-            <option value="0.87">음식물쓰레기 (0.87 kgCO₂e/kg)</option>
-            <option value="0.94">종이류 (0.94 kgCO₂e/kg)</option>
-            <option value="2.62">플라스틱 (2.62 kgCO₂e/kg)</option>
-            <option value="2.46">비닐류 (2.46 kgCO₂e/kg)</option>
-          </select>
- 
-          <button class="btn" onclick="calculateWasteCarbon()">폐기물 탄소 배출량 계산하기</button>
- 
-          <div class="result" id="waste-result"></div>
-        </div>
-      </div>
-    </section>
+<section class="section">
+  <div class="calculators">
+    <!-- 연료 기반 탄소 배출량 계산기 -->
+    <div class="calculator-container">
+      <h1>탄소 배출량 계산기</h1>
+      <label for="fuel">연료 사용량 (㎏)</label>
+      <input type="number" id="fuel" placeholder="연료 사용량" required>
+
+      <label for="heating-value">순발열량 (MJ/㎏)</label>
+      <input type="number" id="heating-value" placeholder="순발열량" required>
+
+      <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
+      <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
+
+      <label for="gwp">지구온난화지수 (GWP)</label>
+      <input type="number" id="gwp" placeholder="지구온난화지수" required>
+
+      <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <!-- 수도 기반 탄소 배출량 계산기 -->
+    <div class="calculator-container">
+      <h1>수도 탄소 배출량 계산기</h1>
+      <label for="water-usage">물 사용량 (㎥)</label>
+      <input type="number" id="water-usage" placeholder="물 사용량" required>
+
+      <label for="water-type">수도 배출계수 종류</label>
+      <select id="water-type" required>
+        <option value="0.344">상수도 공급 (0.344 kgCO₂e/㎥)</option>
+        <option value="0.708">하수처리 (0.708 kgCO₂e/㎥)</option>
+      </select>
+
+      <button class="btn" onclick="calculateWaterCarbon()">수도 탄소 배출량 계산하기</button>
+      <div class="result" id="water-result"></div>
+    </div>
+
+    <!-- 전기 사용 탄소 배출량 계산기 -->
+    <div class="calculator-container">
+      <h1>전기 사용 탄소 배출량 계산기</h1>
+      <label for="electricity-usage">전력 사용량 (kWh)</label>
+      <input type="number" id="electricity-usage" placeholder="전력 사용량" required>
+
+      <button class="btn" onclick="calculateElectricityCarbon()">전기 탄소 배출량 계산하기</button>
+      <div class="result" id="electricity-result"></div>
+    </div>
+
+    <!-- 폐기물 탄소 배출량 계산기 -->
+    <div class="calculator-container">
+      <h1>폐기물 탄소 배출량 계산기</h1>
+      <label for="waste-amount">폐기물 배출량 (kg)</label>
+      <input type="number" id="waste-amount" placeholder="폐기물 배출량" required>
+
+      <label for="waste-type">폐기물 종류</label>
+      <select id="waste-type" required>
+        <option value="0.87">음식물쓰레기 (0.87 kgCO₂e/kg)</option>
+        <option value="0.94">종이류 (0.94 kgCO₂e/kg)</option>
+        <option value="2.62">플라스틱 (2.62 kgCO₂e/kg)</option>
+        <option value="2.46">비닐류 (2.46 kgCO₂e/kg)</option>
+      </select>
+
+      <button class="btn" onclick="calculateWasteCarbon()">폐기물 탄소 배출량 계산하기</button>
+      <div class="result" id="waste-result"></div>
+    </div>
+  </div>
+</section>
+
  
     <script>
       // Load saved values on page load
