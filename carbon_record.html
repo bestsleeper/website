@@ -4,18 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>탄소중립지킴이 계산기</title>
-  <link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=GmarketSans&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Gmarket Sans', sans-serif;
+      font-family: 'GmarketSans', sans-serif;
       background-color: #ffffff;
-      overflow-x: hidden;
     }
 
     header {
@@ -24,9 +19,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1em 40px;
-      max-width: 1280px;
-      margin: 0 auto;
+      padding: 1em 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .search-container {
@@ -58,14 +54,13 @@
       z-index: 999;
     }
 
-    nav > ul {
-      max-width: 1280px;
-      margin: 0 auto;
+    nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
       gap: 30px;
       padding: 0;
+      margin: 0;
     }
 
     nav ul li {
@@ -78,7 +73,6 @@
       padding: 14px 16px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
     }
 
     nav ul li a:hover {
@@ -90,13 +84,15 @@
       display: none;
       position: absolute;
       top: 100%;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       background-color: white;
       border: 1px solid #ccc;
       list-style: none;
       padding: 0;
-      width: 150px;
-      z-index: 999;
+      min-width: 150px;
+      text-align: center;
+      z-index: 1000;
     }
 
     nav ul li:hover .submenu {
@@ -104,7 +100,7 @@
     }
 
     .section {
-      padding: 40px 0;
+      padding: 40px;
       background-color: #f9f9f9;
       text-align: center;
     }
@@ -112,11 +108,8 @@
     .calculators {
       display: flex;
       flex-wrap: wrap;
-      gap: 30px;
       justify-content: center;
-      padding: 0 20px;
-      max-width: 1280px;
-      margin: 0 auto;
+      gap: 20px;
     }
 
     .calculator-container {
@@ -124,7 +117,9 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
+      min-width: 280px;
       text-align: center;
       flex-shrink: 0;
     }
@@ -211,17 +206,16 @@
 
   <section class="section">
     <div class="calculators">
-
       <div class="calculator-container">
         <h1>탄소 배출량 계산기</h1>
         <label for="fuel">연료 사용량 (㎏)</label>
-        <input type="number" id="fuel" placeholder="연료 사용량">
+        <input type="number" id="fuel">
         <label for="heating-value">순발열량 (MJ/㎏)</label>
-        <input type="number" id="heating-value" placeholder="순발열량">
+        <input type="number" id="heating-value">
         <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
-        <input type="number" id="carbon-coefficient" placeholder="탄소배출계수">
+        <input type="number" id="carbon-coefficient">
         <label for="gwp">지구온난화지수 (GWP)</label>
-        <input type="number" id="gwp" placeholder="지구온난화지수">
+        <input type="number" id="gwp">
         <button class="btn" onclick="calculateCarbon()">계산하기</button>
         <div class="result" id="result"></div>
       </div>
@@ -229,7 +223,7 @@
       <div class="calculator-container">
         <h1>수도 탄소 배출량 계산기</h1>
         <label for="water-usage">물 사용량 (㎥)</label>
-        <input type="number" id="water-usage" placeholder="물 사용량">
+        <input type="number" id="water-usage">
         <label for="water-type">수도 배출계수</label>
         <select id="water-type">
           <option value="0.344">상수도 (0.344)</option>
@@ -242,7 +236,7 @@
       <div class="calculator-container">
         <h1>전기 사용 탄소 배출량 계산기</h1>
         <label for="electricity-usage">전력 사용량 (kWh)</label>
-        <input type="number" id="electricity-usage" placeholder="전력 사용량">
+        <input type="number" id="electricity-usage">
         <button class="btn" onclick="calculateElectricityCarbon()">계산하기</button>
         <div class="result" id="electricity-result"></div>
       </div>
@@ -250,7 +244,7 @@
       <div class="calculator-container">
         <h1>폐기물 탄소 배출량 계산기</h1>
         <label for="waste-amount">폐기물 배출량 (kg)</label>
-        <input type="number" id="waste-amount" placeholder="폐기물 배출량">
+        <input type="number" id="waste-amount">
         <label for="waste-type">폐기물 종류</label>
         <select id="waste-type">
           <option value="0.87">음식물쓰레기</option>
@@ -261,7 +255,6 @@
         <button class="btn" onclick="calculateWasteCarbon()">계산하기</button>
         <div class="result" id="waste-result"></div>
       </div>
-
     </div>
   </section>
 
@@ -297,9 +290,5 @@
       document.getElementById('waste-result').textContent = `배출된 탄소량: ${(amount * factor).toFixed(3)} kg CO₂`;
     }
   </script>
-
-</body>
-</html>
-
 </body>
 </html>
