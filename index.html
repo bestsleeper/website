@@ -10,6 +10,8 @@
  <body>
      <header>
          <h1>탄소중립지킴이</h1>
+         <p style="margin: 0; font-size: 14px; color: #555;">함께 지켜나가는 우리들의 지구</p>
+   
          <div class="search-container">
              <input type="text" id="search" placeholder="검색어 입력...">
              <button id="search-btn"><i class="fas fa-search"></i></button>
@@ -44,19 +46,40 @@
      </nav>    
  
      <main>
-         <section class="content">
-             <a href="https://example.com">
-                 <div class="box">사진(클릭하면 링크 연결)</div>
-             </a>
-             <a href="https://example.com">
-                 <div class="box">사진(클릭하면 링크 연결)</div>
-             </a>
-             <a href="posts.html">
-                 <div class="box">게시글 목록 (클릭하면 게시글로 이동)</div>
-             </a>
+         <section class="content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+    
+             <div class="box" style="flex: 1 1 30%;">
+                 <h3>탄소 뉴스</h3>
+                 <ul>
+                     <li><a href="https://www.hani.co.kr/arti/economy/environment/1107167.html" target="_blank">[기사] 기후위기, 탄소중립 어디까지 왔나</a></li>
+                     <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148906173" target="_blank">[기사] 탄소중립 정책 발표 요약</a></li>
+                     <li><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1007173574" target="_blank">[기사] 2050 탄소중립 전략 설명</a></li>
+                 </ul>
+             </div>
+     
+             <div class="box" style="flex: 1 1 30%;">
+                 <h3>탄소 정책</h3>
+                 <ul>
+                     <li><a href="https://www.me.go.kr/home/web/policy_data/read.do?menuId=10263&seq=7652" target="_blank">[자료] 국내 탄소 정책 요약</a></li>
+                     <li><a href="https://unfccc.int/" target="_blank">[공식] UNFCCC 국제 정책 정보</a></li>
+                     <li><a href="https://www.iea.org/reports/net-zero-by-2050" target="_blank">[보고서] 국제 에너지기구 넷제로 보고서</a></li>
+                 </ul>
+             </div>
+     
+             <div class="box" style="flex: 1 1 30%;">
+                 <h3>지금 세계는...</h3>
+                 <a href="https://climateactiontracker.org/global/" target="_blank">🌍 세계 탄소 배출 지도 보기</a>
+             </div>
+     
+             <div class="box" style="flex: 1 1 45%;">
+                 <h3>나의 탄소 배출량은?</h3>
+                 <p>개인의 일상생활 속 탄소배출을 계산해보세요.</p>
+                 <a href="record.html" style="display: inline-block; margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">탄소 배출량 계산하러 가기 ▶</a>
+             </div>
+     
          </section>
      </main>
- 
+  
      <script src="script.js"></script>
  </body>
  </html>
