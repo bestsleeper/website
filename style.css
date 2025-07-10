@@ -29,7 +29,10 @@ nav ul li a:hover {background-color: #9DB0A9;}
   
 .content {display: flex; justify-content: space-around; margin: 20px;}
   
-.box {background-color: white; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 30%; text-align: center;}
+.box {display:flex; background-color: white; padding: 20px; width: 40%; height:30%; text-align: center; border: 1px solid #aaa;}
+.left-box {width: 50%; padding: 20px; background-color: #f0f0f0;}
+.right-box {width: 50%; padding: 20px; background-color: #EAFAF3;}
+
 .type-none-ul{list-style:none; padding-left:0;}
  
 .consistent-style {background-color: #E0EFE8; width: 100%; height: 60px; display: flex; align-items: center; justify-content: center;}
