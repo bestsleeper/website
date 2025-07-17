@@ -1,220 +1,326 @@
 <!DOCTYPE html>
- <html lang="ko">
- <head>
-   <meta charset="UTF-8">
-   <title>국외 정책</title>
-   <link rel="stylesheet" href="style.css">
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <style>
-    .section {
-      text-align: center;
-      padding: 2em;
-    }
-    html {
-      overflow-y: scroll;
-      scrollbar-width: auto;
-      scrollbar-color: #ccc #fff;
-    }
-  
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>국외 정책</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'GmarketSans', sans-serif;
+      background-color: #ffffff;
       overflow-x: hidden;
     }
-  
-    body {
-       margin: 0;
-       padding: 0;
-       font-family: 'GmarketSans', sans-serif;
-       background-color: #ffffff;
-     }
- 
-     header {
-       background-color: #ffffff;
-       color:  #31624E;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       padding: 1em 20px;
-     }
 
-     h1 {
-       text-align: left;
-       margin: 0;
-       padding: 1em;
-     }
-  
+    header {
+      background-color: #ffffff;
+      color: #31624E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+    }
+
+    h1 {
+      text-align: left;
+      margin: 0;
+      padding: 1em;
+    }
+
     .search-container {
-       display: flex;
-       align-items: center;
-     }
-  
+      display: flex;
+      align-items: center;
+    }
+
     #search {
-       padding: 8px;
-       border-radius: 20px;
-       border: 1px solid #ccc;
-       width: 200px;
-     }
-  
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+
     #search-btn {
-       background: none;
-       border: none;
-       cursor: pointer;
-       font-size: 16px;
-       margin-left: 5px;
-       color: #E0EFE8;
-     }
-     nav {
-       background-color: #E0efe8;
-     }
- 
-     nav ul {
-       list-style-type: none;
-       padding: 0;
-       display: flex;
-       justify-content: center;
-     }
- 
-     nav ul li {
-       position: relative;
-       margin: 0 20px;
-     }
-    
-     nav ul li a {
-       display: block;
-       color: black;
-       text-align: center;
-       padding: 14px 16px;
-       text-decoration: none;
-     }
-  
-     nav ul li a:hover {
-        background-color: #9DB0A9;
-     }
-    
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 5px;
+      color: #E0EFE8;
+    }
+
+    nav {
+      background-color: #E0efe8;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      position: relative;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      background-color: #9DB0A9;
+    }
+
     .submenu {
-     display: none;
-     position: absolute;
-     top: 100%;
-     background: white;
-     border: 1px solid #ccc;
-     list-style: none;
-     padding: 0;
-     width: 150px;
-     }
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+    }
 
-     nav ul li:hover .submenu {
-         display: block;
-     }
-      .btn-container {
-        display: flex;
-        justify-content: center; /* 가운데 정렬 */
-        gap: 20px;               /* 버튼 사이 간격 */
-        margin-top: 40px;        /* 위 여백 */
-      }
-      
-      .btn {
-        font-family: 'GmarketSans', sans-serif;
-        padding: 16px 32px;               /* 버튼 내부 여백 (크기 커짐) */
-        font-size: 18px;                  /* 글씨 크기 */
-        background-color: #31624E;        /* 배경 색 */
-        color: white;                     /* 글씨 색 */
-        border: none;                     /* 테두리 제거 */
-        border-radius: 10px;              /* 모서리 둥글게 */
-        cursor: pointer;                  /* 커서 포인터로 */
-        transition: background-color 0.3s ease;
-      }
-      
-      .btn:hover {
-        background-color: #1d3e33;        /* 호버 시 색상 변경 */
-      }
-   </style>
- </head>
-  
- <body>
-   <!-- 헤더 -->
-   <header>
-       <h1><a href="index.html" style="color:  #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
-     <div class="search-container">
-       <input type="text" id="search" placeholder="검색어 입력">
-       <button id="search-btn"></button>
-     </div>
-   </header>
-   </header>
- 
-   <!-- 네비게이션 -->
-   <nav>
-     <ul>
-       <li><a href="#">소개</a>
-         <ul class="submenu">
-             <li><a href="purpose.html">설립 목적</a></li>
-             <li><a href="howtouse.html">이용 방법</a></li>
-             <li><a href="usage_status.html">이용 현황</a></li>
-           </ul>
-       </li>
-       <li><a href="#">정책</a>
-         <ul class="submenu">
-             <li><a href="domestic_policy.html">국내 정책</a></li>
-             <li><a href="international_policy.html">국외 정책</a></li>
-           </ul>
-       </li>
-       <li><a href="#">탄소기록</a>
-         <ul class="submenu">
-             <li><a href="record.html">탄소 계산기</a></li>
-             <li><a href="report_analysis.html">분석</a></li>
-           </ul>
-       </li>
-     </ul>
-   </nav>
-  
-  <!-- 본문 내용 -->
-  <div class="content">
-    <h2>국외 탄소중립 정책 및 보고서</h2>
-    <div class="policy-list">
+    nav ul li:hover .submenu {
+      display: block;
+    }
 
-      <div class="policy-item">
-        <p><strong>EU 탄소중립 전략: European Green Deal</strong><br>
-        유럽연합이 2050년까지 탄소중립을 달성하기 위해 마련한 종합 정책 프레임워크.<br>
-        <a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/european-green-deal_en" target="_blank">European Green Deal 공식 링크</a></p>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .split-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .left-half, .right-half {
+      flex: 1 1 500px;
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 60px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #a1c3b5;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .year {
+      background-color: #2d6a5f;
+      color: white;
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      border: 4px solid #ffffff;
+      box-shadow: 0 0 0 4px #a1c3b5;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 20px solid #4a8a6e;
+      margin: 0 20px;
+    }
+
+    .content-box {
+      background-color: #e0efe8;
+      border-radius: 50px 10px 10px 50px;
+      padding: 20px 30px;
+      flex: 1;
+      color: #333;
+    }
+
+    .content-box h4 {
+      margin: 0;
+      font-size: 1.1em;
+      color: #165166;
+    }
+
+    .content-box p {
+      margin: 5px 0 0 0;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .link-list {
+      background: #f4f9f7;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .link-list h3 {
+      color: #31624E;
+      margin-bottom: 15px;
+    }
+
+    .link-list p {
+      margin: 10px 0;
+    }
+
+    .link-list a {
+      color: #165166;
+      text-decoration: none;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="검색어 입력">
+      <button id="search-btn">🔍</button>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">소개</a>
+        <ul class="submenu">
+          <li><a href="purpose.html">설립 목적</a></li>
+          <li><a href="howtouse.html">이용 방법</a></li>
+          <li><a href="usage_status.html">이용 현황</a></li>
+        </ul>
+      </li>
+      <li><a href="#">정책</a>
+        <ul class="submenu">
+          <li><a href="domestic_policy.html">국내 정책</a></li>
+          <li><a href="international_policy.html">국외 정책</a></li>
+        </ul>
+      </li>
+      <li><a href="#">탄소기록</a>
+        <ul class="submenu">
+          <li><a href="record.html">탄소 계산기</a></li>
+          <li><a href="report_analysis.html">분석</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>🌐 국제 탄소중립 정책 및 협약</h2>
+    <div class="split-section">
+      <div class="left-half">
+        <div class="timeline">
+          <div class="timeline-item"><div class="year">1972</div><div class="arrow"></div><div class="content-box"><h4>스톡홀름 회의</h4><p>환경과 개발 문제를 국제 아젠다로 공식 채택</p></div></div>
+          <div class="timeline-item"><div class="year">1992</div><div class="arrow"></div><div class="content-box"><h4>UN기후변화협약</h4><p>리우 회의에서 자발적 감축 체계 도입</p></div></div>
+          <div class="timeline-item"><div class="year">1997</div><div class="arrow"></div><div class="content-box"><h4>교토의정서</h4><p>선진국에만 법적 감축 의무 부여</p></div></div>
+          <div class="timeline-item"><div class="year">2005</div><div class="arrow"></div><div class="content-box"><h4>교토의정서 발효</h4><p>EU 배출권 거래제 등 시장 메커니즘 등장</p></div></div>
+          <div class="timeline-item"><div class="year">2009</div><div class="arrow"></div><div class="content-box"><h4>COP15 코펜하겐</h4><p>각국 감축목표 자발적 선언</p></div></div>
+          <div class="timeline-item"><div class="year">2012</div><div class="arrow"></div><div class="content-box"><h4>도하 수정안</h4><p>교토의정서 제2차 공약기간 설정</p></div></div>
+          <div class="timeline-item"><div class="year">2015</div><div class="arrow"></div><div class="content-box"><h4>파리협정</h4><p>1.5도 상승 억제 목표, 모든 국가 감축 의무화</p></div></div>
+        </div>
       </div>
+      <div class="right-half">
+        <div class="link-list">
+          <h3>📄 국제 정책 및 자료 링크</h3>
+          <p><strong>European Green Deal</strong>
+           <br><a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/european-green-deal_en" target="_blank">공식 페이지</a></p>
+          <p><strong>독일 Energiewende</strong>
+           <br><a href="https://www.cleanenergywire.org/topics/energiewende-compact" target="_blank">Clean Energy Wire</a></p>
+          <p><strong>미국 IRA 기후 투자</strong>
+           <br><a href="https://www.whitehouse.gov/cleanenergy/inflation-reduction-act/" target="_blank">백악관 링크</a></p>
+          <p><strong>IPCC 제6차 평가 보고서</strong>
+           <br><a href="https://www.ipcc.ch/assessment-report/ar6/" target="_blank">AR6 공식 링크</a></p>
+          <p><strong>UNFCCC 파리협정</strong>
+           <br><a href="https://unfccc.int/process-and-meetings/the-paris-agreement/the-paris-agreement" target="_blank">협정 전문보기</a></p>
+          <p><strong>영국 Net Zero 전략</strong>
+           <br><a href="https://www.gov.uk/government/publications/net-zero-strategy" target="_blank">영국 정부 페이지</a></p>
+          <p><strong>IEA Net Zero by 2050</strong>
+           <br><a href="https://www.iea.org/reports/net-zero-by-2050" target="_blank">IEA 공식 보고서</a></p>
+          <p><strong>European Green Deal</strong>
+           <br><a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/european-green-deal_en" target="_blank">공식 페이지</a>
+           <br>(목표: 2050년 EU 기후중립, 2030년 55% 감축 목표) :contentReference[oaicite:1]{index=1}</p>
+          
+          <p><strong>European Climate Law</strong><br><a href="https://climate.ec.europa.eu/eu-action/european-climate-law_en" target="_blank">
+          정책 전문</a><br>
+          (법적 구속력 있는 기후중립·2030년 55% 감축 의무화) :contentReference[oaicite:2]{index=2}</p>
+          
+          <p><strong>Just Transition Mechanism</strong><br>
+          <a href="https://en.wikipedia.org/wiki/Just_Transition_Mechanism" target="_blank">
+          정책 설명</a><br>
+          (탄소집약 산업 지역 지원, €100B 투자) :contentReference[oaicite:3]{index=3}</p>
+          
+          <p><strong>Green Deal Industrial Plan</strong><br>
+          <a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/european-green-deal/green-deal-industrial-plan_en" target="_blank">
+          산업계획 보기</a><br>
+          (청정기술 제조 경쟁력 강화 위한 4대 추진축) :contentReference[oaicite:4]{index=4}</p>
+          
+          <p><strong>Germany Energiewende</strong><br>
+          <a href="https://www.cleanenergywire.org/germanys-energiewende-brief" target="_blank">
+          Clean Energy Wire 설명</a><br>
+          (탈원전·재생 확대, 2050 GHG 80–95% 감축 목표) :contentReference[oaicite:5]{index=5}</p>
+          
+          <p><strong>Inflation Reduction Act (IRA)</strong><br>
+          <a href="https://www.epa.gov/green-power-markets/summary-inflation-reduction-act-provisions-related-renewable-energy" target="_blank">
+          EPA 요약</a><br>
+          (재생에너지 ITC/PTC 30% 연장, 청정에너지 확대) :contentReference[oaicite:6]{index=6}</p>
+          
+          <p><strong>IRA: Climate Investments Factsheet</strong><br>
+          <a href="https://castor.house.gov/climatecrisis/sites/climatecrisis.house.gov/files/factsheet%20climate%20investments%20in%20the%20ira_0%20%281%29.pdf" target="_blank">
+          하원 자료</a><br>
+          ($270B 세제·투자로 청정기술·저탄소화 투자) :contentReference[oaicite:7]{index=7}</p>
+          
+          <p><strong>IRA: GHG Reduction Fund</strong><br>
+          <a href="https://www.congress.gov/crs-product/R47262" target="_blank">
+          의회 보고서</a><br>
+          ($27B 그린 뱅크, 저소득 지역 분배금 명시) :contentReference[oaicite:8]{index=8}</p>
+          
+          <p><strong>IPCC 제6차 평가 보고서 (AR6)</strong><br>
+          <a href="https://www.ipcc.ch/assessment-report/ar6/" target="_blank">
+          공식 보고서 링크</a><br>
+          (산업화 이후 1.1°C 상승, 인류 영향 확실함 등) :contentReference[oaicite:9]{index=9}</p>
+          
+          <p><strong>IPCC SPM 요약 (POSTECH)</strong><br>
+          <a href="https://isr.postech.ac.kr/index.php/archives/9757" target="_blank">
+          핵심 메시지 요약</a><br>
+          (정확도 높은 지구온난화 수치·위기 진행 속도 강조) :contentReference[oaicite:10]{index=10}</p>
 
-      <div class="policy-item">
-        <p><strong>독일 에너지 전환 정책: Energiewende</strong><br>
-        원자력 및 석탄 중심의 에너지에서 재생 가능 에너지로의 전환을 추진하는 국가 전략.<br>
-        <a href="https://www.cleanenergywire.org/topics/energiewende-compact" target="_blank">Clean Energy Wire - Energiewende</a></p>
+        </div>
       </div>
-
-      <div class="policy-item">
-        <p><strong>미국 IRA(Inflation Reduction Act) 기후 투자</strong><br>
-        재생에너지, 전기차, 탄소 포집 등에 대한 대규모 투자 정책.<br>
-        <a href="https://www.whitehouse.gov/cleanenergy/inflation-reduction-act/" target="_blank">백악관 IRA 기후정책 페이지</a></p>
-      </div>
-
-      <div class="policy-item">
-        <p><strong>IPCC 제6차 평가 보고서 (AR6)</strong><br>
-        기후 변화에 대한 과학적 근거를 정리한 국제 보고서. 정책 입안의 핵심 참고자료.<br>
-        <a href="https://www.ipcc.ch/assessment-report/ar6/" target="_blank">IPCC AR6 공식 보고서</a></p>
-      </div>
-
-      <div class="policy-item">
-        <p><strong>UNFCCC 파리협정 전문 문서</strong><br>
-        전 세계 국가들이 1.5도 목표를 위해 채택한 기후협약.<br>
-        <a href="https://unfccc.int/process-and-meetings/the-paris-agreement/the-paris-agreement" target="_blank">UNFCCC 파리협정 링크</a></p>
-      </div>
-
-      <div class="policy-item">
-        <p><strong>영국 Net Zero 전략 보고서</strong><br>
-        영국 정부가 설정한 2050년 탄소중립 목표를 달성하기 위한 전략적 로드맵.<br>
-        <a href="https://www.gov.uk/government/publications/net-zero-strategy" target="_blank">영국 정부 Net Zero 전략</a></p>
-      </div>
-
-      <div class="policy-item">
-        <p><strong>IEA Net Zero by 2050 로드맵</strong><br>
-        국제에너지기구(IEA)의 2050년까지 순배출 0을 달성하기 위한 글로벌 시나리오 제안.<br>
-        <a href="https://www.iea.org/reports/net-zero-by-2050" target="_blank">IEA Net Zero 보고서</a></p>
-      </div>
-
     </div>
   </div>
-
 </body>
 </html>
-
