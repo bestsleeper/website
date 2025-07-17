@@ -154,10 +154,6 @@
   <!-- 헤더 -->
   <header>
       <h1><a href="index.html" style="color:  #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
-    <div class="search-container">
-      <input type="text" id="search" placeholder="검색어 입력">
-      <button id="search-btn"></button>
-    </div>
   </header>
 
   <!-- 네비게이션 -->
@@ -232,6 +228,14 @@
 
  <!-- 차트 스크립트 -->
  <script>
+   window.addEventListener('load', () => {
+    const globalCtx = document.getElementById('globalChart').getContext('2d');
+    const koreaCtx = document.getElementById('koreaChart').getContext('2d');
+
+    drawChart(globalCtx, globalLabels, globalData, '전 세계 탄소배출량 (억 톤)');
+    drawChart(koreaCtx, koreaLabels, koreaData, '대한민국 탄소배출량 (억 톤)');
+  });
+   
    const globalLabels = [
      '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909',
      '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919',
@@ -304,23 +308,8 @@
    let globalCreated = false;
    let koreaCreated = false;
 
-   const observer = new IntersectionObserver(entries => {
-     entries.forEach(entry => {
-       if (entry.isIntersecting) {
-         if (entry.target.id === 'globalChart' && !globalCreated) {
-           drawChart(entry.target.getContext('2d'), globalLabels, globalData, '전 세계 탄소배출량 (억 톤)');
-           globalCreated = true;
-         }
-         if (entry.target.id === 'koreaChart' && !koreaCreated) {
-           drawChart(entry.target.getContext('2d'), koreaLabels, koreaData, '대한민국 탄소배출량 (억 톤)');
-           koreaCreated = true;
-         }
-       }
-     });
    }, { threshold: 0.3 });
 
-   observer.observe(document.getElementById('globalChart'));
-   observer.observe(document.getElementById('koreaChart'));
  </script>
 </body>
 </html>
