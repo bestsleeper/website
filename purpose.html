@@ -155,12 +155,43 @@
     <canvas id="globalChart" width="1000" height="450"></canvas>
     <p>대한민국 역시 산업화 이후 탄소배출량이 급격히 증가하는 추세를 보이고 있습니다. </p>
     <canvas id="koreaChart" width="1000" height="450"></canvas>
-    <!-- 나머지 본문 생략 -->
+<h3>그래서 왜, <span style="font-weight: bold;">탄소배출량 증가</span>가 문제가 될까요?</h3>
+     <p> 단순히 탄소 배출량 증가에 그치지 않고 우리의 일상생활에, 나아가 범지구적인 문제로 자리잡게 됩니다. </p>
+     <p>석탄, 석유, 천연가스 등과 같은 화석 연료의 연소와 산업 교통활동 등으로 인해 
+       <br><span style="font-weight: bold;">대기중으로 배출된 CO<sub>2</sub></span>는 대기의 <span style="font-weight: bold; color:#D24C7D;">온실가스</span>로 작용하여, 온실효과를 일으키게되죠.
+       <br>이런 온실효과는 기온 상승, 이상기후현상, 해수면 상승 등 <span style="font-weight: bold;">다양한 기후 변화의 원인</span>이 됩니다. 
+       <br>구체적으로 말해, <span style="color:#31624e;">산악지역의 빙하 25%이상이 감소</span>되며, 
+       <br>전염성 질병체의 <span style="color:#31624e;">분포 변화로 전염병이 쉽게 이동</span>할 수도, 
+       <br>우리나라의 경우 <span style="color:#31624e;">온대성 식생을 벗어나 아열대성 식생이 증가</span>하며,
+       <br><span style="color:#31624e;">수질악화</span> 같은 상황이 발생할 수도 있습니다. 
+       <br>또한, 탄소배출 증가로 기온이 상승하게 되면, 
+       <br><span style="color:#31624e;">>대기 중 수증기가 증가</span>하고, 증가한 수증기는 <strong>또다른 온실효과</strong>를 초래합니다. </p>
+       <p>결국 탄소배출량 증가로 지구는 점점 더 뜨거워지고, 
+        <br>점점 더 이상현상의 빈도와 생태계 파괴가 늘어나는 <span style="color:#31624e;">악순환의 굴레</span>에서 살게 됩니다. </p>
+ 
+     <div class="slider">
+       <img src="https://cdn.pixabay.com/photo/2023/04/22/11/12/environment-7943580_1280.jpg" class="slider-img">
+       <img src="https://images.pexels.com/photos/3174349/pexels-photo-3174349.jpeg" class="slider-img">
+       <img src="https://images.pexels.com/photos/1268076/pexels-photo-1268076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"  class="slider-img">
+     </div>
+ 
+     <h4> 그래서, <span style="color:#31624e;">탄소중립</span>이 필요합니다 </h4>
+     <p> <span style="font-weight:bold;">탄소중립</span>이란, <span style="color:#31624e;">온실가스 배출량을 줄이고</span>, <span style="color:#31624e;">남은 배출량을 흡수</span> 또는 <span style="color:#31624e;">제거</span>해 
+      <br> <span style="font-weight:bold;">실질적인 배출량을 0</span>으로 만드는 개념입니다.</p>
+     <p>배출량을 흡수하기 위한 방법으론 <span style="font-weight:bold;">탄소포집</span>과 <span style="font-weight:bold;">저장</span>이, 
+     <br>배출량을 줄이기 위한 방법으로는 <span style="font-weight:bold;">청정에너지 전환 등</span>이 있습니다. 
+     <br>탄소중립의 실천은 <span style="font-weight:bold;">온실가스 감축뿐만 아니라 재생에너지 개발, 에너지 전환, 산업 구조 변화 등</span>을 통해 
+     <br>지속가능한 성장을 가능하게 하여 <span style="font-weight:bold;">지속 가능한 사회</span>를 구축하는 것을 목표로 합니다. </p>
+ 
+     <p style="margin-top: 30px;">이제는 우리가 바뀌어야 할 시간입니다. <br><span style="font-weight:bold; color:#d247cd">작은 실천이 큰 변화를 만들어냅니다.</span></p>
+       <div class="btn-container">
+         <button class="btn" onclick="location.href='record.html'">탄소배출량 계산하러 가기→</button>
+         <button class="btn" onclick="location.href='domestic_policy.html'">국내 정책 알아보기</button>
+       </div>
   </section>
 
-  <!-- 차트 스크립트 (수정된 순서) -->
+  <!-- 차트 스크립트 -->
   <script>
-    // drawChart 먼저 정의
     function drawChart(ctx, labels, data, labelText) {
       return new Chart(ctx, {
         type: 'line',
@@ -176,7 +207,12 @@
         options: {
           animation: { duration: 2000 },
           scales: {
-            x: { title: { display: true, text: '연도' } },
+            x: { title: { display: true, text: '연도' }
+ticks: {
+    autoSkip: false,         // ← 이거 추가: 라벨 생략 안 하게 설정
+    maxRotation: 90,         // ← 이거 추가: 라벨 회전 각도 설정
+    minRotation: 45          // ← 이거 추가: 좁을 땐 45도로 돌려서 겹침 방지
+  } },
             y: { title: { display: true, text: '억 톤' } }
           }
         }
