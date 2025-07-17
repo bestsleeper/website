@@ -11,10 +11,6 @@ body {font-family: 'GmarketSans', sans-serif; margin: 0; padding: 0; background-
 header {background-color: #ffffff; color: #31624E ; display: flex; justify-content: space-between; align-items: center; padding: 1em 20px;}
 h1 {text-align: left; margin: 0; padding: 1em;}
 
-.search-container {display: flex; align-items: center;}
-#search {padding: 8px; border-radius: 20px; border: 1px solid #ccc; width: 200px; }
-#search-btn {background: none; border: none; cursor: pointer; font-size: 16px; margin-left: 5px; color: #E0EFE8;}
-  
 nav {background-color: #E0EFE8;}
 nav ul {list-style-type: none; padding: 0; display: flex; justify-content: center;}
   
