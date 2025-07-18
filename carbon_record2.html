@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>탄소절감 실천기록</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-width: auto;
+      scrollbar-color: #ccc #fff;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'GmarketSans', sans-serif;
+      background-color: #ffffff;
+      overflow-x: auto;
+    }
+    header {
+      background-color: #ffffff;
+      color: #31624E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+    }
+    nav {
+      background-color: #E0EFE8;
+    }
+    nav ul.menu {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      position: relative;
+      margin: 0 20px;
+    }
+    nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      background-color: #9DB0A9;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+      z-index: 999;
+    }
+    nav ul li:hover .submenu {
+      display: block;
+    }
+    .section {
+      padding: 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .calculator-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+    label {
+      font-size: 1em;
+      margin: 10px 0 5px;
+      display: block;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #e6f2ec;
+      color: #1e4638;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background-color: #cde7db;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>탄소중립지킴이</h1>
+    <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
+  </header>
+  <nav>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">소개</a>
+        <ul class="submenu">
+          <li><a href="purpose.html">설립 목적</a></li>
+          <li><a href="howtouse.html">이용 방법</a></li>
+          <li><a href="usage_status.html">이용 현황</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">정책</a>
+        <ul class="submenu">
+          <li><a href="domestic_policy.html">국내 정책</a></li>
+          <li><a href="international_policy.html">국외 정책</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">탄소기록</a>
+        <ul class="submenu">
+          <li><a href="record.html">탄소 계산기</a></li>
+          <li><a href="report_analysis.html">분석</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <section class="section">
+    <div class="calculator-container">
+      <h2>오늘 절감한 탄소량 계산</h2>
+      <label for="walk">도보 이동 거리 (km)</label>
+      <input type="number" id="walk">
+      <label for="bike">자전거 이동 거리 (km)</label>
+      <input type="number" id="bike">
+      <label for="public">대중교통 이용 거리 (km)</label>
+      <input type="number" id="public">
+      <label for="vegan">채식 식사 횟수 (끼)</label>
+      <input type="number" id="vegan">
+      <label for="cooling">냉방 줄인 시간 (시간)</label>
+      <input type="number" id="cooling">
+      <label for="reuse">재사용 횟수 (개)</label>
+      <input type="number" id="reuse">
+      <input type="date" id="save-date">
+      <button class="btn" onclick="calculateSavedCarbon()">탄소 절감량 계산 및 저장</button>
+      <div class="result" id="save-result"></div>
+    </div>
+  </section>
+  <script>
+    function calculateSavedCarbon() {
+      const walk = parseFloat(document.getElementById('walk').value) || 0;
+      const bike = parseFloat(document.getElementById('bike').value) || 0;
+      const pub = parseFloat(document.getElementById('public').value) || 0;
+      const vegan = parseFloat(document.getElementById('vegan').value) || 0;
+      const cooling = parseFloat(document.getElementById('cooling').value) || 0;
+      const reuse = parseFloat(document.getElementById('reuse').value) || 0;
+      const date = document.getElementById('save-date').value;
+      if (!date) return alert('날짜를 입력하라고ㅡㅡ');
+
+      const saved = {
+        walk: walk * 0.25,
+        bike: bike * 0.25,
+        public: pub * 0.17,
+        vegan: vegan * 1.1,
+        cooling: cooling * 0.5,
+        reuse: reuse * 0.2
+      };
+
+      const total = Object.values(saved).reduce((a, b) => a + b, 0);
+      const summary = { date, ...saved, total };
+      localStorage.setItem('carbon_saved_' + date, JSON.stringify(summary));
+
+      document.getElementById('save-result').textContent = `오늘 절감한 탄소량: ${total.toFixed(2)} kg CO₂`;
+    }
+  </script>
+</body>
+</html>
 
