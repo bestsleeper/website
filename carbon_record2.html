@@ -149,90 +149,109 @@
       </li>
     </ul>
   </nav>
-  <section class="section">
-    <div class="calculators">
-      <div class="calculator-container">
-        <h3>이동수단 절감</h3>
-        <label for="walk">도보 이동 (km)</label>
-        <input type="number" id="walk">
-        <label for="bike">자전거 이동 (km)</label>
-        <input type="number" id="bike">
-        <label for="public">대중교통 이용 (km)</label>
-        <input type="number" id="public">
-      </div>
-      <div class="calculator-container">
-        <h3>에너지 절감</h3>
-        <label for="cooling">냉방 줄인 시간</label>
-        <input type="number" id="cooling">
-        <label for="heating">난방 줄인 시간</label>
-        <input type="number" id="heating">
-        <label for="water">물 절약 사용량 (L)</label>
-        <input type="number" id="water">
-      </div>
-      <div class="calculator-container">
-        <h3>생활 습관</h3>
-        <label for="vegan">채식 식사 (끼)</label>
-        <input type="number" id="vegan">
-        <label for="reuse">제품 재사용 횟수</label>
-        <input type="number" id="reuse">
-        <label for="refill">리필제품 사용 횟수</label>
-        <input type="number" id="refill">
-      </div>
-      <div class="calculator-container">
-        <h3>디지털/분리배출</h3>
-        <label for="paperless">전자문서 사용 건수</label>
-        <input type="number" id="paperless">
-        <label for="recycle">분리배출 횟수</label>
-        <input type="number" id="recycle">
-        <button class="btn" onclick="calculateReduction()">탄소 절감 계산</button>
-        <div class="result" id="save-result"></div>
-      </div>
+<section class="section">
+  <div class="calculators">
+    <div class="calculator-container">
+      <h3>이동수단 절감</h3>
+      <label for="walk">도보 이동 (km)</label>
+      <input type="number" id="walk">
+      <label for="bike">자전거 이동 (km)</label>
+      <input type="number" id="bike">
+      <label for="public">대중교통 이용 (km)</label>
+      <input type="number" id="public">
+      <button class="btn" onclick="calculateTransport()">이동수단 계산</button>
+      <div class="result" id="result-transport"></div>
     </div>
-    <div class="save-controls">
-      <input type="date" id="save-date">
-      <button class="btn" onclick="saveReduction()">내역 저장</button>
+    <div class="calculator-container">
+      <h3>에너지 절감</h3>
+      <label for="cooling">냉방 줄인 시간</label>
+      <input type="number" id="cooling">
+      <label for="heating">난방 줄인 시간</label>
+      <input type="number" id="heating">
+      <label for="water">물 절약 사용량 (L)</label>
+      <input type="number" id="water">
+      <button class="btn" onclick="calculateEnergy()">에너지 계산</button>
+      <div class="result" id="result-energy"></div>
     </div>
-  </section>
-  <script>
-    const factors = {
-      walk: 0.25,
-      bike: 0.25,
-      public: 0.17,
-      vegan: 1.1,
-      cooling: 0.5,
-      heating: 0.5,
-      water: 0.0025,
-      reuse: 0.2,
-      refill: 0.3,
-      paperless: 0.05,
-      recycle: 0.1
-    };
+    <div class="calculator-container">
+      <h3>생활 습관</h3>
+      <label for="vegan">채식 식사 (끼)</label>
+      <input type="number" id="vegan">
+      <label for="reuse">제품 재사용 횟수</label>
+      <input type="number" id="reuse">
+      <label for="refill">리필제품 사용 횟수</label>
+      <input type="number" id="refill">
+      <button class="btn" onclick="calculateHabit()">생활습관 계산</button>
+      <div class="result" id="result-habit"></div>
+    </div>
+    <div class="calculator-container">
+      <h3>디지털/분리배출</h3>
+      <label for="paperless">전자문서 사용 건수</label>
+      <input type="number" id="paperless">
+      <label for="recycle">분리배출 횟수</label>
+      <input type="number" id="recycle">
+      <button class="btn" onclick="calculateDigital()">디지털/분리 계산</button>
+      <div class="result" id="result-digital"></div>
+    </div>
+  </div>
+  <div class="save-controls">
+    <input type="date" id="save-date">
+    <button class="btn" onclick="saveReduction()">내역 저장</button>
+  </div>
+</section>
 
-    function calculateReduction() {
-      let total = 0;
-      let results = {};
-      for (const key in factors) {
-        const input = parseFloat(document.getElementById(key).value) || 0;
-        const saved = input * factors[key];
-        total += saved;
-        results[key] = saved;
-      }
-      const treeEquivalent = (total / 6.6).toFixed(1);
-      document.getElementById("save-result").textContent = `오늘 절감한 탄소량: ${total.toFixed(2)} kg CO₂ (약 ${treeEquivalent}그루의 나무를 심은 효과)`;
-    }
+<script>
+const factors = {
+  walk: 0.25, bike: 0.25, public: 0.17,
+  vegan: 1.1, cooling: 0.5, heating: 0.5,
+  water: 0.0025, reuse: 0.2, refill: 0.3,
+  paperless: 0.05, recycle: 0.1
+};
 
-    function saveReduction() {
-      const date = document.getElementById('save-date').value;
-      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
-      let savedData = {};
-      for (const key in factors) {
-        const val = parseFloat(document.getElementById(key).value) || 0;
-        savedData[key] = val * factors[key];
-      }
-      const total = Object.values(savedData).reduce((a, b) => a + b, 0);
-      savedData['total'] = total;
-      savedData['tree'] = (total / 6.6).toFixed(1);
-      localStorage.setItem('carbon_saved_' + date, JSON.stringify(savedData));
-      alert('절감 내역 저장 완료!');
-    }
-  </script>
+function calculateTransport() {
+  const walk = parseFloat(document.getElementById('walk').value) || 0;
+  const bike = parseFloat(document.getElementById('bike').value) || 0;
+  const pub = parseFloat(document.getElementById('public').value) || 0;
+  const total = walk * factors.walk + bike * factors.bike + pub * factors.public;
+  document.getElementById("result-transport").textContent = `이동수단 절감량: ${total.toFixed(2)} kg CO₂`;
+}
+
+function calculateEnergy() {
+  const cooling = parseFloat(document.getElementById('cooling').value) || 0;
+  const heating = parseFloat(document.getElementById('heating').value) || 0;
+  const water = parseFloat(document.getElementById('water').value) || 0;
+  const total = cooling * factors.cooling + heating * factors.heating + water * factors.water;
+  document.getElementById("result-energy").textContent = `에너지 절감량: ${total.toFixed(2)} kg CO₂`;
+}
+
+function calculateHabit() {
+  const vegan = parseFloat(document.getElementById('vegan').value) || 0;
+  const reuse = parseFloat(document.getElementById('reuse').value) || 0;
+  const refill = parseFloat(document.getElementById('refill').value) || 0;
+  const total = vegan * factors.vegan + reuse * factors.reuse + refill * factors.refill;
+  document.getElementById("result-habit").textContent = `생활습관 절감량: ${total.toFixed(2)} kg CO₂`;
+}
+
+function calculateDigital() {
+  const paperless = parseFloat(document.getElementById('paperless').value) || 0;
+  const recycle = parseFloat(document.getElementById('recycle').value) || 0;
+  const total = paperless * factors.paperless + recycle * factors.recycle;
+  document.getElementById("result-digital").textContent = `디지털/분리 절감량: ${total.toFixed(2)} kg CO₂`;
+}
+
+function saveReduction() {
+  const date = document.getElementById('save-date').value;
+  if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+  let savedData = {};
+  for (const key in factors) {
+    const val = parseFloat(document.getElementById(key).value) || 0;
+    savedData[key] = val * factors[key];
+  }
+  const total = Object.values(savedData).reduce((a, b) => a + b, 0);
+  savedData['total'] = total;
+  savedData['tree'] = (total / 6.6).toFixed(1);
+  localStorage.setItem('carbon_saved_' + date, JSON.stringify(savedData));
+  alert('절감 내역 저장 완료!');
+}
+</script>
+
