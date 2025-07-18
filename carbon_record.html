@@ -1,358 +1,285 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>설립 목적</title>
-   <link rel="stylesheet" href="style.css">
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <style>
-     body {
-       margin: 0;
-       padding: 0;
-       font-family: 'GmarketSans', sans-serif;
-     }
-
-     header {
-       background-color: #4CAF50;
-       color: white;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       padding: 1em 20px;
-       position: sticky;
-       top: 0;
-       z-index: 1000;
-     }
-
-     nav {
-       background-color: #333;
-       padding: 10px 0;
-       position: sticky;
-       top: 72px; /* 헤더 높이 이후 */
-       z-index: 999;
-     }
-
-     nav ul {
-       list-style-type: none;
-       padding: 0;
-       display: flex;
-       justify-content: center;
-       gap: 30px;
-       margin: 0;
-     }
-
-     nav ul li {
-       position: relative;
-     }
-
-     .submenu {
-       display: none;
-       position: absolute;
-       top: 100%;
-       left: 50%;
-       transform: translateX(-50%);
-       background: white;
-       border: 1px solid #ccc;
-       list-style: none;
-       padding: 10px 0;
-       min-width: 150px;
-       text-align: center;
-       z-index: 1000;
-     }
-
-     nav ul li:hover .submenu {
-       display: block;
-     }
-
-     .section {
-       padding: 40px;
-       text-align: center;
-       background-color: #f9f9f9;
-     }
-
-     .slider {
-       display: flex;
-       overflow-x: auto;
-       gap: 10px;
-       scroll-snap-type: x mandatory;
-       padding: 10px;
-       margin-top: 20px;
-     }
-
-     .slider img {
-       scroll-snap-align: center;
-       width: 300px;
-       height: 200px;
-       object-fit: cover;
-       border-radius: 10px;
-     }
-
-     .btn-container {
-       margin-top: 30px;
-     }
-
-     .btn {
-       background-color: #4CAF50;
-       color: white;
-       padding: 10px 20px;
-       margin: 10px;
-       border: none;
-       border-radius: 8px;
-       cursor: pointer;
-     }
-
-     .btn:hover {
-       background-color: #388E3C;
-     }
-
-     /* 추가된 계산기 스타일 */
-     .calculators {
-       display: flex;
-       overflow-x: auto;
-       gap: 20px;
-       padding: 20px 0;
-     }
-
-     .calculator-container {
-       background-color: white;
-       padding: 20px;
-       border-radius: 10px;
-       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-       width: 100%;
-       max-width: 300px;
-       min-width: 300px;
-       text-align: center;
-       flex-shrink: 0;
-     }
-
-     .calculator-container h1 {
-       font-size: 1.5em;
-       color: #333;
-     }
-
-     label {
-       font-size: 1em;
-       margin: 10px 0;
-       display: block;
-       color: #555;
-     }
-
-     input, select {
-       width: 100%;
-       padding: 10px;
-       margin: 10px 0;
-       border: 1px solid #ccc;
-       border-radius: 5px;
-     }
-
-     .btn {
-       width: 100%;
-       padding: 10px;
-       background-color: #4CAF50;
-       color: white;
-       border: none;
-       border-radius: 5px;
-       cursor: pointer;
-       font-size: 1.2em;
-     }
-
-     .btn:hover {
-       background-color: #45a049;
-     }
-
-     .result {
-       margin-top: 20px;
-       font-size: 1.2em;
-       color: red; /* 색상을 빨간색으로 변경 */
-       font-weight: bold;
-       text-align: center;
-     }
-   </style>
- </head>
- <body>
-
-   <!-- 헤더 -->
-   <header>
-     <h1><a href="index.html" style="color: white; text-decoration: none;">탄소배출</a></h1>
-     <div class="search-container">
-       <input type="text" id="search" placeholder="검색어 입력" aria-label="검색어 입력">
-       <button id="search-btn" aria-label="검색">🔍</button>
-     </div>
-   </header>
-
-   <!-- 네비게이션 -->
-   <nav>
-     <ul>
-       <li><a href="#">소개</a>
-         <ul class="submenu">
-           <li><a href="purpose.html">설립 목적</a></li>
-           <li><a href="howtouse.html">이용 방법</a></li>
-         </ul>
-       </li>
-       <li><a href="records.html">기록지</a></li>
-       <li><a href="policy.html">정책</a></li>
-     </ul>
-   </nav>
-
-   <!-- 본문 콘텐츠 -->
-   <section class="section">
-     <div class="calculators">
-       <div class="calculator-container">
-         <h1>탄소 배출량 계산기</h1>
-
-         <label for="fuel">연료 사용량 (㎏)</label>
-         <input type="number" id="fuel" placeholder="연료 사용량" required>
-
-         <label for="heating-value">순발열량 (MJ/㎏)</label>
-         <input type="number" id="heating-value" placeholder="순발열량" required>
-
-         <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
-         <input type="number" id="carbon-coefficient" placeholder="탄소배출계수" required>
-
-         <label for="gwp">지구온난화지수 (GWP)</label>
-         <input type="number" id="gwp" placeholder="지구온난화지수" required>
-
-         <button class="btn" onclick="calculateCarbon()">탄소 배출량 계산하기</button>
-
-         <div class="result" id="result"></div>
-       </div>
-
-       <div class="calculator-container">
-         <h1>수도 탄소 배출량 계산기</h1>
-
-         <label for="water-usage">물 사용량 (㎥)</label>
-         <input type="number" id="water-usage" placeholder="물 사용량" required>
-
-         <label for="water-type">수도 배출계수 종류</label>
-         <select id="water-type" required>
-           <option value="0.344">상수도 공급 (0.344 kgCO₂e/㎥)</option>
-           <option value="0.708">하수처리 (0.708 kgCO₂e/㎥)</option>
-         </select>
-
-         <button class="btn" onclick="calculateWaterCarbon()">수도 탄소 배출량 계산하기</button>
-
-         <div class="result" id="water-result"></div>
-       </div>
-
-       <div class="calculator-container">
-         <h1>전기 사용 탄소 배출량 계산기</h1>
-
-         <label for="electricity-usage">전력 사용량 (kWh)</label>
-         <input type="number" id="electricity-usage" placeholder="전력 사용량" required>
-
-         <button class="btn" onclick="calculateElectricityCarbon()">전기 탄소 배출량 계산하기</button>
-
-         <div class="result" id="electricity-result"></div>
-       </div>
-
-       <div class="calculator-container">
-         <h1>폐기물 탄소 배출량 계산기</h1>
-
-         <label for="waste-amount">폐기물 배출량 (kg)</label>
-         <input type="number" id="waste-amount" placeholder="폐기물 배출량" required>
-
-         <label for="waste-type">폐기물 종류</label>
-         <select id="waste-type" required>
-           <option value="0.87">음식물쓰레기 (0.87 kgCO₂e/kg)</option>
-           <option value="0.94">종이류 (0.94 kgCO₂e/kg)</option>
-           <option value="2.62">플라스틱 (2.62 kgCO₂e/kg)</option>
-           <option value="2.46">비닐류 (2.46 kgCO₂e/kg)</option>
-         </select>
-
-         <button class="btn" onclick="calculateWasteCarbon()">폐기물 탄소 배출량 계산하기</button>
-
-         <div class="result" id="waste-result"></div>
-       </div>
-     </div>
-   </section>
-
-   <script>
-     // Load saved values on page load
-     window.onload = function() {
-       document.getElementById('fuel').value = localStorage.getItem('fuel') || '';
-       document.getElementById('heating-value').value = localStorage.getItem('heatingValue') || '';
-       document.getElementById('carbon-coefficient').value = localStorage.getItem('carbonCoefficient') || '';
-       document.getElementById('gwp').value = localStorage.getItem('gwp') || '';
-       document.getElementById('water-usage').value = localStorage.getItem('waterUsage') || '';
-       document.getElementById('water-type').value = localStorage.getItem('waterType') || '0.344';
-       document.getElementById('electricity-usage').value = localStorage.getItem('electricityUsage') || '';
-       document.getElementById('waste-amount').value = localStorage.getItem('wasteAmount') || '';
-       document.getElementById('waste-type').value = localStorage.getItem('wasteType') || '0.87';
-     };
-
-     function calculateCarbon() {
-       const fuel = parseFloat(document.getElementById('fuel').value);
-       const heatingValue = parseFloat(document.getElementById('heating-value').value);
-       const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
-       const gwp = parseFloat(document.getElementById('gwp').value);
-
-       if (isNaN(fuel) || isNaN(heatingValue) || isNaN(carbonCoefficient) || isNaN(gwp)) {
-         alert("모든 값을 정확하게 입력해주세요.");
-         return;
-       }
-
-       const carbonEmission = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
-       document.getElementById('result').textContent = `배출된 탄소량: ${carbonEmission} kg CO2`;
-
-       // Save values
-       localStorage.setItem('fuel', fuel);
-       localStorage.setItem('heatingValue', heatingValue);
-       localStorage.setItem('carbonCoefficient', carbonCoefficient);
-       localStorage.setItem('gwp', gwp);
-     }
-
-     function calculateWaterCarbon() {
-       const waterUsage = parseFloat(document.getElementById('water-usage').value);
-       const waterType = parseFloat(document.getElementById('water-type').value);
-
-       if (isNaN(waterUsage) || isNaN(waterType)) {
-         alert("모든 값을 정확하게 입력해주세요.");
-         return;
-       }
-
-       const waterCarbonEmission = (waterUsage * waterType).toFixed(3);
-       document.getElementById('water-result').textContent = `배출된 탄소량: ${waterCarbonEmission} kg CO2`;
-
-       // Save values
-       localStorage.setItem('waterUsage', waterUsage);
-       localStorage.setItem('waterType', waterType);
-     }
-
-     function calculateElectricityCarbon() {
-       const electricityUsage = parseFloat(document.getElementById('electricity-usage').value);
-       const electricityCoefficient = 0.424;
-
-       if (isNaN(electricityUsage)) {
-         alert("모든 값을 정확하게 입력해주세요.");
-         return;
-       }
-
-       const electricityCarbonEmission = (electricityUsage * electricityCoefficient).toFixed(3);
-       document.getElementById('electricity-result').textContent = `배출된 탄소량: ${electricityCarbonEmission} kg CO2`;
-
-       // Save values
-       localStorage.setItem('electricityUsage', electricityUsage);
-     }
-
-     function calculateWasteCarbon() {
-       const wasteAmount = parseFloat(document.getElementById('waste-amount').value);
-       const wasteType = parseFloat(document.getElementById('waste-type').value);
-
-       if (isNaN(wasteAmount) || isNaN(wasteType)) {
-         alert("모든 값을 정확하게 입력해주세요.");
-         return;
-       }
-
-       const wasteCarbonEmission = (wasteAmount * wasteType).toFixed(3);
-       document.getElementById('waste-result').textContent = `배출된 탄소량: ${wasteCarbonEmission} kg CO2`;
-
-       // Save values
-       localStorage.setItem('wasteAmount', wasteAmount);
-       localStorage.setItem('wasteType', wasteType);
-     }
-   </script>
- </body>
- </html>
- 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탄소중립지킴이</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-width: auto;
+      scrollbar-color: #ccc #fff;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'GmarketSans', sans-serif;
+      background-color: #ffffff;
+      overflow-x: auto;
+    }
+    header {
+      background-color: #ffffff;
+      color: #31624E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 20px;
+    }
+    nav {
+      background-color: #E0EFE8;
+    }
+    nav ul.menu {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      position: relative;
+      margin: 0 20px;
+    }
+    nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      background-color: #9DB0A9;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+      z-index: 999;
+    }
+    nav ul li:hover .submenu {
+      display: block;
+    }
+    .section {
+      padding: 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .calculators {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .calculator-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+      min-width: 300px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    label {
+      font-size: 1em;
+      margin: 10px 0 5px;
+      display: block;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #e6f2ec;
+      color: #1e4638;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background-color: #cde7db;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: red;
+      font-weight: bold;
+    }
+    .save-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>탄소중립지킴이</h1>
+    <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
+  </header>
+  <nav>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">소개</a>
+        <ul class="submenu">
+          <li><a href="purpose.html">설립 목적</a></li>
+          <li><a href="howtouse.html">이용 방법</a></li>
+          <li><a href="usage_status.html">이용 현황</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">정책</a>
+        <ul class="submenu">
+          <li><a href="domestic_policy.html">국내 정책</a></li>
+          <li><a href="international_policy.html">국외 정책</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-toggle">탄소기록</a>
+        <ul class="submenu">
+          <li><a href="record.html">탄소 계산기</a></li>
+          <li><a href="report_analysis.html">분석</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <section class="section">
+    <div class="calculators" id="calculator-list">
+      <div class="calculator-container">
+        <h2>전기 사용량 계산기</h2>
+        <label for="electricity">전력 사용량 (kWh)</label>
+        <input type="number" id="electricity">
+        <button class="btn" onclick="calculateElectricity()">계산</button>
+        <div class="result" id="electricity-result"></div>
+      </div>
+      <div class="calculator-container">
+        <h2>연료 사용량 계산기</h2>
+        <label for="fuel">연료 사용량 (㎏)</label>
+        <input type="number" id="fuel">
+        <label for="heating-value">순발열량 (MJ/㎏)</label>
+        <input type="number" id="heating-value">
+        <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
+        <input type="number" id="carbon-coefficient">
+        <label for="gwp">지구온난화지수 (GWP)</label>
+        <input type="number" id="gwp">
+        <button class="btn" onclick="calculateFuelCarbon()">계산</button>
+        <div class="result" id="fuel-result"></div>
+      </div>
+      <div class="calculator-container">
+        <h2>수도 사용량 계산기</h2>
+        <label for="water-usage">물 사용량 (㎥)</label>
+        <input type="number" id="water-usage">
+        <label for="water-type">수도 배출계수</label>
+        <select id="water-type">
+          <option value="0.344">상수도 (0.344)</option>
+          <option value="0.708">하수도 (0.708)</option>
+        </select>
+        <button class="btn" onclick="calculateWaterCarbon()">계산</button>
+        <div class="result" id="water-result"></div>
+      </div>
+      <div class="calculator-container">
+        <h2>폐기물 배출 계산기</h2>
+        <label for="waste-amount">폐기물 배출량 (kg)</label>
+        <input type="number" id="waste-amount">
+        <label for="waste-type">폐기물 종류</label>
+        <select id="waste-type">
+          <option value="0.87">음식물쓰레기</option>
+          <option value="0.94">종이류</option>
+          <option value="2.62">플라스틱</option>
+          <option value="2.46">비닐류</option>
+        </select>
+        <button class="btn" onclick="calculateWasteCarbon()">계산</button>
+        <div class="result" id="waste-result"></div>
+      </div>
+      <div class="calculator-container">
+        <h2>자동차 배출량 계산기</h2>
+        <label for="auto-distance">이동 거리 (km/월)</label>
+        <input type="number" id="auto-distance">
+        <button class="btn" onclick="calculateAutoCarbon()">계산</button>
+        <div class="result" id="auto-result"></div>
+      </div>
+    </div>
+    <div class="save-controls">
+      <input type="date" id="save-date">
+      <button class="btn" onclick="saveData()">해당 내역 저장</button>
+    </div>
+  </section>
+  <script>
+    function calculateElectricity() {
+      const usage = parseFloat(document.getElementById('electricity').value);
+      if (isNaN(usage)) return alert("값 입력하라고ㅡㅡ");
+      const result = usage * 0.424;
+      document.getElementById('electricity-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
+    }
+    function calculateFuelCarbon() {
+      const fuel = parseFloat(document.getElementById('fuel').value);
+      const heatingValue = parseFloat(document.getElementById('heating-value').value);
+      const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
+      const gwp = parseFloat(document.getElementById('gwp').value);
+      if ([fuel, heatingValue, carbonCoefficient, gwp].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
+      document.getElementById('fuel-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
+    }
+    function calculateWaterCarbon() {
+      const usage = parseFloat(document.getElementById('water-usage').value);
+      const factor = parseFloat(document.getElementById('water-type').value);
+      if ([usage, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = (usage * factor).toFixed(3);
+      document.getElementById('water-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
+    }
+    function calculateWasteCarbon() {
+      const amount = parseFloat(document.getElementById('waste-amount').value);
+      const factor = parseFloat(document.getElementById('waste-type').value);
+      if ([amount, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = (amount * factor).toFixed(3);
+      document.getElementById('waste-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
+    }
+    function calculateAutoCarbon() {
+      const distance = parseFloat(document.getElementById('auto-distance').value);
+      if (isNaN(distance)) return alert("값 입력하라고ㅡㅡ");
+      const CO2_PER_KM = 0.1661; // 평균 자동차 배출계수 (kg CO₂/km)
+      const result = distance * CO2_PER_KM;
+      document.getElementById('auto-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
+    }
+    function saveData() {
+      const date = document.getElementById('save-date').value;
+      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+      const electricity = document.getElementById('electricity-result')?.textContent || '';
+      const fuel = document.getElementById('fuel-result')?.textContent || '';
+      const water = document.getElementById('water-result')?.textContent || '';
+      const waste = document.getElementById('waste-result')?.textContent || '';
+      const auto = document.getElementById('auto-result')?.textContent || '';
+      const summary = {
+        date,
+        electricity,
+        fuel,
+        water,
+        waste,
+        auto
+      };
+      localStorage.setItem('carbon_log_' + date, JSON.stringify(summary));
+      alert('내역 저장 완료');
+    }
+  </script>
+</body>
+</html>
