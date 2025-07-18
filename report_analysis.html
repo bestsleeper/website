@@ -2,14 +2,11 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>분석</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탄소중립지킴이 - 분석</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    html {
-      overflow-y: scroll;
-      scrollbar-width: auto;
-      scrollbar-color: #ccc #fff;
-    }
     body {
       margin: 0;
       padding: 0;
@@ -27,7 +24,7 @@
     nav {
       background-color: #E0EFE8;
     }
-    nav ul {
+    nav ul.menu {
       list-style-type: none;
       padding: 0;
       display: flex;
@@ -63,61 +60,76 @@
     }
     .section {
       padding: 40px;
-      background-color: #f9f9f9;
       text-align: center;
     }
+    canvas {
+      margin: 20px auto;
+      max-width: 800px;
+      display: block;
+    }
+    .chart-buttons {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chart-buttons button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #31624E;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .chart-buttons button:hover {
+      background-color: #1d3e33;
+    }
     table {
-      width: 100%;
-      max-width: 1000px;
+      width: 90%;
       margin: 20px auto;
       border-collapse: collapse;
+      font-size: 16px;
     }
     th, td {
-      padding: 12px;
       border: 1px solid #ccc;
+      padding: 10px;
       text-align: center;
     }
     th {
       background-color: #31624E;
       color: white;
     }
-    td {
-      background-color: #ffffff;
-    }
   </style>
 </head>
 <body>
   <header>
-    <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
-    <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
+    <h1>탄소중립지킴이</h1>
+    <p style="margin: 0; font-size: 25px; color: #555;">분석 페이지</p>
   </header>
   <nav>
-    <ul>
-      <li><a href="#">소개</a>
-        <ul class="submenu">
-          <li><a href="purpose.html">설립 목적</a></li>
-          <li><a href="howtouse.html">이용 방법</a></li>
-          <li><a href="usage_status.html">이용 현황</a></li>
-        </ul>
-      </li>
-      <li><a href="#">정책</a>
-        <ul class="submenu">
-          <li><a href="domestic_policy.html">국내 정책</a></li>
-          <li><a href="international_policy.html">국외 정책</a></li>
-        </ul>
-      </li>
-      <li><a href="#">탄소기록</a>
-        <ul class="submenu">
-          <li><a href="record.html">탄소 계산기</a></li>
-          <li><a href="report_analysis.html">분석</a></li>
-        </ul>
-      </li>
+    <ul class="menu">
+      <li><a href="index.html">홈</a></li>
+      <li><a href="record.html">탄소 계산기</a></li>
     </ul>
   </nav>
 
+  <!-- 배출량 분석 -->
   <section class="section">
-    <h2 style="color: #31624E">저장된 탄소 배출 내역</h2>
-    <table>
+    <h2>📉 배출량 시각화</h2>
+    <div class="chart-buttons">
+      <button onclick="drawCharts('all')">전체 보기</button>
+      <button onclick="drawCharts('electricity')">전기</button>
+      <button onclick="drawCharts('fuel')">연료</button>
+      <button onclick="drawCharts('water')">수도</button>
+      <button onclick="drawCharts('waste')">폐기물</button>
+      <button onclick="drawCharts('auto')">자동차</button>
+    </div>
+    <canvas id="carbonChart"></canvas>
+  </section>
+  <section class="section">
+    <h3>📋 배출 내역 표</h3>
+    <table id="logTable">
       <thead>
         <tr>
           <th>날짜</th>
@@ -126,41 +138,113 @@
           <th>수도</th>
           <th>폐기물</th>
           <th>자동차</th>
+          <th>절약</th>
         </tr>
       </thead>
-      <tbody id="log-body">
-        <tr><td colspan="6">내역 불러오는 중...</td></tr>
-      </tbody>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- 감축량 분석 -->
+  <section class="section">
+    <h2>💡 감축량 시각화</h2>
+    <div class="chart-buttons">
+      <button onclick="drawCharts('saved')">절약량 보기</button>
+    </div>
+    <canvas id="savedChart"></canvas>
+  </section>
+  <section class="section">
+    <h3>📋 감축 내역 표</h3>
+    <table id="savedTable">
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>절약량</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
     </table>
   </section>
 
   <script>
-    window.onload = function() {
-      const tbody = document.getElementById('log-body');
-      tbody.innerHTML = '';
-      let found = false;
+    let carbonChart;
+    let savedChart;
+
+    function drawCharts(type) {
+      const carbonCtx = document.getElementById('carbonChart').getContext('2d');
+      const savedCtx = document.getElementById('savedChart').getContext('2d');
+
+      const dates = [], electricity = [], fuel = [], water = [], waste = [], auto = [], saved = [];
+
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.startsWith('carbon_log_')) {
-          found = true;
-          const entry = JSON.parse(localStorage.getItem(key));
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${entry.date}</td>
-            <td>${entry.electricity || '-'}</td>
-            <td>${entry.fuel || '-'}</td>
-            <td>${entry.water || '-'}</td>
-            <td>${entry.waste || '-'}</td>
-            <td>${entry.auto || '-'}</td>
-          `;
-          tbody.appendChild(row);
+          const data = JSON.parse(localStorage.getItem(key));
+          const d = data.date;
+          dates.push(d);
+          electricity.push(parseFloat(data.electricity.replace(/[^\d.]/g, '')) || 0);
+          fuel.push(parseFloat(data.fuel.replace(/[^\d.]/g, '')) || 0);
+          water.push(parseFloat(data.water.replace(/[^\d.]/g, '')) || 0);
+          waste.push(parseFloat(data.waste.replace(/[^\d.]/g, '')) || 0);
+          auto.push(parseFloat(data.auto.replace(/[^\d.]/g, '')) || 0);
+        } else if (key.startsWith('carbon_saved_')) {
+          const savedData = JSON.parse(localStorage.getItem(key));
+          saved.push({ date: savedData.date, amount: parseFloat(savedData.amount) });
         }
       }
-      if (!found) {
-        tbody.innerHTML = '<tr><td colspan="6">저장된 내역이 없습니다.</td></tr>';
+
+      if (carbonChart) carbonChart.destroy();
+      if (savedChart) savedChart.destroy();
+
+      if (type === 'saved') {
+        const savedDates = saved.map(x => x.date);
+        const savedValues = saved.map(x => x.amount);
+        savedChart = new Chart(savedCtx, {
+          type: 'line',
+          data: { labels: savedDates, datasets: [{ label: '절약한 탄소량', data: savedValues, borderColor: 'black', fill: false }] },
+          options: { responsive: true, plugins: { legend: { position: 'top' } } }
+        });
+        return;
       }
+
+      const datasets = [];
+      if (type === 'electricity' || type === 'all') datasets.push({ label: '전기', data: electricity, borderColor: 'red', fill: false });
+      if (type === 'fuel' || type === 'all') datasets.push({ label: '연료', data: fuel, borderColor: 'blue', fill: false });
+      if (type === 'water' || type === 'all') datasets.push({ label: '수도', data: water, borderColor: 'green', fill: false });
+      if (type === 'waste' || type === 'all') datasets.push({ label: '폐기물', data: waste, borderColor: 'purple', fill: false });
+      if (type === 'auto' || type === 'all') datasets.push({ label: '자동차', data: auto, borderColor: 'orange', fill: false });
+
+      carbonChart = new Chart(carbonCtx, {
+        type: 'line',
+        data: { labels: dates, datasets },
+        options: { responsive: true, plugins: { legend: { position: 'top' } } }
+      });
+    }
+
+    function renderTable() {
+      const tbody = document.querySelector('#logTable tbody');
+      const savedTbody = document.querySelector('#savedTable tbody');
+      tbody.innerHTML = '';
+      savedTbody.innerHTML = '';
+
+      const allKeys = Object.keys(localStorage).sort();
+      for (const key of allKeys) {
+        if (key.startsWith('carbon_log_')) {
+          const data = JSON.parse(localStorage.getItem(key));
+          const row = `<tr><td>${data.date}</td><td>${data.electricity}</td><td>${data.fuel}</td><td>${data.water}</td><td>${data.waste}</td><td>${data.auto}</td><td></td></tr>`;
+          tbody.insertAdjacentHTML('beforeend', row);
+        } else if (key.startsWith('carbon_saved_')) {
+          const savedData = JSON.parse(localStorage.getItem(key));
+          const savedRow = `<tr><td>${savedData.date}</td><td>${savedData.amount.toFixed(3)} kg CO₂</td></tr>`;
+          savedTbody.insertAdjacentHTML('beforeend', savedRow);
+        }
+      }
+    }
+
+    window.onload = function () {
+      drawCharts('all');
+      renderTable();
     }
   </script>
 </body>
 </html>
-
