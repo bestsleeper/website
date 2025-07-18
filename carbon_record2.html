@@ -69,6 +69,12 @@
       background-color: #f9f9f9;
       text-align: center;
     }
+    .calculators {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
     .calculator-container {
       background-color: white;
       padding: 20px;
@@ -76,7 +82,6 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
-      margin: 20px auto;
     }
     label {
       font-size: 1em;
@@ -84,7 +89,7 @@
       display: block;
       color: #555;
     }
-    input {
+    input, select { 
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
@@ -113,6 +118,13 @@
       font-size: 1.2em;
       color: red;
       font-weight: bold;
+    }
+    .save-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -148,23 +160,33 @@
     </ul>
   </nav>
   <section class="section">
-    <div class="calculator-container">
-      <h2>오늘 절감한 탄소량 계산</h2>
-      <label for="walk">도보 이동 거리 (km)</label>
-      <input type="number" id="walk">
-      <label for="bike">자전거 이동 거리 (km)</label>
-      <input type="number" id="bike">
-      <label for="public">대중교통 이용 거리 (km)</label>
-      <input type="number" id="public">
-      <label for="vegan">채식 식사 횟수 (끼)</label>
-      <input type="number" id="vegan">
-      <label for="cooling">냉방 줄인 시간 (시간)</label>
-      <input type="number" id="cooling">
-      <label for="reuse">재사용 횟수 (개)</label>
-      <input type="number" id="reuse">
+    <h2>탄소 절감 실천기록</h2>
+    <div class="calculators">
+      <div class="calculator-container">
+        <h3>이동수단 절감</h3>
+        <label for="walk">도보 이동 거리 (km)</label>
+        <input type="number" id="walk">
+        <label for="bike">자전거 이동 거리 (km)</label>
+        <input type="number" id="bike">
+        <label for="public">대중교통 이용 거리 (km)</label>
+        <input type="number" id="public">
+        <button class="btn" onclick="calculateWater()">계산</button>
+        <div class="result" id="Water_dis-result"></div>
+      </div>
+      <div class="calculator-container">
+        <h3>생활 습관</h3>
+        <label for="vegan">채식 식사 횟수 (끼)</label>
+        <input type="number" id="vegan">
+        <label for="cooling">냉방 줄인 시간 (시간)</label>
+        <input type="number" id="cooling">
+        <label for="reuse">재사용 횟수 (개)</label>
+        <input type="number" id="reuse">
+        <button class="btn" onclick="calculaterHabit()">계산</button>
+      </div>
+    </div>
+    <div class="save-controls">
       <input type="date" id="save-date">
-      <button class="btn" onclick="calculateSavedCarbon()">탄소 절감량 계산 및 저장</button>
-      <div class="result" id="save-result"></div>
+      <button class="btn" onclick="saveData()">해당 내역 저장</button>
     </div>
   </section>
   <script>
@@ -178,6 +200,33 @@
       const date = document.getElementById('save-date').value;
       if (!date) return alert('날짜를 입력하라고ㅡㅡ');
 
+          function calculateAutoCarbon() {
+      const distance = parseFloat(document.getElementById('auto-distance').value);
+      const factor = parseFloat(document.getElementById('auto-type').value);
+      if ([distance, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = distance * factor;
+      document.getElementById('auto-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
+    }
+    function saveData() {
+      const date = document.getElementById('save-date').value;
+      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+      const electricity = document.getElementById('electricity-result')?.textContent || '';
+      const fuel = document.getElementById('fuel-result')?.textContent || '';
+      const water = document.getElementById('water-result')?.textContent || '';
+      const waste = document.getElementById('waste-result')?.textContent || '';
+      const auto = document.getElementById('auto-result')?.textContent || '';
+      const summary = {
+        date,
+        electricity,
+        fuel,
+        water,
+        waste,
+        auto
+      };
+      localStorage.setItem('carbon_log_' + date, JSON.stringify(summary));
+      alert('내역 저장 완료');
+    }
+      
       const saved = {
         walk: walk * 0.25,
         bike: bike * 0.25,
@@ -188,10 +237,10 @@
       };
 
       const total = Object.values(saved).reduce((a, b) => a + b, 0);
-      const summary = { date, ...saved, total };
+      const summary = { date, ...saved, amount: total };
       localStorage.setItem('carbon_saved_' + date, JSON.stringify(summary));
 
-      document.getElementById('save-result').textContent = `오늘 절감한 탄소량: ${total.toFixed(2)} kg CO₂`;
+      document.getElementById('save-result').textContent = `오늘 절감한 탄소량: ${total.toFixed(2)} kg CO₂ (약 ${(total / 6.6).toFixed(1)}그루의 나무를 심은 효과)`;
     }
   </script>
 </body>
