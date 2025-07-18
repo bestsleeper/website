@@ -19,6 +19,43 @@
       display: flex; justify-content: space-between;
       align-items: center; padding: 1em 20px;
     }
+    nav {
+      background-color: #E0EFE8;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      position: relative;
+      margin: 0 20px;
+    }
+    nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      background-color: #9DB0A9;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 0;
+      width: 150px;
+      z-index: 999;
+    }
+    nav ul li:hover .submenu {
+      display: block;
+    }
     .section {
       padding: 40px;
       background-color: #f9f9f9;
@@ -86,9 +123,32 @@
 </head>
 <body>
   <header>
-    <h1>탄소절감 실천기록</h1>
-    <p style="margin: 0; font-size: 25px; color: #555;">오늘 당신은 지구를 위해 얼마나 절감했나요?</p>
+    <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
+    <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
+  <nav>
+    <ul>
+      <li><a href="#">소개</a>
+        <ul class="submenu">
+          <li><a href="purpose.html">설립 목적</a></li>
+          <li><a href="howtouse.html">이용 방법</a></li>
+          <li><a href="usage_status.html">이용 현황</a></li>
+        </ul>
+      </li>
+      <li><a href="#">정책</a>
+        <ul class="submenu">
+          <li><a href="domestic_policy.html">국내 정책</a></li>
+          <li><a href="international_policy.html">국외 정책</a></li>
+        </ul>
+      </li>
+      <li><a href="#">탄소기록</a>
+        <ul class="submenu">
+          <li><a href="record.html">탄소 계산기</a></li>
+          <li><a href="report_analysis.html">분석</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
   <section class="section">
     <div class="calculators">
       <div class="calculator-container">
@@ -176,5 +236,3 @@
       alert('절감 내역 저장 완료!');
     }
   </script>
-</body>
-</html>
