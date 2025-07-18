@@ -174,14 +174,14 @@
       </div>
       <div class="calculator-container">
         <h2>연료 사용량 계산기</h2>
-        <label for="fuel">연료 사용량 (㎏)</label>
-        <input type="number" id="fuel">
-        <label for="heating-value">순발열량 (MJ/㎏)</label>
-        <input type="number" id="heating-value">
-        <label for="carbon-coefficient">탄소배출계수 (kgGHG/TJ)</label>
-        <input type="number" id="carbon-coefficient">
-        <label for="gwp">지구온난화지수 (GWP)</label>
-        <input type="number" id="gwp">
+        <label for="fuel-amount">연료 사용량 (kg)</label>
+        <input type="number" id="fuel-amount">
+        <label for="fuel-type">연료 종류</label>
+        <select id="fuel-type">
+          <option value="3.61">프로판가스 (3.61)</option>
+          <option value="2.49">보일러등유 (2.49)</option>
+          <option value="6.27">연탄 (6.27)</option>
+        </select>
         <button class="btn" onclick="calculateFuelCarbon()">계산</button>
         <div class="result" id="fuel-result"></div>
       </div>
@@ -215,6 +215,12 @@
         <h2>자동차 배출량 계산기</h2>
         <label for="auto-distance">이동 거리 (km/월)</label>
         <input type="number" id="auto-distance">
+        <label for="auto-type">차량 연료 종류</label>
+        <select id="auto-type">
+          <option value="0.25">휘발유</option>
+          <option value="0.24">경유</option>
+          <option value="0.19">LPG</option>
+        </select>
         <button class="btn" onclick="calculateAutoCarbon()">계산</button>
         <div class="result" id="auto-result"></div>
       </div>
@@ -228,17 +234,15 @@
     function calculateElectricity() {
       const usage = parseFloat(document.getElementById('electricity').value);
       if (isNaN(usage)) return alert("값 입력하라고ㅡㅡ");
-      const result = usage * 0.424;
+      const result = usage * 0.451;
       document.getElementById('electricity-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function calculateFuelCarbon() {
-      const fuel = parseFloat(document.getElementById('fuel').value);
-      const heatingValue = parseFloat(document.getElementById('heating-value').value);
-      const carbonCoefficient = parseFloat(document.getElementById('carbon-coefficient').value);
-      const gwp = parseFloat(document.getElementById('gwp').value);
-      if ([fuel, heatingValue, carbonCoefficient, gwp].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
-      const result = (fuel * heatingValue * carbonCoefficient * 1e-9 * gwp).toFixed(3);
-      document.getElementById('fuel-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
+      const amount = parseFloat(document.getElementById('fuel-amount').value);
+      const factor = parseFloat(document.getElementById('fuel-type').value);
+      if ([amount, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = amount * factor;
+      document.getElementById('fuel-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function calculateWaterCarbon() {
       const usage = parseFloat(document.getElementById('water-usage').value);
@@ -256,9 +260,9 @@
     }
     function calculateAutoCarbon() {
       const distance = parseFloat(document.getElementById('auto-distance').value);
-      if (isNaN(distance)) return alert("값 입력하라고ㅡㅡ");
-      const CO2_PER_KM = 0.1661; // 평균 자동차 배출계수 (kg CO₂/km)
-      const result = distance * CO2_PER_KM;
+      const factor = parseFloat(document.getElementById('auto-type').value);
+      if ([distance, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      const result = distance * factor;
       document.getElementById('auto-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function saveData() {
