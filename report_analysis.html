@@ -17,7 +17,7 @@
     .submenu { display: none; position: absolute; top: 100%; background: white; border: 1px solid #ccc; list-style: none; padding: 0; width: 150px; z-index: 999; }
     nav ul li:hover .submenu { display: block; }
     .section { padding: 40px; text-align: center; }
-    canvas { margin: 20px auto; max-width: 800px; display: block; }
+    canvas { margin: 20px auto; width: 50vw !important; height: auto !important; display: block; }
     .chart-buttons { margin: 20px auto; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     .chart-buttons button { padding: 10px 20px; border: none; background-color: #31624E; color: white; border-radius: 8px; cursor: pointer; }
     .chart-buttons button:hover { background-color: #1d3e33; }
@@ -54,8 +54,7 @@
       </li>
     </ul>
   </nav>
-  
-  <!-- 배출량 분석 -->
+
   <section class="section">
     <h2>📉 배출량 시각화</h2>
     <div class="chart-buttons">
@@ -79,14 +78,12 @@
           <th>수도</th>
           <th>폐기물</th>
           <th>자동차</th>
-          <th>절약</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </section>
 
-  <!-- 감축량 분석 -->
   <section class="section">
     <h2>💡 감축량 시각화</h2>
     <div class="chart-buttons">
@@ -100,7 +97,18 @@
       <thead>
         <tr>
           <th>날짜</th>
-          <th>절약량</th>
+          <th>도보</th>
+          <th>자전거</th>
+          <th>대중교통</th>
+          <th>채식</th>
+          <th>냉방</th>
+          <th>난방</th>
+          <th>물절약</th>
+          <th>재사용</th>
+          <th>리필</th>
+          <th>전자문서</th>
+          <th>분리배출</th>
+          <th>총 절감량</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -115,25 +123,30 @@
       const carbonCtx = document.getElementById('carbonChart').getContext('2d');
       const savedCtx = document.getElementById('savedChart').getContext('2d');
 
-      const dates = [], electricity = [], fuel = [], water = [], waste = [], auto = [], savedDates = [], savedValues = [];
+      const carbonLogs = [], savedLogs = [];
 
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
+        const data = JSON.parse(localStorage.getItem(key));
         if (key.startsWith('carbon_log_')) {
-          const data = JSON.parse(localStorage.getItem(key));
-          const d = data.date;
-          dates.push(d);
-          electricity.push(parseFloat(data.electricity.replace(/[^\d.]/g, '')) || 0);
-          fuel.push(parseFloat(data.fuel.replace(/[^\d.]/g, '')) || 0);
-          water.push(parseFloat(data.water.replace(/[^\d.]/g, '')) || 0);
-          waste.push(parseFloat(data.waste.replace(/[^\d.]/g, '')) || 0);
-          auto.push(parseFloat(data.auto.replace(/[^\d.]/g, '')) || 0);
+          carbonLogs.push(data);
         } else if (key.startsWith('carbon_saved_')) {
-          const savedData = JSON.parse(localStorage.getItem(key));
-          savedDates.push(key.replace('carbon_saved_', ''));
-          savedValues.push(savedData.total || savedData.amount || 0);
+          savedLogs.push({ ...data, date: key.replace('carbon_saved_', '') });
         }
       }
+
+      carbonLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
+      savedLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const dates = carbonLogs.map(d => d.date);
+      const electricity = carbonLogs.map(d => parseFloat(d.electricity?.replace(/[^\d.]/g, '')) || 0);
+      const fuel = carbonLogs.map(d => parseFloat(d.fuel?.replace(/[^\d.]/g, '')) || 0);
+      const water = carbonLogs.map(d => parseFloat(d.water?.replace(/[^\d.]/g, '')) || 0);
+      const waste = carbonLogs.map(d => parseFloat(d.waste?.replace(/[^\d.]/g, '')) || 0);
+      const auto = carbonLogs.map(d => parseFloat(d.auto?.replace(/[^\d.]/g, '')) || 0);
+
+      const savedDates = savedLogs.map(d => d.date);
+      const savedValues = savedLogs.map(d => d.total || d.amount || 0);
 
       if (carbonChart) carbonChart.destroy();
       if (savedChart) savedChart.destroy();
@@ -143,9 +156,13 @@
           type: 'line',
           data: {
             labels: savedDates,
-            datasets: [{ label: '절약한 탄소량', data: savedValues, borderColor: 'black', fill: false }]
+            datasets: [{ label: '절약한 탄소량 (kg CO₂)', data: savedValues, borderColor: 'black', fill: false }]
           },
-          options: { responsive: true, plugins: { legend: { position: 'top' } } }
+          options: {
+            responsive: true,
+            plugins: { legend: { position: 'top' } },
+            scales: { y: { title: { display: true, text: 'kg CO₂' } } }
+          }
         });
         return;
       }
@@ -160,7 +177,11 @@
       carbonChart = new Chart(carbonCtx, {
         type: 'line',
         data: { labels: dates, datasets },
-        options: { responsive: true, plugins: { legend: { position: 'top' } } }
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { title: { display: true, text: 'kg CO₂' } } }
+        }
       });
     }
 
@@ -174,12 +195,24 @@
       for (const key of allKeys) {
         if (key.startsWith('carbon_log_')) {
           const data = JSON.parse(localStorage.getItem(key));
-          const row = `<tr><td>${data.date}</td><td>${data.electricity}</td><td>${data.fuel}</td><td>${data.water}</td><td>${data.waste}</td><td>${data.auto}</td><td></td></tr>`;
+          const row = `<tr><td>${data.date}</td><td>${data.electricity}</td><td>${data.fuel}</td><td>${data.water}</td><td>${data.waste}</td><td>${data.auto}</td></tr>`;
           tbody.insertAdjacentHTML('beforeend', row);
         } else if (key.startsWith('carbon_saved_')) {
-          const savedData = JSON.parse(localStorage.getItem(key));
-          const savedRow = `<tr><td>${key.replace('carbon_saved_', '')}</td><td>${(savedData.total || savedData.amount).toFixed(3)} kg CO₂</td></tr>`;
-          savedTbody.insertAdjacentHTML('beforeend', savedRow);
+          const d = JSON.parse(localStorage.getItem(key));
+          const row = `<tr><td>${key.replace('carbon_saved_', '')}</td>
+<td>${(d.walk || 0).toFixed(2)}</td>
+<td>${(d.bike || 0).toFixed(2)}</td>
+<td>${(d.public || 0).toFixed(2)}</td>
+<td>${(d.vegan || 0).toFixed(2)}</td>
+<td>${(d.cooling || 0).toFixed(2)}</td>
+<td>${(d.heating || 0).toFixed(2)}</td>
+<td>${(d.water || 0).toFixed(2)}</td>
+<td>${(d.reuse || 0).toFixed(2)}</td>
+<td>${(d.refill || 0).toFixed(2)}</td>
+<td>${(d.paperless || 0).toFixed(2)}</td>
+<td>${(d.recycle || 0).toFixed(2)}</td>
+<td>${(d.total || d.amount || 0).toFixed(2)}</td></tr>`;
+          savedTbody.insertAdjacentHTML('beforeend', row);
         }
       }
     }
