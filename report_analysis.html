@@ -7,108 +7,32 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'GmarketSans', sans-serif;
-      background-color: #ffffff;
-    }
-    header {
-      background-color: #ffffff;
-      color: #31624E;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1em 20px;
-    }
-    nav {
-      background-color: #E0EFE8;
-    }
-    nav ul.menu {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-    nav ul li {
-      position: relative;
-      margin: 0 20px;
-    }
-    nav ul li a {
-      display: block;
-      color: black;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    nav ul li a:hover {
-      background-color: #9DB0A9;
-    }
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      background: white;
-      border: 1px solid #ccc;
-      list-style: none;
-      padding: 0;
-      width: 150px;
-      z-index: 999;
-    }
-    nav ul li:hover .submenu {
-      display: block;
-    }
-    .section {
-      padding: 40px;
-      text-align: center;
-    }
-    canvas {
-      margin: 20px auto;
-      max-width: 800px;
-      display: block;
-    }
-    .chart-buttons {
-      margin: 20px auto;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .chart-buttons button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #31624E;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .chart-buttons button:hover {
-      background-color: #1d3e33;
-    }
-    table {
-      width: 90%;
-      margin: 20px auto;
-      border-collapse: collapse;
-      font-size: 16px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-    th {
-      background-color: #31624E;
-      color: white;
-    }
+    body { margin: 0; padding: 0; font-family: 'GmarketSans', sans-serif; background-color: #ffffff; }
+    header { background-color: #ffffff; color: #31624E; display: flex; justify-content: space-between; align-items: center; padding: 1em 20px; }
+    nav { background-color: #E0EFE8; }
+    nav ul.menu { list-style-type: none; padding: 0; display: flex; justify-content: center; }
+    nav ul li { position: relative; margin: 0 20px; }
+    nav ul li a { display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none; }
+    nav ul li a:hover { background-color: #9DB0A9; }
+    .submenu { display: none; position: absolute; top: 100%; background: white; border: 1px solid #ccc; list-style: none; padding: 0; width: 150px; z-index: 999; }
+    nav ul li:hover .submenu { display: block; }
+    .section { padding: 40px; text-align: center; }
+    canvas { margin: 20px auto; max-width: 800px; display: block; }
+    .chart-buttons { margin: 20px auto; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .chart-buttons button { padding: 10px 20px; border: none; background-color: #31624E; color: white; border-radius: 8px; cursor: pointer; }
+    .chart-buttons button:hover { background-color: #1d3e33; }
+    table { width: 90%; margin: 20px auto; border-collapse: collapse; font-size: 16px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #31624E; color: white; }
   </style>
 </head>
 <body>
   <header>
     <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
-             <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
+    <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
   <nav>
-    <ul>
+    <ul class="menu">
       <li><a href="#">소개</a>
         <ul class="submenu">
           <li><a href="purpose.html">설립 목적</a></li>
@@ -191,7 +115,7 @@
       const carbonCtx = document.getElementById('carbonChart').getContext('2d');
       const savedCtx = document.getElementById('savedChart').getContext('2d');
 
-      const dates = [], electricity = [], fuel = [], water = [], waste = [], auto = [], saved = [];
+      const dates = [], electricity = [], fuel = [], water = [], waste = [], auto = [], savedDates = [], savedValues = [];
 
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -206,7 +130,8 @@
           auto.push(parseFloat(data.auto.replace(/[^\d.]/g, '')) || 0);
         } else if (key.startsWith('carbon_saved_')) {
           const savedData = JSON.parse(localStorage.getItem(key));
-          saved.push({ date: savedData.date, amount: parseFloat(savedData.amount) });
+          savedDates.push(key.replace('carbon_saved_', ''));
+          savedValues.push(savedData.total || savedData.amount || 0);
         }
       }
 
@@ -214,11 +139,12 @@
       if (savedChart) savedChart.destroy();
 
       if (type === 'saved') {
-        const savedDates = saved.map(x => x.date);
-        const savedValues = saved.map(x => x.amount);
         savedChart = new Chart(savedCtx, {
           type: 'line',
-          data: { labels: savedDates, datasets: [{ label: '절약한 탄소량', data: savedValues, borderColor: 'black', fill: false }] },
+          data: {
+            labels: savedDates,
+            datasets: [{ label: '절약한 탄소량', data: savedValues, borderColor: 'black', fill: false }]
+          },
           options: { responsive: true, plugins: { legend: { position: 'top' } } }
         });
         return;
@@ -252,7 +178,7 @@
           tbody.insertAdjacentHTML('beforeend', row);
         } else if (key.startsWith('carbon_saved_')) {
           const savedData = JSON.parse(localStorage.getItem(key));
-          const savedRow = `<tr><td>${savedData.date}</td><td>${savedData.amount.toFixed(3)} kg CO₂</td></tr>`;
+          const savedRow = `<tr><td>${key.replace('carbon_saved_', '')}</td><td>${(savedData.total || savedData.amount).toFixed(3)} kg CO₂</td></tr>`;
           savedTbody.insertAdjacentHTML('beforeend', savedRow);
         }
       }
