@@ -233,41 +233,41 @@
   <script>
     function calculateElectricity() {
       const usage = parseFloat(document.getElementById('electricity').value);
-      if (isNaN(usage)) return alert("값 입력하라고ㅡㅡ");
+      if (isNaN(usage)) return alert("값을 입력하세요");
       const result = usage * 0.451;
       document.getElementById('electricity-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function calculateFuelCarbon() {
       const amount = parseFloat(document.getElementById('fuel-amount').value);
       const factor = parseFloat(document.getElementById('fuel-type').value);
-      if ([amount, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      if ([amount, factor].some(isNaN)) return alert("값을 입력하세요");
       const result = amount * factor;
       document.getElementById('fuel-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function calculateWaterCarbon() {
       const usage = parseFloat(document.getElementById('water-usage').value);
       const factor = parseFloat(document.getElementById('water-type').value);
-      if ([usage, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      if ([usage, factor].some(isNaN)) return alert("값을 입력하세요");
       const result = (usage * factor).toFixed(3);
       document.getElementById('water-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
     }
     function calculateWasteCarbon() {
       const amount = parseFloat(document.getElementById('waste-amount').value);
       const factor = parseFloat(document.getElementById('waste-type').value);
-      if ([amount, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      if ([amount, factor].some(isNaN)) return alert("값을 입력하세요");
       const result = (amount * factor).toFixed(3);
       document.getElementById('waste-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
     }
     function calculateAutoCarbon() {
       const distance = parseFloat(document.getElementById('auto-distance').value);
       const factor = parseFloat(document.getElementById('auto-type').value);
-      if ([distance, factor].some(isNaN)) return alert("값 입력하라고ㅡㅡ");
+      if ([distance, factor].some(isNaN)) return alert("값을 입력하세요");
       const result = distance * factor;
       document.getElementById('auto-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
     function saveData() {
       const date = document.getElementById('save-date').value;
-      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+      if (!date) return alert('날짜를 선택해주세요');
       const electricity = document.getElementById('electricity-result')?.textContent || '';
       const fuel = document.getElementById('fuel-result')?.textContent || '';
       const water = document.getElementById('water-result')?.textContent || '';
