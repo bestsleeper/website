@@ -6,7 +6,7 @@
   <title>탄소중립지킴이</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     html {
       overflow-y: scroll;
@@ -137,6 +137,7 @@
     <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
              <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
+  
   <nav>
     <ul class="menu">
       <li class="menu-item">
@@ -163,8 +164,11 @@
       </li>
     </ul>
   </nav>
+
+  
   <section class="section">
     <div class="calculators" id="calculator-list">
+      
       <div class="calculator-container">
         <h2>전기 사용량 계산기</h2>
         <label for="electricity">전력 사용량 (kWh)</label>
@@ -172,6 +176,7 @@
         <button class="btn" onclick="calculateElectricity()">계산</button>
         <div class="result" id="electricity-result"></div>
       </div>
+      
       <div class="calculator-container">
         <h2>연료 사용량 계산기</h2>
         <label for="fuel-amount">연료 사용량 (kg)</label>
@@ -185,6 +190,7 @@
         <button class="btn" onclick="calculateFuelCarbon()">계산</button>
         <div class="result" id="fuel-result"></div>
       </div>
+      
       <div class="calculator-container">
         <h2>수도 사용량 계산기</h2>
         <label for="water-usage">물 사용량 (㎥)</label>
@@ -197,6 +203,7 @@
         <button class="btn" onclick="calculateWaterCarbon()">계산</button>
         <div class="result" id="water-result"></div>
       </div>
+      
       <div class="calculator-container">
         <h2>폐기물 배출 계산기</h2>
         <label for="waste-amount">폐기물 배출량 (kg)</label>
@@ -211,6 +218,7 @@
         <button class="btn" onclick="calculateWasteCarbon()">계산</button>
         <div class="result" id="waste-result"></div>
       </div>
+      
       <div class="calculator-container">
         <h2>자동차 배출량 계산기</h2>
         <label for="auto-distance">이동 거리 (km/월)</label>
@@ -225,11 +233,14 @@
         <div class="result" id="auto-result"></div>
       </div>
     </div>
+    
     <div class="save-controls">
       <input type="date" id="save-date">
       <button class="btn" onclick="saveData()">해당 내역 저장</button>
     </div>
   </section>
+
+  
   <script>
     function calculateElectricity() {
       const usage = parseFloat(document.getElementById('electricity').value);
@@ -237,6 +248,7 @@
       const result = usage * 0.451;
       document.getElementById('electricity-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
+    
     function calculateFuelCarbon() {
       const amount = parseFloat(document.getElementById('fuel-amount').value);
       const factor = parseFloat(document.getElementById('fuel-type').value);
@@ -244,6 +256,7 @@
       const result = amount * factor;
       document.getElementById('fuel-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
+    
     function calculateWaterCarbon() {
       const usage = parseFloat(document.getElementById('water-usage').value);
       const factor = parseFloat(document.getElementById('water-type').value);
@@ -251,6 +264,7 @@
       const result = (usage * factor).toFixed(3);
       document.getElementById('water-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
     }
+    
     function calculateWasteCarbon() {
       const amount = parseFloat(document.getElementById('waste-amount').value);
       const factor = parseFloat(document.getElementById('waste-type').value);
@@ -258,6 +272,7 @@
       const result = (amount * factor).toFixed(3);
       document.getElementById('waste-result').textContent = `배출된 탄소량: ${result} kg CO₂`;
     }
+    
     function calculateAutoCarbon() {
       const distance = parseFloat(document.getElementById('auto-distance').value);
       const factor = parseFloat(document.getElementById('auto-type').value);
@@ -265,6 +280,7 @@
       const result = distance * factor;
       document.getElementById('auto-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
+    
     function saveData() {
       const date = document.getElementById('save-date').value;
       if (!date) return alert('날짜를 선택해주세요');
@@ -281,6 +297,7 @@
         waste,
         auto
       };
+      
       localStorage.setItem('carbon_log_' + date, JSON.stringify(summary));
       alert('내역 저장 완료');
     }
