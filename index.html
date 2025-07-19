@@ -57,12 +57,12 @@
      </nav>    
  
      <main> <!--주요 본문 콘텐츠. 근데 굳이 안써도됨. 후술하겠지만 div나 section 사용과 달리 웹 접근성이 좋고(스크린 리더 사용 시), 중요도 판단 시 우선됨-->
-         <section class="content" style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 20px; padding: 20px;">
+         <section class="content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
           <!-- 
           section : 구역(덩어리) 분리
           style 설명 
           display : 구역 안에 있는 요소 배치 방식. (ex. bloxk은 한줄 전체 차지, inline은 내용만큼 차지, flex는 가로/세로로 정렬방식(세부정렬로 justify 사용) 등)
-          justify-content : 요소 정렬 방식(여기선 왼쪽부터 사용(if오른쪽 하고싶으면 flex-end 쓰면됨)
+          여기선 안쓰긴 햇으나 설명 : justify-content : 요소 정렬 방식(flex-start: 왼쪽, flex-end는 오른쪽 )
           flex-wrap : 공간 부족 시 자동으로 줄 바꿈 어떻게 할지. (wrap은 자동으로 아래 줄로 떨어지게 하는거. 아무것도 안쓰면 nowrap이 기본)
           gap : 요소 사이 간격 (20픽셀) (margin이랑 다른 점은 요소 외부 여백이냐(=ma) 내부 여백이냐임(gap)
           padding : 섹션 의 내부 여백 (요소의 내부 여백이랑 다름!) 
