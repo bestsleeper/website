@@ -1,25 +1,40 @@
-<!DOCTYPE html>
- <html lang="ko">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>탄소중립지킴이</title>
-     <link rel="stylesheet" href="style.css">
-     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
- </head>
- <body>
-     <header>
-         <h1>탄소중립지킴이</h1>
-         <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
-   
-     </header>
+<!DOCTYPE html> <!--HTML5 문서임을 선언-->
+ <html lang="ko"> <!--문서 기본 언어 한국어(korean)-->
+  
+ <head> <!--사용자에게 직접 보이는 내용은 아니나 웹페이지 기본 설정들같은 거라고 생각하면 될듯(=메타정보)-->
+     <meta charset="UTF-8"> <!--문자 인코딩 방식이 UTF-8(글자, 이모지 깨짐 방지용 ; 이 방식이 거의 모든 언어 다 표현 가능-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--반응형 웹 설정(화면 디스플레이 크기 따라 조절 가능하게 if 모바일 등)-->
+     <title>탄소중립지킴이</title> <!--웹페이지 타이틀(접속자에게 보이는 웹페이지 제목과 다름. 그건 body에 들어갈 내용)-->
+     <link rel="stylesheet" href="style.css"> 
+  <!--외부 css 파일 불러오기 
+      html 안에도 style해서 글자 폰트, 색상, box 설정 등 할 수 있는데, 
+      하나의 페이지에 들어가는 내용이 아니라면 css에서 세부 내용 적어서 설정하고 html에서는 class로 불러오는게 편집하기에 더 용이함-->
+ </head> <!--html은 무조건 / 에서 닫아줘야함-->
+  
+ <body> <!--실제 사용자에게 보여지는 내용들-->
+     <header> <!--상단 헤더 영역. 사용자에게 보여지는 웹페이지의 제목같은 거 적음. 예를 들면,.. 포털사이트 네이버 같은 경우 "NAVER"가 타이틀이(head 타이틀과 다름) 되는거임-->
+         <h1>탄소중립지킴이</h1> <!--h1~h7까지 있고, 숫자가 커질수록 글자가 작아짐. 여기서는 제목이니까 가장 큰 h1 사용해서 웹페이지 제목 적음-->
+         <p style="margin: 0; font-size: 25px; color: #555555;">함께 지켜나가는 우리들의 지구</p> 
+      <!--서브 타이틀, 
+      style : 인라인(함수 안에서 설정하는 스타일(자체 css) 스타일로 글자 크기랑 색상 조절함
+      margin : 여백 설정 ; 여기에서는 0해서 여백 없앰(위아래 공간 생략)
+      font-size : 말그대로 폰트 크기. 25픽셀
+      color : 색깔 설정. 16진수(hex코드)로 할 수도, 이름으로 할수도, hex 축약형(16진수에서 rgb가 각각 같은 두 글자 일 때 사용가능함)도 있음.(축약형은 어케하는지 잘 모르겠듬)-->
+     </header> <!--닫아주기-->
  
-     <nav>
+     <nav><!--네비게이션 영역, 메뉴바 같은 역할-->
          <ul class="menu">
-             <li class="menu-item">
+          <!--ul : 전체 메뉴 묶음 (ul 적고 li이든 oi이든 적을 수 있음.. 책에서도 이정도로만 설명하고, 왜 ul안에 li인지는 설명 없음. 굳이 이유를 찾자면 문법상..)
+          원래는 걍 <ul> </ul> 인데, 해당 css style은 이 파일 말고 다른 파일에서도 계속 사용되니까 css에서 설정한 menu 스타일을 불러와야함
+          > 그래서 class="menu" 라고 적음으로써 css에 적은 "menu" 스타일을 불러오는거(class는.. 일종의 분류 태그 처럼 생각하면 됨.)-->
+             <li class="menu-item"> <!--메뉴 항목 list item 준말. 마찬가지로 css에서 적은 스타일 불러오기-->
                  <a href="#" class="menu-toggle">소개</a>
-                 <ul class="submenu">
-                     <li><a href="purpose.html">설립 목적</a></li>
+              <!-- 
+              a : 링크 태그. 클릭하면 다른 사이트로 이동하게 해줌 
+              href : 어디로 이동할지 이동할 주소. #은 아무데도 이동 안가는 임시 링크 
+              class="meun.." : 해당 글자 클릭하면 아래에 드롭다운으로 서브메뉴 보이도록 js에서 설정함. 그거 불러오는거 -->
+                 <ul class="submenu"> <!--ul은 원래 순서 없는 리스트-->
+                     <li><a href="purpose.html">설립 목적</a></li> <!--리스트 항목에 대해 클릭하면 해당 사이트로 이동하게 설정!-->
                      <li><a href="howtouse.html">이용 방법</a></li>
                      <li><a href="usage_status.html">이용 현황</a></li>
                   </ul>
@@ -41,16 +56,27 @@
          </ul>
      </nav>    
  
-     <main>
-         <section class="content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
-    
-             <div class="box">
-              <div class="left-box">
+     <main> <!--주요 본문 콘텐츠. 근데 굳이 안써도됨. 후술하겠지만 div나 section 사용과 달리 웹 접근성이 좋고(스크린 리더 사용 시), 중요도 판단 시 우선됨-->
+         <section class="content" style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 20px; padding: 20px;">
+          <!-- 
+          section : 구역(덩어리) 분리
+          style 설명 
+          display : 구역 안에 있는 요소 배치 방식. (ex. bloxk은 한줄 전체 차지, inline은 내용만큼 차지, flex는 가로/세로로 정렬방식(세부정렬로 justify 사용) 등)
+          justify-content : 요소 정렬 방식(여기선 왼쪽부터 사용(if오른쪽 하고싶으면 flex-end 쓰면됨)
+          flex-wrap : 공간 부족 시 자동으로 줄 바꿈 어떻게 할지. (wrap은 자동으로 아래 줄로 떨어지게 하는거. 아무것도 안쓰면 nowrap이 기본)
+          gap : 요소 사이 간격 (20픽셀) (margin이랑 다른 점은 요소 외부 여백이냐(=ma) 내부 여백이냐임(gap)
+          padding : 섹션 의 내부 여백 (요소의 내부 여백이랑 다름!) 
+          -->
+         
+             <div class="box"> <!--div는 걍 묶음..? 으로 생각하면 될 듯.. 레이아웃 구분용 태크(컨테이너=박스 태그) 
+              그래서 class 꼭 써야댐 아무것도 지정 안하는거라 그 역할을 정해줘야함-->
+              <div class="left-box"> 
                <h2>탄소 뉴스 정보</h2>
              </div>
               <div class="right-box">
                  <ul class="type-none-ul">
                      <li><a href="https://www.hani.co.kr/arti/economy/environment/1107167.html" target="_blank">[기사] 기후위기, 탄소중립 어디까지 왔나</a></li>
+                  <!--target : 현재탭에서 오픈할지, 새 탭에서 열지 정하는거 blank는 새탭, self(기본값)은 현재탭-->
                      <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148906173" target="_blank">[기사] 탄소중립 정책 발표 요약</a></li>
                      <li><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1007173574" target="_blank">[기사] 2050 탄소중립 전략 설명</a></li>
                  </ul>
@@ -92,6 +118,6 @@
          </section>
      </main>
   
-     <script src="script.js"></script>
+     <script src="script.js"></script> <!--js(자바스크립트 적은 내용 (ex 메뉴 드롭다운 등) 불러오기)-->
  </body>
- </html>
+ </html> <!--최종닫아주기^^-->
