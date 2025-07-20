@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>국내 정책</title>
+  <!-- 외부 CSS와 Chart.js 불러오기 -->
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    .section {
-      text-align: center;
-      padding: 2em;
-    }
-    
+    /* 전체 HTML 및 스크롤바 스타일 */
     html {
       overflow-y: scroll;
       scrollbar-width: auto;
@@ -24,31 +21,8 @@
       font-family: 'GmarketSans', sans-serif;
       background-color: #ffffff;
     }
-    
-    canvas {
-      max-width: 700px;
-      height: auto !important;
-      width: auto !important;
-      margin: 40px auto;
-      display: block;
-    }
 
-    .slider {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 40px auto;
-      max-width: 1000px;
-      overflow: hidden;
-    }
-    
-    .slider img {
-      width: 30%;
-      height: 200px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
+    /* 헤더 및 네비게이션 영역 스타일 */
     header {
       background-color: #ffffff;
       color: #31624E;
@@ -63,10 +37,9 @@
       margin: 0;
       padding: 1em;
     }
-  
-    
+
     nav {
-      background-color: #E0efe8;
+      background-color: #E0EFE8;
     }
 
     nav ul {
@@ -80,7 +53,7 @@
       position: relative;
       margin: 0 20px;
     }
-    
+
     nav ul li a {
       display: block;
       color: black;
@@ -88,11 +61,11 @@
       padding: 14px 16px;
       text-decoration: none;
     }
-  
+
     nav ul li a:hover {
       background-color: #9DB0A9;
     }
-    
+
     .submenu {
       display: none;
       position: absolute;
@@ -108,20 +81,14 @@
     nav ul li:hover .submenu {
       display: block;
     }
-    
+
+    /* 콘텐츠 영역 공통 스타일 */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
     }
-    
-    .policy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
+
     .policy-card {
       background: #f8f9fa;
       border-radius: 15px;
@@ -129,45 +96,25 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
+
     .policy-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
-    
+
     .policy-card h3 {
       color: #31624E;
       margin-bottom: 15px;
       font-size: 1.3em;
     }
-    
+
     .policy-card p {
       color: #555;
       line-height: 1.6;
       margin-bottom: 20px;
     }
-    
-    .progress-bar {
-      width: 100%;
-      height: 20px;
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 15px 0;
-    }
-    
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #31624E, #4a8a6e);
-      transition: width 1s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.85em;
-      font-weight: bold;
-    }
-    
+
+    /* 실현 가능성 배지 스타일 */
     .feasibility-score {
       display: inline-block;
       padding: 5px 15px;
@@ -176,40 +123,29 @@
       font-weight: bold;
       margin-top: 10px;
     }
-    
+
     .high-feasibility {
       background-color: #28a745;
       color: white;
     }
-    
+
     .medium-feasibility {
       background-color: #ffc107;
       color: #333;
     }
-    
+
     .low-feasibility {
       background-color: #dc3545;
       color: white;
     }
-    
+
     .sector-overview {
       background: #E0EFE8;
       border-radius: 15px;
       padding: 30px;
       margin: 40px 0;
     }
-    
-    .sector-overview h2 {
-      color: #31624E;
-      margin-bottom: 20px;
-    }
-    
-    .chart-container {
-      position: relative;
-      height: 400px;
-      margin: 30px 0;
-    }
-    
+
     .link-button {
       display: inline-block;
       background-color: #31624E;
@@ -220,25 +156,9 @@
       transition: background-color 0.3s ease;
       font-size: 0.9em;
     }
-    
+
     .link-button:hover {
       background-color: #1d3e33;
-    }
-    
-    .warning-box {
-      background-color: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 5px;
-    }
-    
-    .success-box {
-      background-color: #d4edda;
-      border-left: 4px solid #28a745;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 5px;
     }
   </style>
 </head>
@@ -250,7 +170,7 @@
     <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
 
-  <!-- 네비게이션 -->
+  <!-- 네비게이션 메뉴 -->
   <nav>
     <ul>
       <li><a href="#">소개</a>
@@ -276,192 +196,71 @@
   </nav>
 
   <!-- 본문 콘텐츠 -->
-  <div class="container">
-    <h2>국내 탄소중립 정책 현황 및 실현 가능성</h2>
-    
-    <div class="warning-box">
-      <strong>⚠️ 현실 점검:</strong> Climate Action Tracker 분석에 따르면, 한국의 현 정책으로는 2030 목표 달성이 어렵고, 목표 자체도 파리협정 기준에 미달합니다. 함께 노력이 필요한 시점입니다!
-      <br> 다만 해당 예상 수치는 전문적 기관에서 발행한 자료가 아니며, 보다 자세한 정보 파악을 위해서는 "대한민국 정책 브리핑" 또는 "탄소중립 녹색성장 위원회" 자료를 참고하시길 권장드립니다. 
-    </div>
+  <div class="container" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
 
-    <!-- 부문별 감축 목표 개요 -->
-    <div class="sector-overview">
-      <h2>2030 부문별 온실가스 감축 목표 및 현황</h2>
-      <div class="chart-container">
-        <canvas id="sectorChart"></canvas>
-      </div>
-    </div>
-
-    <!-- 부문별 정책 카드 -->
-    <div class="policy-grid">
-      
-      <!-- 에너지 부문 -->
+    <!-- 왼쪽: 6개 부문 정책 카드 (2열 3행) -->
+    <div style="flex: 1 1 60%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
       <div class="policy-card">
         <h3>🔌 에너지 부문</h3>
-        <p><strong>목표:</strong> 재생에너지 21.6%+α, 원자력 32.4%, 석탄발전 절반 감축</p>
-        <p><strong>현황:</strong> 재생에너지 약 7%, 원자력 30%, 석탄 35%</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 30%">30%</div>
-        </div>
-        <p><strong>주요 과제:</strong> 재생에너지 3배 확대 필요, CCS 기술 상용화 지연</p>
+        <p><strong>목표:</strong> 재생에너지 21.6%+α, 원자력 32.4%, 석탄 절반 감축</p>
+        <p><strong>주요 과제:</strong> 재생에너지 3배 확대, CCS 기술 상용화 지연</p>
         <span class="feasibility-score low-feasibility">실현 가능성: 낮음</span>
       </div>
-
-      <!-- 산업 부문 -->
       <div class="policy-card">
         <h3>🏭 산업 부문</h3>
         <p><strong>목표:</strong> 11.4% 감축 (당초 14.5%에서 하향)</p>
-        <p><strong>현황:</strong> 수소환원제철, 전기로 전환 등 기술 개발 중</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 40%">40%</div>
-        </div>
         <p><strong>주요 과제:</strong> 탈탄소 기술 상용화 미흡, 기업 부담 우려</p>
         <span class="feasibility-score medium-feasibility">실현 가능성: 보통</span>
       </div>
-
-      <!-- 수송 부문 -->
       <div class="policy-card">
         <h3>🚗 수송 부문</h3>
         <p><strong>목표:</strong> 전기차 420만대, 수소차 30만대</p>
-        <p><strong>현황:</strong> 전기차 54만대(연 30% 성장), 수소차 약 4만대</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 55%">55%</div>
-        </div>
         <p><strong>주요 과제:</strong> 전기차는 순조롭지만 수소차 보급 부진</p>
         <span class="feasibility-score medium-feasibility">실현 가능성: 보통</span>
       </div>
-
-      <!-- 건물 부문 -->
       <div class="policy-card">
         <h3>🏢 건물 부문</h3>
         <p><strong>목표:</strong> 32.8% 감축</p>
-        <p><strong>현황:</strong> 제로에너지건축 의무화 확대, 그린리모델링 추진</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 45%">45%</div>
-        </div>
         <p><strong>주요 과제:</strong> 초기비용 부담, 기존 건물 개선 속도</p>
         <span class="feasibility-score medium-feasibility">실현 가능성: 보통</span>
       </div>
-
-      <!-- 농축수산 부문 -->
       <div class="policy-card">
         <h3>🌾 농축수산 부문</h3>
         <p><strong>목표:</strong> 27.1% 감축, 바이오가스 8.9억 Nm³</p>
-        <p><strong>현황:</strong> 가축분뇨 바이오가스화 시설 112개 운영</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 60%">60%</div>
-        </div>
         <p><strong>주요 과제:</strong> 영세농가 지원, 기술 보급 확대</p>
         <span class="feasibility-score high-feasibility">실현 가능성: 높음</span>
       </div>
-
-      <!-- 폐기물 부문 -->
       <div class="policy-card">
         <h3>♻️ 폐기물 부문</h3>
         <p><strong>목표:</strong> 46.8% 감축</p>
-        <p><strong>현황:</strong> 높은 재활용률, 매립지 메탄 회수 확대</p>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 70%">70%</div>
-        </div>
         <p><strong>주요 과제:</strong> 폐기물 처리시설 입지 갈등</p>
         <span class="feasibility-score high-feasibility">실현 가능성: 높음</span>
       </div>
-
     </div>
 
-    <!-- 주요 정책 링크 -->
-    <div class="sector-overview" style="margin-top: 50px;">
-      <h2>주요 탄소중립 정책 문서</h2>
-      
-      <div style="display: grid; gap: 20px;">
-        <div>
-          <h4>📋 2050 탄소중립 전략</h4>
-          <p>대한민국의 장기적인 탄소중립 비전과 부문별 감축 로드맵</p>
-          <a href="https://www.2050cnc.go.kr" target="_blank" class="link-button">정책 상세보기</a>
-        </div>
-        
-        <div>
-          <h4>⚖️ 탄소중립·녹색성장 기본법</h4>
-          <p>탄소중립 실현을 위한 법적 기반과 추진 체계</p>
-          <a href="https://www.law.go.kr/법령/탄소중립ㆍ녹색성장기본법" target="_blank" class="link-button">법령 전문보기</a>
-        </div>
-        
-        <div>
-          <h4>🌱 탄소중립 실천포인트</h4>
-          <p>일상생활 속 탄소중립 실천을 포인트로 보상하는 국민 참여 제도</p>
-          <a href="https://cpoint.or.kr" target="_blank" class="link-button">참여하기</a>
+    <!-- 오른쪽: 주요 정책 문서 영역 -->
+    <div style="flex: 1 1 35%;">
+      <div class="sector-overview">
+        <h2>주요 탄소중립 정책 문서</h2>
+        <div style="display: grid; gap: 20px;">
+          <div>
+            <h4>📋 2050 탄소중립 전략</h4>
+            <p>대한민국의 장기적인 탄소중립 비전과 부문별 감축 로드맵</p>
+            <a href="https://www.2050cnc.go.kr" target="_blank" class="link-button">정책 상세보기</a>
+          </div>
+          <div>
+            <h4>⚖️ 탄소중립·녹색성장 기본법</h4>
+            <p>탄소중립 실현을 위한 법적 기반과 추진 체계</p>
+            <a href="https://www.law.go.kr/법령/탄소중립ㆍ녹색성장기본법" target="_blank" class="link-button">법령 전문보기</a>
+          </div>
+          <div>
+            <h4>🌱 탄소중립 실천포인트</h4>
+            <p>일상생활 속 탄소중립 실천을 포인트로 보상하는 국민 참여 제도</p>
+            <a href="https://cpoint.or.kr" target="_blank" class="link-button">참여하기</a>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="success-box">
-      <strong>💪 함께하는 탄소중립:</strong> 정책의 성공은 정부, 기업, 시민 모두의 참여에 달려있습니다. 작은 실천부터 시작해보세요!
-    </div>
-
   </div>
-
-  <script>
-    // 차트 생성
-    const ctx = document.getElementById('sectorChart').getContext('2d');
-    const sectorChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['에너지', '산업', '수송', '건물', '농축수산', '폐기물'],
-        datasets: [{
-          label: '2030 감축목표 (%)',
-          data: [44.4, 11.4, 37.8, 32.8, 27.1, 46.8],
-          backgroundColor: 'rgba(49, 98, 78, 0.6)',
-          borderColor: 'rgba(49, 98, 78, 1)',
-          borderWidth: 2
-        }, {
-          label: '예상 달성률 (%)',
-          data: [30, 40, 55, 45, 60, 70],
-          backgroundColor: 'rgba(224, 239, 232, 0.8)',
-          borderColor: 'rgba(157, 176, 169, 1)',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: '부문별 감축 목표 vs 예상 달성률',
-            font: {
-              size: 16
-            }
-          },
-          legend: {
-            position: 'bottom'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 80,
-            ticks: {
-              callback: function(value) {
-                return value + '%';
-              }
-            }
-          }
-        }
-      }
-    });
-
-    // 프로그레스 바 애니메이션
-    window.addEventListener('load', () => {
-      const progressBars = document.querySelectorAll('.progress-fill');
-      progressBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0%';
-        setTimeout(() => {
-          bar.style.width = width;
-        }, 300);
-      });
-    });
-  </script>
-
 </body>
 </html>
