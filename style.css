@@ -142,3 +142,66 @@ nav ul li:hover .submenu,
 }
 
 /* record */
+    .section-re {
+      padding: 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .calculators {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .calculator-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+      min-width: 300px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    label {
+      font-size: 1em;
+      margin: 10px 0 5px;
+      display: block;
+      color: #555;
+    }
+    input {
+      width: 100%; padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn-re {
+      width: 100%; padding: 10px;
+      background-color: #e6f2ec;
+      color: #1e4638;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .btn-re:hover {
+      transform: scale(1.05);
+      background-color: #cde7db;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: red;
+      font-weight: bold;
+    }
+    .save-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
