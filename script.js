@@ -1,3 +1,4 @@
+//이시은제작
 document.addEventListener('DOMContentLoaded', function() {
     const menuItems = document.querySelectorAll('.menu-item');
     
