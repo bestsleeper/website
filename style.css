@@ -1,34 +1,141 @@
+/* 웹 폰트 적용 */
 @font-face {
-     font-family: 'GmarketSans';
-     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
- }
-html {scrollbar-gutter: stable overlay;}
+  font-family: 'GmarketSans';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
-body {font-family: 'GmarketSans', sans-serif; margin: 0; padding: 0; background-color: #ffffff;}  
+/* 전체 기본 구조 */
+html {
+  scrollbar-gutter: stable overlay;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #ccc #fff;
+}
 
-header {background-color: #ffffff; color: #31624E ; display: flex; justify-content: space-between; align-items: center; padding: 1em 20px;}
-h1 {text-align: left; margin: 0; padding: 1em;}
+body {
+  font-family: 'GmarketSans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
 
-nav {background-color: #E0EFE8;}
-nav ul {list-style-type: none; padding: 0; display: flex; justify-content: center;}
-  
-nav ul li {position: relative; margin: 0 20px;} nav ul li a {display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none;}
-nav ul li a:hover {background-color: #9DB0A9;}
-  
-.submenu {display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ccc; list-style: none; padding: 0; width: 150px;}
-.submenu li a {padding: 10px; display: block; color: black;}
-.submenu li a:hover {background: #f0f0f0;}
-  
-.menu-item:hover .submenu {display: block;}
-  
-.content {display: flex; justify-content: space-around; margin: 20px;}
-  
-.box {display:flex; background-color: white; padding: 20px; width: 40%; height:30%; text-align: center; border: 1px solid #aaa;}
-.left-box {width: 50%; padding: 20px; background-color: #f0f0f0;}
-.right-box {width: 50%; padding: 20px; background-color: #EAFAF3;}
+/* 헤더 */
+header {
+  background-color: #ffffff;
+  color: #31624E;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 20px;
+}
 
-.type-none-ul{list-style:none; padding-left:0;}
- 
-.consistent-style {background-color: #E0EFE8; width: 100%; height: 60px; display: flex; align-items: center; justify-content: center;}
+h1 {
+  text-align: left;
+  margin: 0;
+  padding: 1em;
+}
+
+/* 내비게이션 */
+nav {
+  background-color: #E0EFE8;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  position: relative;
+  margin: 0 20px;
+}
+
+nav ul li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #9DB0A9;
+}
+
+/* 서브 메뉴 */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  width: 150px;
+  z-index: 999;
+}
+
+.submenu li a {
+  padding: 10px;
+  display: block;
+  color: black;
+}
+
+.submenu li a:hover {
+  background: #f0f0f0;
+}
+
+nav ul li:hover .submenu,
+.menu-item:hover .submenu {
+  display: block;
+}
+
+/* 박스 레이아웃 공통 */
+.content {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.box {
+  display: flex;
+  background-color: white;
+  padding: 20px;
+  width: 40%;
+  height: 30%;
+  text-align: center;
+  border: 1px solid #aaa;
+}
+
+/* 박스 내부 왼쪽/오른쪽 */
+.left-box {
+  width: 50%;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.right-box {
+  width: 50%;
+  padding: 20px;
+  background-color: #EAFAF3;
+}
+
+/* 공통 스타일 클래스 */
+.type-none-ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.consistent-style {
+  background-color: #E0EFE8;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
