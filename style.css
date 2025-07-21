@@ -1,4 +1,5 @@
-/* 웹 폰트 적용 */
+/* 이시은만듦 o(*￣▽￣*)ブ */
+/* 웹 폰트 적용(이건 눈누 사이트에서 제공하는 코드임) */
 @font-face {
   font-family: 'GmarketSans';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -67,7 +68,7 @@ nav ul li a:hover {
   background-color: #9DB0A9;
 }
 
-/* 서브 메뉴 */
+/* 서브 메뉴(메뉴 누르면 밑에 주르륵 뜨는거) */
 .submenu {
   display: none;
   position: absolute;
