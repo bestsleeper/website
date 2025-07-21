@@ -8,74 +8,24 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    html {
-      overflow-y: scroll;
-      scrollbar-width: auto;
-      scrollbar-color: #ccc #fff;
-    }
     body {
       margin: 0;
       padding: 0;
       font-family: 'GmarketSans', sans-serif;
       background-color: #ffffff;
-      overflow-x: auto;
-    }
-    header {
-      background-color: #ffffff;
-      color: #31624E;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1em 20px;
-    }
-    nav {
-      background-color: #E0EFE8;
-    }
-    nav ul.menu {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-    nav ul li {
-      position: relative;
-      margin: 0 20px;
-    }
-    nav ul li a {
-      display: block;
-      color: black;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    nav ul li a:hover {
-      background-color: #9DB0A9;
-    }
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      background: white;
-      border: 1px solid #ccc;
-      list-style: none;
-      padding: 0;
-      width: 150px;
-      z-index: 999;
-    }
-    nav ul li:hover .submenu {
-      display: block;
-    }
+      overflow-x: auto; }
+    
     .section {
       padding: 40px;
       background-color: #f9f9f9;
-      text-align: center;
-    }
+      text-align: center;}
+    
     .calculators {
       display: flex;
       overflow-x: auto;
       gap: 20px;
-      padding: 20px 0;
-    }
+      padding: 20px 0;}
+    
     .calculator-container {
       background-color: white;
       padding: 20px;
@@ -85,21 +35,21 @@
       max-width: 300px;
       min-width: 300px;
       text-align: center;
-      flex-shrink: 0;
-    }
+      flex-shrink: 0; }
+    
     label {
       font-size: 1em;
       margin: 10px 0 5px;
       display: block;
-      color: #555;
-    }
+      color: #555555; }
+    
     input, select {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+      border-radius: 5px;}
+    
     .btn {
       width: 100%;
       padding: 10px;
@@ -111,27 +61,28 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
+      transition: transform 0.2s ease; }
+    
     .btn:hover {
       transform: scale(1.05);
-      background-color: #cde7db;
-    }
+      background-color: #cde7db;}
+    
     .result {
       margin-top: 15px;
       font-size: 1.2em;
       color: red;
-      font-weight: bold;
-    }
+      font-weight: bold;}
+    
     .save-controls {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin-top: 20px;
-    }
+      margin-top: 20px; }
   </style>
 </head>
+
+  
 <body>
   <header>
     <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
@@ -241,10 +192,10 @@
   </section>
 
   
-  <script>
-    function calculateElectricity() {
+  <script> 
+    function calculateElectricity() { 
       const usage = parseFloat(document.getElementById('electricity').value);
-      if (isNaN(usage)) return alert("값을 입력하세요");
+      if (isNaN(usage)) return alert("값을 입력하세요"); 
       const result = usage * 0.451;
       document.getElementById('electricity-result').textContent = `배출된 탄소량: ${result.toFixed(3)} kg CO₂`;
     }
