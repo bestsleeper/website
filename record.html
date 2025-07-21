@@ -5,13 +5,14 @@
    <title>기록지</title>
    <link rel="stylesheet" href="style.css">
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
    <style>
        .button-container {
          display: flex;
          justify-content: center;
          gap: 30px;
          margin-top: 50px;
-         flex-wrap: wrap; /* 반응형 대비 */
+         flex-wrap: wrap; 
        }
      
        .carbon-button {
@@ -35,14 +36,11 @@
  </head>
   
  <body>
-   <!-- 헤더 -->
    <header>
        <h1><a href="index.html" style="color:  #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
         <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
    </header>
-   </header>
  
-   <!-- 네비게이션 -->
    <nav>
      <ul>
        <li><a href="#">소개</a>
@@ -66,17 +64,14 @@
        </li>
      </ul>
    </nav>
-  <!-- 메인 콘텐츠 -->
-  <main class="content-wrapper">
+
+  
+  <main>
   <div class="button-container">
-    <button class="carbon-button" onclick="location.href='carbon_record.html'">
-      배출한 탄소량 알아보기 →
-    </button>
-    <button class="carbon-button" onclick="location.href='carbon_record2.html'">
-      절약한 탄소량 알아보기 →
-    </button>
+    <button class="carbon-button" onclick="location.href='carbon_record.html'"> 배출한 탄소량 알아보기 → </button>
+    <button class="carbon-button" onclick="location.href='carbon_record2.html'"> 절약한 탄소량 알아보기 → </button>
   </div>
-</main>
+  </main>
 
 </body>
 </html>
