@@ -7,88 +7,19 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    html { overflow-y: scroll; scrollbar-width: auto; scrollbar-color: #ccc #fff; }
-    body {
-      margin: 0; padding: 0;
-      font-family: 'GmarketSans', sans-serif;
-      background-color: #ffffff;
+    body { 
       overflow-x: auto;
-    }
-    header {
-      background-color: #ffffff; color: #31624E;
-      display: flex; justify-content: space-between;
-      align-items: center; padding: 1em 20px;
-
-    .section {
-      padding: 40px;
-      background-color: #f9f9f9;
-      text-align: center;
-    }
-    .calculators {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px 0;
-    }
-    .calculator-container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 300px;
-      min-width: 300px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-    label {
-      font-size: 1em;
-      margin: 10px 0 5px;
-      display: block;
-      color: #555;
-    }
-    input {
-      width: 100%; padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .btn {
-      width: 100%; padding: 10px;
-      background-color: #e6f2ec;
-      color: #1e4638;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-      background-color: #cde7db;
-    }
-    .result {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: red;
-      font-weight: bold;
-    }
-    .save-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px;
     }
   </style>
 </head>
+
+  
 <body>
   <header>
     <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
     <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
+  
   <nav>
     <ul>
       <li><a href="#">소개</a>
@@ -112,7 +43,9 @@
       </li>
     </ul>
   </nav>
-<section class="section">
+
+  
+<section class="section-re">
   <div class="calculators">
     <div class="calculator-container">
       <h3>이동수단 절감</h3>
@@ -122,7 +55,7 @@
       <input type="number" id="bike">
       <label for="public">대중교통 이용 (km)</label>
       <input type="number" id="public">
-      <button class="btn" onclick="calculateTransport()">이동수단 계산</button>
+      <button class="btn-re" onclick="calculateTransport()">이동수단 계산</button>
       <div class="result" id="result-transport"></div>
     </div>
     <div class="calculator-container">
@@ -133,7 +66,7 @@
       <input type="number" id="heating">
       <label for="water">물 절약 사용량 (L)</label>
       <input type="number" id="water">
-      <button class="btn" onclick="calculateEnergy()">에너지 계산</button>
+      <button class="btn-re" onclick="calculateEnergy()">에너지 계산</button>
       <div class="result" id="result-energy"></div>
     </div>
     <div class="calculator-container">
@@ -144,7 +77,7 @@
       <input type="number" id="reuse">
       <label for="refill">리필제품 사용 횟수</label>
       <input type="number" id="refill">
-      <button class="btn" onclick="calculateHabit()">생활습관 계산</button>
+      <button class="btn-re" onclick="calculateHabit()">생활습관 계산</button>
       <div class="result" id="result-habit"></div>
     </div>
     <div class="calculator-container">
@@ -153,69 +86,69 @@
       <input type="number" id="paperless">
       <label for="recycle">분리배출 횟수</label>
       <input type="number" id="recycle">
-      <button class="btn" onclick="calculateDigital()">디지털/분리 계산</button>
+      <button class="btn-re" onclick="calculateDigital()">디지털/분리 계산</button>
       <div class="result" id="result-digital"></div>
     </div>
   </div>
   <div class="save-controls">
     <input type="date" id="save-date">
-    <button class="btn" onclick="saveReduction()">내역 저장</button>
+    <button class="btn-re" onclick="saveReduction()">내역 저장</button>
   </div>
 </section>
 
 <script>
-const factors = {
-  walk: 0.25, bike: 0.25, public: 0.17,
-  vegan: 1.1, cooling: 0.5, heating: 0.5,
-  water: 0.0025, reuse: 0.2, refill: 0.3,
-  paperless: 0.05, recycle: 0.1
-};
-
-function calculateTransport() {
-  const walk = parseFloat(document.getElementById('walk').value) || 0;
-  const bike = parseFloat(document.getElementById('bike').value) || 0;
-  const pub = parseFloat(document.getElementById('public').value) || 0;
-  const total = walk * factors.walk + bike * factors.bike + pub * factors.public;
-  document.getElementById("result-transport").textContent = `이동수단 절감량: ${total.toFixed(2)} kg CO₂`;
-}
-
-function calculateEnergy() {
-  const cooling = parseFloat(document.getElementById('cooling').value) || 0;
-  const heating = parseFloat(document.getElementById('heating').value) || 0;
-  const water = parseFloat(document.getElementById('water').value) || 0;
-  const total = cooling * factors.cooling + heating * factors.heating + water * factors.water;
-  document.getElementById("result-energy").textContent = `에너지 절감량: ${total.toFixed(2)} kg CO₂`;
-}
-
-function calculateHabit() {
-  const vegan = parseFloat(document.getElementById('vegan').value) || 0;
-  const reuse = parseFloat(document.getElementById('reuse').value) || 0;
-  const refill = parseFloat(document.getElementById('refill').value) || 0;
-  const total = vegan * factors.vegan + reuse * factors.reuse + refill * factors.refill;
-  document.getElementById("result-habit").textContent = `생활습관 절감량: ${total.toFixed(2)} kg CO₂`;
-}
-
-function calculateDigital() {
-  const paperless = parseFloat(document.getElementById('paperless').value) || 0;
-  const recycle = parseFloat(document.getElementById('recycle').value) || 0;
-  const total = paperless * factors.paperless + recycle * factors.recycle;
-  document.getElementById("result-digital").textContent = `디지털/분리 절감량: ${total.toFixed(2)} kg CO₂`;
-}
-
-function saveReduction() {
-  const date = document.getElementById('save-date').value;
-  if (!date) return alert('날짜를 선택하라고ㅡㅡ');
-  let savedData = {};
-  for (const key in factors) {
-    const val = parseFloat(document.getElementById(key).value) || 0;
-    savedData[key] = val * factors[key];
-  }
-  const total = Object.values(savedData).reduce((a, b) => a + b, 0);
-  savedData['total'] = total;
-  savedData['tree'] = (total / 6.6).toFixed(1);
-  localStorage.setItem('carbon_saved_' + date, JSON.stringify(savedData));
-  alert('절감 내역 저장 완료!');
-}
-</script>
-</body>
+    const factors = {
+      walk: 0.25, bike: 0.25, public: 0.17,
+      vegan: 1.1, cooling: 0.5, heating: 0.5,
+      water: 0.0025, reuse: 0.2, refill: 0.3,
+      paperless: 0.05, recycle: 0.1
+    };
+    
+    function calculateTransport() {
+      const walk = parseFloat(document.getElementById('walk').value) || 0;
+      const bike = parseFloat(document.getElementById('bike').value) || 0;
+      const pub = parseFloat(document.getElementById('public').value) || 0;
+      const total = walk * factors.walk + bike * factors.bike + pub * factors.public;
+      document.getElementById("result-transport").textContent = `이동수단 절감량: ${total.toFixed(2)} kg CO₂`;
+    }
+    
+    function calculateEnergy() {
+      const cooling = parseFloat(document.getElementById('cooling').value) || 0;
+      const heating = parseFloat(document.getElementById('heating').value) || 0;
+      const water = parseFloat(document.getElementById('water').value) || 0;
+      const total = cooling * factors.cooling + heating * factors.heating + water * factors.water;
+      document.getElementById("result-energy").textContent = `에너지 절감량: ${total.toFixed(2)} kg CO₂`;
+    }
+    
+    function calculateHabit() {
+      const vegan = parseFloat(document.getElementById('vegan').value) || 0;
+      const reuse = parseFloat(document.getElementById('reuse').value) || 0;
+      const refill = parseFloat(document.getElementById('refill').value) || 0;
+      const total = vegan * factors.vegan + reuse * factors.reuse + refill * factors.refill;
+      document.getElementById("result-habit").textContent = `생활습관 절감량: ${total.toFixed(2)} kg CO₂`;
+    }
+    
+    function calculateDigital() {
+      const paperless = parseFloat(document.getElementById('paperless').value) || 0;
+      const recycle = parseFloat(document.getElementById('recycle').value) || 0;
+      const total = paperless * factors.paperless + recycle * factors.recycle;
+      document.getElementById("result-digital").textContent = `디지털/분리 절감량: ${total.toFixed(2)} kg CO₂`;
+    }
+    
+    function saveReduction() {
+      const date = document.getElementById('save-date').value;
+      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+      let savedData = {};
+      for (const key in factors) {
+        const val = parseFloat(document.getElementById(key).value) || 0;
+        savedData[key] = val * factors[key];
+      }
+      const total = Object.values(savedData).reduce((a, b) => a + b, 0);
+      savedData['total'] = total;
+      savedData['tree'] = (total / 6.6).toFixed(1);
+      localStorage.setItem('carbon_saved_' + date, JSON.stringify(savedData));
+      alert('절감 내역 저장 완료!');
+    }
+  </script>
+ </body>
 </html>
