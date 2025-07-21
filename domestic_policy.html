@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* 전체 HTML 및 스크롤바 스타일 */
+    /* 스크롤 및 본문 설정 */
     html {
       overflow-y: scroll;
       scrollbar-width: auto;
@@ -22,7 +22,7 @@
       background-color: #ffffff;
     }
 
-    /* 헤더 및 네비게이션 영역 스타일 */
+    /* 헤더와 네비게이션 영역 */
     header {
       background-color: #ffffff;
       color: #31624E;
@@ -82,46 +82,64 @@
       display: block;
     }
 
-    /* 콘텐츠 영역 공통 스타일 */
+    /* 본문 전체 영역 Flex로 좌우 정렬 */
     .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
     }
 
+    /* 왼쪽 박스 (부문 카드 포함) */
+    .left-panel {
+      flex: 1 1 48%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    /* 오른쪽 박스 (정책 링크 포함) */
+    .right-panel {
+      flex: 1 1 48%;
+    }
+
+    /* 부문 카드 디자인 */
     .policy-card {
       background: #f8f9fa;
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .policy-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
 
     .policy-card h3 {
       color: #31624E;
-      margin-bottom: 15px;
-      font-size: 1.3em;
+      margin-bottom: 12px;
+      font-size: 1.1em;
     }
 
     .policy-card p {
       color: #555;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      font-size: 0.95em;
     }
 
-    /* 실현 가능성 배지 스타일 */
+    /* 실현 가능성 배지 */
     .feasibility-score {
       display: inline-block;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.9em;
+      padding: 4px 12px;
+      border-radius: 18px;
+      font-size: 0.85em;
       font-weight: bold;
-      margin-top: 10px;
     }
 
     .high-feasibility {
@@ -139,26 +157,36 @@
       color: white;
     }
 
+    /* 정책 링크 카드 */
     .sector-overview {
       background: #E0EFE8;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 40px 0;
+      border-radius: 12px;
+      padding: 25px;
     }
 
     .link-button {
       display: inline-block;
       background-color: #31624E;
       color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 8px 16px;
+      border-radius: 20px;
       text-decoration: none;
       transition: background-color 0.3s ease;
-      font-size: 0.9em;
+      font-size: 0.85em;
     }
 
     .link-button:hover {
       background-color: #1d3e33;
+    }
+
+    /* 맨 하단 주의 박스 */
+    .warning-box {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 60px auto 20px;
+      border-radius: 5px;
+      max-width: 1100px;
     }
   </style>
 </head>
@@ -170,7 +198,7 @@
     <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
 
-  <!-- 네비게이션 메뉴 -->
+  <!-- 내비게이션 메뉴 -->
   <nav>
     <ul>
       <li><a href="#">소개</a>
@@ -195,11 +223,11 @@
     </ul>
   </nav>
 
-  <!-- 본문 콘텐츠 -->
-  <div class="container" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
+  <!-- 좌우 패널 전체 감싸는 박스 -->
+  <div class="container">
 
-    <!-- 왼쪽: 6개 부문 정책 카드 (2열 3행) -->
-    <div style="flex: 1 1 60%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+    <!-- 왼쪽 패널: 부문별 카드 -->
+    <div class="left-panel">
       <div class="policy-card">
         <h3>🔌 에너지 부문</h3>
         <p><strong>목표:</strong> 재생에너지 21.6%+α, 원자력 32.4%, 석탄 절반 감축</p>
@@ -238,8 +266,8 @@
       </div>
     </div>
 
-    <!-- 오른쪽: 주요 정책 문서 영역 -->
-    <div style="flex: 1 1 35%;">
+    <!-- 오른쪽 패널: 탄소 정책 링크 -->
+    <div class="right-panel">
       <div class="sector-overview">
         <h2>주요 탄소중립 정책 문서</h2>
         <div style="display: grid; gap: 20px;">
@@ -258,9 +286,21 @@
             <p>일상생활 속 탄소중립 실천을 포인트로 보상하는 국민 참여 제도</p>
             <a href="https://cpoint.or.kr" target="_blank" class="link-button">참여하기</a>
           </div>
+          <div>
+            <h4>📰 탄소중립 뉴스 브리핑</h4>
+            <p>최근 발표된 탄소중립 정책 관련 뉴스 모음</p>
+            <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148906173" target="_blank" class="link-button">[기사] 탄소중립 정책 발표 요약</a><br>
+            <a href="https://www.hani.co.kr/arti/economy/environment/1107167.html" target="_blank" class="link-button">[기사] 기후위기, 탄소중립 어디까지 왔나</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- 하단 주의사항 -->
+  <div class="warning-box">
+    <strong>⚠️ 현실 점검:</strong> Climate Action Tracker 분석에 따르면, 한국의 현 정책으로는 2030 목표 달성이 어렵고, 목표 자체도 파리협정 기준에 미달합니다. 함께 노력이 필요한 시점입니다!
+    <br> 다만 해당 예상 수치는 전문적 기관에서 발행한 자료가 아니며, 보다 자세한 정보 파악을 위해서는 "대한민국 정책 브리핑" 또는 "탄소중립 녹색성장 위원회" 자료를 참고하시길 권장드립니다. 
   </div>
 </body>
 </html>
