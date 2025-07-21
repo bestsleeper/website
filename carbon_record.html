@@ -12,70 +12,13 @@
       overflow-x: auto;
     }
     
-    .section {
-      padding: 40px;
-      background-color: #f9f9f9;
-      text-align: center;}
-    
-    .calculators {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px 0;}
-    
-    .calculator-container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 300px;
-      min-width: 300px;
-      text-align: center;
-      flex-shrink: 0; }
-    
-    label {
-      font-size: 1em;
-      margin: 10px 0 5px;
-      display: block;
-      color: #555555; }
-    
     select {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 5px;}
-    
-    .btn {
-      width: 100%;
-      padding: 10px;
-      background-color: #e6f2ec;
-      color: #1e4638;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease; }
-    
-    .btn:hover {
-      transform: scale(1.05);
-      background-color: #cde7db;}
-    
-    .result {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: red;
-      font-weight: bold;}
-    
-    .save-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px; }
+      border-radius: 5px;
+    }
   </style>
 </head>
 
@@ -114,14 +57,14 @@
   </nav>
 
   
-  <section class="section">
+  <section class="section-re">
     <div class="calculators" id="calculator-list">
       
       <div class="calculator-container">
         <h2>전기 사용량 계산기</h2>
         <label for="electricity">전력 사용량 (kWh)</label>
         <input type="number" id="electricity">
-        <button class="btn" onclick="calculateElectricity()">계산</button>
+        <button class="btn-re" onclick="calculateElectricity()">계산</button>
         <div class="result" id="electricity-result"></div>
       </div>
       
@@ -135,7 +78,7 @@
           <option value="2.49">보일러등유 (2.49)</option>
           <option value="6.27">연탄 (6.27)</option>
         </select>
-        <button class="btn" onclick="calculateFuelCarbon()">계산</button>
+        <button class="btn-re" onclick="calculateFuelCarbon()">계산</button>
         <div class="result" id="fuel-result"></div>
       </div>
       
@@ -148,7 +91,7 @@
           <option value="0.344">상수도 (0.344)</option>
           <option value="0.708">하수도 (0.708)</option>
         </select>
-        <button class="btn" onclick="calculateWaterCarbon()">계산</button>
+        <button class="btn-re" onclick="calculateWaterCarbon()">계산</button>
         <div class="result" id="water-result"></div>
       </div>
       
@@ -163,7 +106,7 @@
           <option value="2.62">플라스틱</option>
           <option value="2.46">비닐류</option>
         </select>
-        <button class="btn" onclick="calculateWasteCarbon()">계산</button>
+        <button class="btn-re" onclick="calculateWasteCarbon()">계산</button>
         <div class="result" id="waste-result"></div>
       </div>
       
@@ -177,14 +120,14 @@
           <option value="0.24">경유</option>
           <option value="0.19">LPG</option>
         </select>
-        <button class="btn" onclick="calculateAutoCarbon()">계산</button>
+        <button class="btn-re" onclick="calculateAutoCarbon()">계산</button>
         <div class="result" id="auto-result"></div>
       </div>
     </div>
     
     <div class="save-controls">
       <input type="date" id="save-date">
-      <button class="btn" onclick="saveData()">해당 내역 저장</button>
+      <button class="btn-re" onclick="saveData()">해당 내역 저장</button>
     </div>
   </section>
 
