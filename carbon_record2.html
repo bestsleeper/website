@@ -103,8 +103,8 @@
       water: 0.0025, reuse: 0.2, refill: 0.3,
       paperless: 0.05, recycle: 0.1
     };
-    
-    function calculateTransport() {
+    // 입력값 없으면 그냥 입력값 0으로 간주하고 계산함 그래서 값 없어도 값입력하라는 알림창 안띄움 
+    function calculateTransport() { 
       const walk = parseFloat(document.getElementById('walk').value) || 0;
       const bike = parseFloat(document.getElementById('bike').value) || 0;
       const pub = parseFloat(document.getElementById('public').value) || 0;
