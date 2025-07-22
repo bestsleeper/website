@@ -3,18 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>국내 정책</title>
-  <!-- 외부 CSS와 Chart.js 불러오기 -->
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    /* 스크롤 및 본문 설정 */
-    html {
-      overflow-y: scroll;
-      scrollbar-width: auto;
-      scrollbar-color: #ccc #fff;
-    }
-
-    /* 본문 전체 영역 Flex로 좌우 정렬 */
+  <style> <!--이 페이지 밖에 안쓰는 스타일들은 걍 html 내부 style로 적음-->
+    /* 본문 전체 영역 Flex로 좌우 정렬 */ 
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -25,7 +17,7 @@
       padding: 40px 20px;
     }
 
-    /* 왼쪽 박스 (부문 카드 포함) */
+    /* 왼쪽 박스 (부문 카드) */
     .left-panel {
       flex: 1 1 48%;
       display: grid;
@@ -33,7 +25,7 @@
       gap: 20px;
     }
 
-    /* 오른쪽 박스 (정책 링크 포함) */
+    /* 오른쪽 박스 (정책 링크) */
     .right-panel {
       flex: 1 1 48%;
     }
