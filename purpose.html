@@ -6,11 +6,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-  .section {
-    text-align: center;
-    padding: 2em;
-  }
-
   canvas {
     max-width: 700px;
     height: auto !important;
@@ -60,10 +55,7 @@
 
   h2 { font-size: 50px; }
   h3, h4 { font-size: 36px; }
-  p {
-    font-size: 23px;
-    line-height: 1.7;
-  }
+  p {font-size: 23px; line-height: 1.7;}
 </style>
 </head>
 
@@ -73,6 +65,7 @@
     <h1><a href="index.html" style="color: #31624E; text-decoration: none;">탄소중립지킴이</a></h1>
              <p style="margin: 0; font-size: 25px; color: #555;">함께 지켜나가는 우리들의 지구</p>
   </header>
+  
   <nav>
     <ul>
       <li><a href="#">소개</a>
@@ -96,15 +89,20 @@
       </li>
     </ul>
   </nav>
+
+  
+  <!--글자 스타일 설정하는 함수는 매우다양함. <bold>, <backgorund color:> ... 다만 스타일 변경이 많아지면 따로따로 적기 불편함. 
+  그래서 그 중 전 span style 안에 다 집어넣는 방식으로 택했습니다 글자 스타일 속성 여러개여도 한번만 닫아도 되서 좋아요-->
   <section class="section">
     <h2><span style="color:#31624e;">탄소중립</span>, 왜 필요할까요?</h2>
-    <p>매년 전 세계의 탄소배출량은 <span style="color:#D24C7D;">약 360억 톤</span>에 달하며,<br>매년 <span style="color:#D24C7D;">이 추세가 증가</span>하고 있습니다. </p>
+    <p>매년 전 세계의 탄소배출량은 <span style="color:#D24C7D;">약 360억 톤</span>에 달하며,<br>매년 <span style="color:#D24C7D;">이 추세가 증가</span>하고 있습니다. </p> 
     <canvas id="globalChart" width="1000" height="450"></canvas>
     <p>대한민국 역시 산업화 이후 탄소배출량이 급격히 증가하는 추세를 보이고 있습니다. </p>
     <canvas id="koreaChart" width="1000" height="450"></canvas>
     <h3>그래서 왜, <span style="font-weight: bold;">탄소배출량 증가</span>가 문제가 될까요?</h3>
      <p> 단순히 탄소 배출량 증가에 그치지 않고 우리의 일상생활에, 나아가 범지구적인 문제로 자리잡게 됩니다. </p>
      <p>석탄, 석유, 천연가스 등과 같은 화석 연료의 연소와 산업 교통활동 등으로 인해 
+       <!--밑첨자는 sub -->
        <br><span style="font-weight: bold;">대기중으로 배출된 CO<sub>2</sub></span>는 대기의 <span style="font-weight: bold; color:#D24C7D;">온실가스</span>로 작용하여, 온실효과를 일으키게되죠.
        <br>이런 온실효과는 기온 상승, 이상기후현상, 해수면 상승 등 <span style="font-weight: bold;">다양한 기후 변화의 원인</span>이 됩니다. 
        <br>구체적으로 말해, <span style="color:#31624e;">산악지역의 빙하 25%이상이 감소</span>되며, 
@@ -115,7 +113,8 @@
        <br><span style="color:#31624e;">>대기 중 수증기가 증가</span>하고, 증가한 수증기는 <strong>또다른 온실효과</strong>를 초래합니다. </p>
        <p>결국 탄소배출량 증가로 지구는 점점 더 뜨거워지고, 
         <br>점점 더 이상현상의 빈도와 생태계 파괴가 늘어나는 <span style="color:#31624e;">악순환의 굴레</span>에서 살게 됩니다. </p>
- 
+
+    <!--이미지첨부-->
      <div class="slider">
        <img src="https://cdn.pixabay.com/photo/2023/04/22/11/12/environment-7943580_1280.jpg" class="slider-img">
        <img src="https://images.pexels.com/photos/3174349/pexels-photo-3174349.jpeg" class="slider-img">
@@ -139,7 +138,7 @@
 
   <!-- 차트 스크립트 (js) -->
   <script>
-    // 차트 그리는 함수 정의(draw_
+    // 차트 그리는 함수 정의(draw,.)
     // 매개변수: ctx(2D 컨텍스트), labels(x축 값), data(y축 값), labelText(범례 이름)
     function drawChart(ctx, labels, data, labelText) {
       return new Chart(ctx, {
@@ -164,7 +163,8 @@
     }
 
 
-  const globalLabels = [ // 세계 탄소 배출량 x축 데이터 (근데 왜 2012년까지 밖에 안뜨는 지 모르겠어요......) 
+// 세계 탄소 배출량 x축 데이터 (근데 왜 2012년까지 밖에 안뜨는 지 모르겠어요 gpt한테 자문도 구해보고, 검색도 해봤는데 해결이 안돼요)
+  const globalLabels = [ 
      '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909',
      '1910', '1911', '1912', '1913', '1914', '1915', '1916', '1917', '1918', '1919',
      '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929',
