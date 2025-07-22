@@ -137,7 +137,7 @@
     
     function saveReduction() {
       const date = document.getElementById('save-date').value;
-      if (!date) return alert('날짜를 선택하라고ㅡㅡ');
+      if (!date) return alert('날짜를 선택해주세요 ');
       let savedData = {};
       for (const key in factors) {
         const val = parseFloat(document.getElementById(key).value) || 0;
