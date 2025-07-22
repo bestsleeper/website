@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
-    .section { padding: 40px; text-align: center; }
+    .section-a { padding: 40px; text-align: center; }
     canvas { margin: 20px auto; width: 50vw !important; height: auto !important; display: block; }
     .chart-buttons { margin: 20px auto; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     .chart-buttons button { padding: 10px 20px; border: none; background-color: #31624E; color: white; border-radius: 8px; cursor: pointer; }
@@ -49,7 +49,7 @@
     </ul>
   </nav>
 
-  <section class="section">
+  <section class="section-a">
     <h2>📉 배출량 시각화</h2>
     <div class="chart-buttons">
       <button onclick="drawCharts('all')">전체 보기</button>
@@ -79,14 +79,14 @@
   </section>
 
   
-  <section class="section">
+  <section class="section-a">
     <h2>💡 감축량 시각화</h2>
     <div class="chart-buttons">
       <button onclick="drawCharts('saved')">절약량 보기</button>
     </div>
     <canvas id="savedChart"></canvas>
   </section>
-  <section class="section">
+  <section class="section-a">
     <h3>📋 감축 내역 표</h3>
     <table id="savedTable">
       <thead>
