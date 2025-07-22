@@ -96,6 +96,12 @@ nav ul li:hover .submenu,
   display: block;
 }
 
+/*기타*/
+  .section {
+    text-align: center;
+    padding: 2em;
+  }
+
 /* 박스 레이아웃 공통 */
 .content {
   display: flex;
