@@ -19,7 +19,7 @@
       style : 인라인(함수 안에서 설정하는 스타일(자체 css) 스타일로 글자 크기랑 색상 조절함
       margin : 여백 설정 ; 여기에서는 0해서 여백 없앰(위아래 공간 생략)
       font-size : 말그대로 폰트 크기. 25픽셀
-      color : 색깔 설정. 16진수(hex코드)로 할 수도, 이름으로 할수도, hex 축약형(16진수에서 rgb가 각각 같은 두 글자 일 때 사용가능함)도 있음.(축약형은 어케하는지 잘 모르겠듬)-->
+      color : 색깔 설정. 16진수(hex코드)로 할 수도, 이름으로 할수도, hex 축약형(16진수에서 rgb가 각각 같은 두 글자 일 때 사용가능함)도 있음.-->
      </header> <!--닫아주기-->
  
      <nav><!--네비게이션 영역, 메뉴바 같은 역할-->
@@ -56,7 +56,7 @@
          </ul>
      </nav>    
  
-     <main> <!--주요 본문 콘텐츠. 근데 굳이 안써도됨. 후술하겠지만 div나 section 사용과 달리 웹 접근성이 좋고(스크린 리더 사용 시), 중요도 판단 시 우선됨-->
+     <main> <!--주요 본문 콘텐츠. 근데 굳이 안써도됨. 장점은 div나 section 사용과 달리 웹 접근성이 좋음(스크린 리더 사용 시)-->
          <section class="content" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
           <!-- 
           section : 구역(덩어리) 분리
@@ -68,7 +68,7 @@
           padding : 섹션 의 내부 여백 (요소의 내부 여백이랑 다름!) 
           -->
          
-             <div class="box"> <!--div는 걍 묶음..? 으로 생각하면 될 듯.. 레이아웃 구분용 태크(컨테이너=박스 태그) 
+             <div class="box"> <!--div는 걍 묶음..? 으로 생각하면 될 듯.. 레이아웃 구분용 태그(컨테이너=박스 태그) 
               그래서 class 꼭 써야댐 아무것도 지정 안하는거라 그 역할을 정해줘야함-->
               <div class="left-box"> 
                <h2>탄소 뉴스 정보</h2>
@@ -113,11 +113,10 @@
                  <p>개인의 일상생활 속 <br> 탄소배출을 계산해보세요.</p>
                  <a href="record.html" style="display: inline-block; margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">탄소 배출량 계산하러 가기 ▶</a>
              </div>
-             </div>
-     
+           </div>
          </section>
      </main>
   
      <script src="script.js"></script> <!--js(자바스크립트 적은 내용 (ex 메뉴 드롭다운 등) 불러오기)-->
  </body>
- </html> <!--최종닫아주기^^-->
+ </html> <!--최종닫아주기-->
